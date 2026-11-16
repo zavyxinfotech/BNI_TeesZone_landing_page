@@ -1,0 +1,90 @@
+.productModalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.imageCol {
+  position: relative;
+  background: var(--color-cream-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-cream-border);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalProductImg {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(87, 0, 20, 0.15));
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--color-primary-burgundy);
+  color: white;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 0.5px;
+}
+
+.modalTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-deep-maroon);
+  margin: 4px 0 10px 0;
+}
+
+.modalDesc {
+  font-size: 0.88rem;
+  color: var(--color-secondary-text);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-dark-text);
+}
+
+.checkIcon {
+  color: var(--color-primary-burgundy);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .productModalGrid {
+    grid-template-columns: 1fr;
+  }
+}

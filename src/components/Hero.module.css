@@ -1,0 +1,275 @@
+.heroSection {
+  position: relative;
+  background-color: var(--color-cream);
+  padding: 48px 0 36px 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(216, 166, 59, 0.2);
+}
+
+.bgCurvedGlow {
+  position: absolute;
+  top: -80px;
+  right: -60px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(128, 0, 25, 0.06) 0%, rgba(255, 248, 239, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.bgGoldSwoop {
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  width: 55%;
+  height: 120px;
+  background: radial-gradient(ellipse at bottom right, rgba(216, 166, 59, 0.12) 0%, rgba(255, 248, 239, 0) 70%);
+  pointer-events: none;
+}
+
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.heroLeft {
+  flex: 0 0 46%;
+  max-width: 46%;
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrowWrapper {
+  margin-bottom: 14px;
+}
+
+.eyebrowText {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-deep-maroon);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.brandLockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.tzBrandWrap {
+  display: flex;
+  align-items: center;
+}
+
+.tzLogoImg {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.verticalDivider {
+  width: 1.5px;
+  height: 48px;
+  background: linear-gradient(180deg, rgba(87, 0, 20, 0.1) 0%, rgba(87, 0, 20, 0.4) 50%, rgba(87, 0, 20, 0.1) 100%);
+}
+
+.bniBadgeWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bniBadgeImg {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(215, 25, 50, 0.25));
+}
+
+.bniChapterText {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-deep-maroon);
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
+.heroHeading {
+  font-size: 2.25rem;
+  color: var(--color-deep-maroon);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.6px;
+  margin-bottom: 28px;
+}
+
+.heroCtas {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Right Column Apparel Visual */
+.heroRight {
+  flex: 0 0 52%;
+  max-width: 52%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.apparelWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poloImage {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 35px rgba(87, 0, 20, 0.18));
+  position: relative;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poloImage:hover {
+  transform: scale(1.02) rotate(-0.5deg);
+}
+
+.shirtBackdropGlow {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(216, 166, 59, 0.2) 0%, rgba(128, 0, 25, 0.08) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(28px);
+  z-index: 1;
+}
+
+/* 3D Floating BNI Pricing Badge */
+.bniPricingCard {
+  position: absolute;
+  bottom: 22px;
+  left: 20px;
+  z-index: 5;
+  background: linear-gradient(135deg, #740118 0%, #4D0012 100%);
+  border: 1.5px solid #ECC274;
+  border-radius: var(--radius-md);
+  padding: 10px 18px 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 28px rgba(87, 0, 20, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: transform var(--transition-fast);
+}
+
+.bniPricingCard:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.discountTagShape {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #FFDF93 0%, #D8A63B 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transform: rotate(-6deg);
+}
+
+.percentIcon {
+  color: #4D0012;
+  stroke-width: 2.5;
+}
+
+.pricingCardText {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricingCardTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #FFE6BC;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.pricingCardSubtitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
+}
+
+/* Responsive Rules for Hero */
+@media (max-width: 1024px) {
+  .heroHeading {
+    font-size: 1.85rem;
+  }
+  .bniPricingCard {
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 14px;
+  }
+  .pricingCardTitle {
+    font-size: 0.75rem;
+  }
+  .pricingCardSubtitle {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 30px 0 24px 0;
+  }
+  .heroContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  .heroLeft, .heroRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .heroLeft {
+    align-items: center;
+  }
+  .brandLockup {
+    justify-content: center;
+  }
+  .heroHeading {
+    font-size: 1.55rem;
+    margin-bottom: 20px;
+  }
+  .heroCtas {
+    justify-content: center;
+    width: 100%;
+  }
+  .bniPricingCard {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: -18px;
+    align-self: center;
+  }
+}

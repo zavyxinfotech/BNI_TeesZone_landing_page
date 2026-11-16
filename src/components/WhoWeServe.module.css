@@ -1,0 +1,127 @@
+.serveSection {
+  background-color: var(--color-cream);
+  position: relative;
+}
+
+.showcaseHeroCard {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto 40px auto;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 18px 45px rgba(87, 0, 20, 0.12);
+  border: 2px solid rgba(216, 166, 59, 0.3);
+  background: #FFFFFF;
+}
+
+.groupPhoto {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageWrapper:hover .groupPhoto {
+  transform: scale(1.02);
+}
+
+.photoOverlayGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 75%, rgba(87, 0, 20, 0.2) 100%);
+  pointer-events: none;
+}
+
+/* Industry Grid */
+.industryGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.industryCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-cream-border);
+  border-radius: var(--radius-md);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-normal);
+}
+
+.industryCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-card);
+}
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  border: 1.5px solid rgba(128, 0, 25, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all var(--transition-fast);
+}
+
+.industryCard:hover .iconCircle {
+  background: var(--color-primary-burgundy);
+  border-color: var(--color-primary-burgundy);
+}
+
+.icon {
+  color: var(--color-primary-burgundy);
+  transition: color var(--transition-fast);
+}
+
+.industryCard:hover .icon {
+  color: #FFFFFF;
+}
+
+.industryTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-deep-maroon);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.industryDesc {
+  font-size: 0.78rem;
+  color: var(--color-secondary-text);
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .industryGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .industryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .industryCard {
+    padding: 16px 10px;
+  }
+  .industryTitle {
+    font-size: 0.88rem;
+  }
+}

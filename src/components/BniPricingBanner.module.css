@@ -1,0 +1,145 @@
+.bannerSection {
+  background-color: var(--color-cream);
+  padding: 40px 0;
+  position: relative;
+}
+
+.bannerContainer {
+  background: linear-gradient(135deg, #800019 0%, #570014 60%, #3F000E 100%);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius-xl);
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(87, 0, 20, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.glowCircle {
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(216, 166, 59, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.discountBadge {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #FFDF93 0%, #D8A63B 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transform: rotate(-6deg);
+}
+
+.percentIcon {
+  color: #570014;
+  stroke-width: 2.8;
+}
+
+.bannerText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.exclusiveEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ECC274;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.sparkleIcon {
+  color: #ECC274;
+}
+
+.bannerTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.bannerSubtitle {
+  font-size: 0.88rem;
+  color: #F7EEE3;
+  opacity: 0.9;
+}
+
+.bannerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.discountPill {
+  background: linear-gradient(135deg, #FFDF93 0%, #D8A63B 100%);
+  color: #570014;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.discountRate {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.claimBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.claimBtn:hover {
+  background: #FFFFFF;
+  color: var(--color-deep-maroon);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .bannerContainer {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+    gap: 18px;
+  }
+  .bannerRight {
+    align-items: center;
+    width: 100%;
+  }
+  .exclusiveEyebrow {
+    justify-content: center;
+  }
+  .bannerTitle {
+    font-size: 1.2rem;
+  }
+}

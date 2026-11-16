@@ -1,0 +1,45 @@
+:root {
+  /* Brand Color System */
+  --color-primary-burgundy: #800019;
+  --color-deep-maroon: #570014;
+  --color-bni-red: #D71932;
+  --color-gold: #D8A63B;
+  --color-gold-light: #F4DFC0;
+  --color-gold-gradient: linear-gradient(135deg, #ECC274 0%, #D8A63B 50%, #B88523 100%);
+  --color-cream: #FFF8EF;
+  --color-cream-soft: #FBF4E9;
+  --color-cream-card: #FFFFFF;
+  --color-cream-border: #EFE4D6;
+  --color-white: #FFFFFF;
+  --color-dark-text: #251E22;
+  --color-secondary-text: #6F6260;
+  --color-whatsapp-green: #25D366;
+  --color-whatsapp-dark: #1EBE5D;
+
+  /* Typography */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(87, 0, 20, 0.05);
+  --shadow-card: 0 10px 30px rgba(87, 0, 20, 0.07);
+  --shadow-hover: 0 16px 40px rgba(87, 0, 20, 0.12);
+  --shadow-pill: 0 6px 18px rgba(128, 0, 25, 0.22);
+  --shadow-gold: 0 8px 24px rgba(216, 166, 59, 0.35);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Containers */
+  --container-max: 1240px;
+  --header-height: 76px;
+}

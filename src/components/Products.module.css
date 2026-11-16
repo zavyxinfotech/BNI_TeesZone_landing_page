@@ -1,0 +1,142 @@
+.productsSection {
+  background: linear-gradient(180deg, var(--color-cream) 0%, #FAF1E4 50%, var(--color-cream) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.showcaseWrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.pedestalStage {
+  position: relative;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.productsTrack {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.productStageCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-normal);
+}
+
+.productStageCard:hover {
+  transform: translateY(-8px);
+}
+
+.floatingGarmentWrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.garmentImg {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px rgba(87, 0, 20, 0.16));
+  transition: transform 0.4s ease;
+}
+
+.productStageCard:hover .garmentImg {
+  transform: scale(1.08) rotate(1.5deg);
+}
+
+.garmentShadow {
+  width: 70%;
+  height: 14px;
+  background: radial-gradient(ellipse, rgba(87, 0, 20, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  margin-top: 4px;
+  filter: blur(2px);
+}
+
+.ovalPedestal {
+  margin-top: 12px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5E8D6 100%);
+  border: 1.5px solid rgba(216, 166, 59, 0.4);
+  border-radius: 20px;
+  padding: 8px 14px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(87, 0, 20, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.productStageCard:hover .ovalPedestal {
+  background: var(--color-primary-burgundy);
+  border-color: var(--color-gold);
+}
+
+.productLabel {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-deep-maroon);
+  line-height: 1.25;
+  display: block;
+}
+
+.productStageCard:hover .productLabel {
+  color: #FFFFFF;
+}
+
+/* Curved Arc Stage Base */
+.curvedArcBase {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 35px;
+  background: linear-gradient(180deg, rgba(216, 166, 59, 0.15) 0%, rgba(128, 0, 25, 0.06) 100%);
+  border-top: 2px solid rgba(216, 166, 59, 0.35);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 1;
+}
+
+/* Horizontal Scroll for Mobile */
+@media (max-width: 992px) {
+  .productsTrack {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 32px;
+  }
+  .curvedArcBase {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .productsTrack {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .productStageCard {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+  }
+  .productLabel {
+    font-size: 0.85rem;
+  }
+}

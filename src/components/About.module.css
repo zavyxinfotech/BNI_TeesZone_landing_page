@@ -1,0 +1,126 @@
+.aboutSection {
+  background-color: var(--color-cream);
+  position: relative;
+}
+
+.aboutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.aboutLeft {
+  flex: 0 0 48%;
+  max-width: 48%;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary-burgundy);
+  margin-bottom: 8px;
+}
+
+.heading {
+  font-size: 2.3rem;
+  color: var(--color-deep-maroon);
+  font-weight: 800;
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+
+.leadText {
+  font-size: 1.12rem;
+  color: var(--color-dark-text);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.keyHighlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--color-secondary-text);
+  line-height: 1.45;
+}
+
+.checkIcon {
+  color: var(--color-primary-burgundy);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ctaWrapper {
+  display: flex;
+}
+
+/* Right Column Apparel Visual */
+.aboutRight {
+  flex: 0 0 48%;
+  max-width: 48%;
+  display: flex;
+  justify-content: center;
+}
+
+.imageCard {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.curvedMaskWrapper {
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(87, 0, 20, 0.14);
+  border: 2px solid rgba(216, 166, 59, 0.25);
+  background: #FFFFFF;
+}
+
+.hangerImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.curvedMaskWrapper:hover .hangerImg {
+  transform: scale(1.03);
+}
+
+.goldCornerDeco {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 80px;
+  height: 80px;
+  border-bottom: 3px solid var(--color-gold);
+  border-right: 3px solid var(--color-gold);
+  border-radius: 0 0 24px 0;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .aboutContainer {
+    flex-direction: column;
+    gap: 36px;
+  }
+  .aboutLeft, .aboutRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .heading {
+    font-size: 1.85rem;
+  }
+}

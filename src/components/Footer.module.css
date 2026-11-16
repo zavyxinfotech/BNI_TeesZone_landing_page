@@ -1,0 +1,257 @@
+.footerSection {
+  background-color: var(--color-cream);
+  position: relative;
+  border-top: 2px solid rgba(216, 166, 59, 0.3);
+  padding: 60px 0 28px 0;
+}
+
+.waveDivider {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.waveSvg {
+  width: 100%;
+  height: 40px;
+  display: block;
+}
+
+.footerContainer {
+  position: relative;
+  z-index: 2;
+}
+
+.footerGrid {
+  display: flex;
+  gap: 48px;
+  justify-content: space-between;
+}
+
+.footerLeft {
+  flex: 0 0 48%;
+  max-width: 48%;
+}
+
+.footerRight {
+  flex: 0 0 48%;
+  max-width: 48%;
+}
+
+.subHeading {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-primary-burgundy);
+  margin-bottom: 8px;
+}
+
+.mainHeading {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--color-deep-maroon);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.supportText {
+  font-size: 0.92rem;
+  color: var(--color-secondary-text);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.companyMetaList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.metaIcon {
+  color: var(--color-primary-burgundy);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.metaTextGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.metaLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-secondary-text);
+  letter-spacing: 0.5px;
+}
+
+.metaValueHighlight {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-deep-maroon);
+}
+
+.metaValueCode {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-dark-text);
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.phoneNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.phoneLink {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-deep-maroon);
+  transition: color var(--transition-fast);
+}
+
+.phoneLink:hover {
+  color: var(--color-primary-burgundy);
+  text-decoration: underline;
+}
+
+.phoneSeparator {
+  color: var(--color-secondary-text);
+  opacity: 0.5;
+}
+
+.emailLink {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-deep-maroon);
+  transition: color var(--transition-fast);
+}
+
+.emailLink:hover {
+  color: var(--color-primary-burgundy);
+  text-decoration: underline;
+}
+
+.metaValue {
+  font-size: 0.92rem;
+  color: var(--color-dark-text);
+}
+
+/* Right Column: Physical Office Location */
+.hubHighlight {
+  font-size: 0.95rem;
+  color: var(--color-dark-text);
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+.addressBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-white);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-cream-border);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(87, 0, 20, 0.03);
+}
+
+.addressPinIcon {
+  color: var(--color-primary-burgundy);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.addressContent {
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-dark-text);
+}
+
+.mapContainer {
+  width: 100%;
+  height: 240px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(87, 0, 20, 0.08);
+  border: 1.5px solid rgba(216, 166, 59, 0.3);
+  margin-bottom: 12px;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+}
+
+.mapLinkRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.openMapsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-burgundy);
+  transition: all var(--transition-fast);
+}
+
+.openMapsBtn:hover {
+  color: var(--color-deep-maroon);
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+/* Bottom Bar */
+.bottomBar {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-cream-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-secondary-text);
+}
+
+.bniBottomTag strong {
+  color: var(--color-deep-maroon);
+}
+
+@media (max-width: 900px) {
+  .footerGrid {
+    flex-direction: column;
+    gap: 36px;
+  }
+  .footerLeft, .footerRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .mapContainer {
+    height: 190px;
+  }
+  .bottomBar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}

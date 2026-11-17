@@ -1,13 +1,19 @@
 .trustSection {
   background-color: var(--color-white);
-  padding: 22px 0;
+  padding: 18px 0;
   box-shadow: 0 4px 18px rgba(87, 0, 20, 0.04);
   border-bottom: 1px solid var(--color-cream-border);
+  position: relative;
+  z-index: 4;
 }
 
 .trustContainer {
   display: flex;
   justify-content: center;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .trustGrid {
@@ -22,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 6px 16px;
+  padding: 4px 16px;
 }
 
 .googleIconWrap {
@@ -35,6 +41,7 @@
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
 }
 
 .circleIconWrap {
@@ -46,6 +53,7 @@
   background: var(--color-cream-soft);
   border-radius: 50%;
   border: 1px solid rgba(128, 0, 25, 0.12);
+  flex-shrink: 0;
 }
 
 .itemContent {
@@ -74,24 +82,47 @@
 
 .divider {
   width: 1px;
-  height: 38px;
+  height: 40px;
   background-color: var(--color-cream-border);
 }
 
+/* Compact 3-Column Mobile Strip Matching Image 1 */
 @media (max-width: 768px) {
   .trustSection {
-    padding: 16px 0;
+    padding: 14px 0;
   }
   .trustGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+  .trustItem {
     flex-direction: column;
-    gap: 14px;
+    text-align: center;
+    gap: 6px;
+    padding: 2px 4px;
+  }
+  .googleIconWrap, .circleIconWrap {
+    width: 34px;
+    height: 34px;
+  }
+  .itemTitle {
+    font-size: 0.78rem;
+    line-height: 1.2;
+  }
+  .itemSubtitle {
+    display: none;
+  }
+  .starsRow {
+    justify-content: center;
+    gap: 2px;
+  }
+  .starsRow svg {
+    width: 10px;
+    height: 10px;
   }
   .divider {
     display: none;
-  }
-  .trustItem {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 4px 8px;
   }
 }

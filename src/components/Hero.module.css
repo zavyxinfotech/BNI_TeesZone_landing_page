@@ -1,83 +1,88 @@
 .heroSection {
   position: relative;
   background-color: var(--color-cream);
-  padding: 48px 0 36px 0;
+  padding: 38px 0 0 0;
   overflow: hidden;
-  border-bottom: 1px solid rgba(216, 166, 59, 0.2);
 }
 
-.bgCurvedGlow {
+.ambientGlow {
   position: absolute;
-  top: -80px;
-  right: -60px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(128, 0, 25, 0.06) 0%, rgba(255, 248, 239, 0) 70%);
+  top: -60px;
+  right: -50px;
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(216, 166, 59, 0.12) 0%, rgba(128, 0, 25, 0.05) 50%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
-}
-
-.bgGoldSwoop {
-  position: absolute;
-  bottom: -40px;
-  right: 0;
-  width: 55%;
-  height: 120px;
-  background: radial-gradient(ellipse at bottom right, rgba(216, 166, 59, 0.12) 0%, rgba(255, 248, 239, 0) 70%);
-  pointer-events: none;
+  z-index: 1;
 }
 
 .heroContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
   position: relative;
   z-index: 2;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
-.heroLeft {
-  flex: 0 0 46%;
-  max-width: 46%;
-  display: flex;
-  flex-direction: column;
+/* Desktop Grid: Left 52%, Right 48% */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "tagline apparel"
+    "brand   apparel"
+    "heading apparel"
+    "buttons apparel";
+  align-items: center;
+  row-gap: 0;
 }
 
-.eyebrowWrapper {
-  margin-bottom: 14px;
+/* 1. Top Tagline */
+.taglineArea {
+  grid-area: tagline;
+  margin-bottom: 12px;
 }
 
-.eyebrowText {
-  font-size: 0.78rem;
+.taglineText {
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--color-deep-maroon);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: 0.9;
+  display: block;
+  opacity: 0.95;
 }
 
-.brandLockup {
+/* 2. Brand Row (TeesZone | Divider | BNI Badge) */
+.brandArea {
+  grid-area: brand;
+  margin-bottom: 20px;
+}
+
+.brandRow {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 22px;
+  gap: 20px;
 }
 
-.tzBrandWrap {
+.tzLogoWrap {
   display: flex;
   align-items: center;
 }
 
 .tzLogoImg {
-  height: 38px;
+  height: 42px;
   width: auto;
   object-fit: contain;
 }
 
 .verticalDivider {
   width: 1.5px;
-  height: 48px;
-  background: linear-gradient(180deg, rgba(87, 0, 20, 0.1) 0%, rgba(87, 0, 20, 0.4) 50%, rgba(87, 0, 20, 0.1) 100%);
+  height: 50px;
+  background: rgba(87, 0, 20, 0.4);
 }
 
 .bniBadgeWrap {
@@ -87,104 +92,91 @@
 }
 
 .bniBadgeImg {
-  height: 46px;
+  height: 52px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(215, 25, 50, 0.25));
+  filter: drop-shadow(0 2px 8px rgba(215, 25, 50, 0.22));
 }
 
-.bniChapterText {
-  font-size: 0.72rem;
+.bniChapterName {
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--color-deep-maroon);
-  margin-top: 2px;
-  letter-spacing: 0.3px;
+  margin-top: 3px;
+  letter-spacing: 0.4px;
 }
 
-.heroHeading {
-  font-size: 2.25rem;
-  color: var(--color-deep-maroon);
+/* 3. Main Hero Heading */
+.headingArea {
+  grid-area: heading;
+  margin-bottom: 24px;
+}
+
+.mainHeading {
+  font-size: 2.22rem;
   font-weight: 800;
+  color: var(--color-deep-maroon);
   line-height: 1.22;
-  letter-spacing: -0.6px;
-  margin-bottom: 28px;
+  letter-spacing: -0.5px;
+  max-width: 530px;
 }
 
-.heroCtas {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-/* Right Column Apparel Visual */
-.heroRight {
-  flex: 0 0 54%;
-  max-width: 54%;
+/* 4. Apparel Visual & BNI Pricing Badge (Right Column) */
+.apparelArea {
+  grid-area: apparel;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.apparelWrapper {
+.poloComposition {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 580px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.poloImage {
+.heroPoloImg {
   width: 100%;
   height: auto;
-  max-height: 480px;
+  max-height: 440px;
   object-fit: contain;
-  filter: drop-shadow(0 24px 45px rgba(87, 0, 20, 0.22));
+  filter: drop-shadow(0 20px 38px rgba(87, 0, 20, 0.2));
   position: relative;
   z-index: 2;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.poloImage:hover {
+.heroPoloImg:hover {
   transform: scale(1.02) rotate(-0.5deg);
 }
 
-.shirtBackdropGlow {
+/* Floating BNI Member Pricing Badge Overlapping Lower Polo */
+.bniPricingOverlay {
   position: absolute;
-  top: 10%;
-  left: 15%;
-  width: 75%;
-  height: 75%;
-  background: radial-gradient(circle, rgba(216, 166, 59, 0.22) 0%, rgba(128, 0, 25, 0.08) 50%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(32px);
-  z-index: 1;
-}
-
-/* 3D Floating BNI Pricing Badge */
-.bniPricingCard {
-  position: absolute;
-  bottom: 24px;
-  left: 10px;
-  z-index: 5;
-  background: linear-gradient(135deg, #740118 0%, #4D0012 100%);
+  bottom: 28px;
+  left: 20px;
+  z-index: 6;
+  background: linear-gradient(135deg, #780018 0%, #4D0012 100%);
   border: 1.5px solid #ECC274;
   border-radius: var(--radius-md);
-  padding: 10px 18px 10px 14px;
+  padding: 9px 18px 9px 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 12px 28px rgba(87, 0, 20, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 14px 32px rgba(87, 0, 20, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transition: transform var(--transition-fast);
 }
 
-.bniPricingCard:hover {
-  transform: translateY(-3px) scale(1.03);
+.bniPricingOverlay:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
-.discountTagShape {
+.discountTag {
   width: 36px;
   height: 36px;
   background: linear-gradient(135deg, #FFDF93 0%, #D8A63B 100%);
@@ -194,83 +186,224 @@
   justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   transform: rotate(-6deg);
+  flex-shrink: 0;
 }
 
-.percentIcon {
-  color: #4D0012;
-  stroke-width: 2.5;
+.percentGlyph {
+  color: #570014;
+  stroke-width: 2.8;
 }
 
-.pricingCardText {
+.pricingTextGroup {
   display: flex;
   flex-direction: column;
 }
 
-.pricingCardTitle {
-  font-size: 0.82rem;
+.pricingOverTitle {
+  font-size: 0.78rem;
   font-weight: 700;
   color: #FFE6BC;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
 }
 
-.pricingCardSubtitle {
-  font-size: 1.05rem;
+.pricingHighlight {
+  font-size: 1.02rem;
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.2px;
 }
 
-/* Responsive Rules for Hero */
-@media (max-width: 1024px) {
-  .heroHeading {
+/* 5. CTA Buttons */
+.buttonsArea {
+  grid-area: buttons;
+  padding-bottom: 24px;
+}
+
+.ctasRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.whatsappCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-white);
+  color: var(--color-dark-text);
+  border: 1.5px solid var(--color-cream-border);
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(87, 0, 20, 0.05);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.whatsappCtaBtn:hover {
+  background: var(--color-cream);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(87, 0, 20, 0.1);
+}
+
+.whatsappIconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+/* 6. Decorative Bottom Curved Burgundy & Gold Wave */
+.bottomWaveContainer {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  margin-top: -24px;
+  z-index: 3;
+}
+
+.waveSvg {
+  width: 100%;
+  height: 72px;
+  display: block;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Laptop & Tablet Adjustments (769px - 1080px) */
+@media (max-width: 1080px) {
+  .heroGrid {
+    grid-template-columns: 50% 50%;
+  }
+  .mainHeading {
     font-size: 1.85rem;
   }
-  .bniPricingCard {
-    bottom: 10px;
+  .heroPoloImg {
+    max-height: 380px;
+  }
+  .bniPricingOverlay {
+    bottom: 20px;
     left: 10px;
     padding: 8px 14px;
   }
-  .pricingCardTitle {
-    font-size: 0.75rem;
-  }
-  .pricingCardSubtitle {
-    font-size: 0.95rem;
-  }
 }
 
-@media (max-width: 768px) {
+/* Mobile Composition (Matching Image 1 Mobile) */
+@media (max-width: 800px) {
   .heroSection {
-    padding: 30px 0 24px 0;
+    padding: 24px 0 0 0;
   }
+
   .heroContainer {
-    flex-direction: column;
-    text-align: center;
-    gap: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
-  .heroLeft, .heroRight {
-    flex: 0 0 100%;
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "tagline"
+      "brand"
+      "heading"
+      "apparel"
+      "buttons";
+    text-align: center;
+    row-gap: 16px;
+  }
+
+  .taglineArea {
+    margin-bottom: 4px;
+  }
+
+  .taglineText {
+    font-size: 0.74rem;
+    letter-spacing: 2px;
+  }
+
+  .brandArea {
+    margin-bottom: 8px;
+  }
+
+  .brandRow {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .tzLogoImg {
+    height: 34px;
+  }
+
+  .verticalDivider {
+    height: 42px;
+  }
+
+  .bniBadgeImg {
+    height: 44px;
+  }
+
+  .bniChapterName {
+    font-size: 0.7rem;
+  }
+
+  .headingArea {
+    margin-bottom: 6px;
+  }
+
+  .mainHeading {
+    font-size: 1.55rem;
+    margin: 0 auto;
     max-width: 100%;
   }
-  .heroLeft {
-    align-items: center;
+
+  .apparelArea {
+    margin: 8px 0;
   }
-  .brandLockup {
-    justify-content: center;
+
+  .poloComposition {
+    max-width: 340px;
   }
-  .heroHeading {
-    font-size: 1.55rem;
-    margin-bottom: 20px;
+
+  .heroPoloImg {
+    max-height: 270px;
   }
-  .heroCtas {
-    justify-content: center;
-    width: 100%;
-  }
-  .bniPricingCard {
+
+  .bniPricingOverlay {
     position: relative;
     bottom: auto;
     left: auto;
-    margin-top: -18px;
+    margin-top: -24px;
     align-self: center;
+    padding: 8px 14px;
+  }
+
+  .buttonsArea {
+    padding-bottom: 20px;
+    width: 100%;
+  }
+
+  .ctasRow {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .ctasRow :global(.btn-primary),
+  .whatsappCtaBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 0.92rem;
+  }
+
+  .waveSvg {
+    height: 46px;
   }
 }

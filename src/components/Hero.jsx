@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, MessageCircle, Percent } from 'lucide-react';
+import { ArrowRight, Percent, Users, Truck, Star } from 'lucide-react';
 import { companyInfo } from '../data/companyInfo';
 import styles from './Hero.module.css';
 
@@ -92,7 +92,7 @@ export default function Hero({ onOpenIntroModal }) {
             </div>
           </div>
 
-          {/* 5. CTA Buttons Area */}
+          {/* 5. CTA Button Area */}
           <div className={styles.buttonsArea}>
             <div className={styles.ctasRow}>
               <button
@@ -103,59 +103,102 @@ export default function Hero({ onOpenIntroModal }) {
                 <span>Request a Business Introduction</span>
                 <ArrowRight size={17} />
               </button>
-
-              <a
-                href={companyInfo.whatsapp.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.whatsappCtaBtn}
-                aria-label="Chat on WhatsApp"
-              >
-                <div className={styles.whatsappIconCircle}>
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="18"
-                    height="18"
-                    fill="#25D366"
-                    aria-hidden="true"
-                  >
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.67 20.16 9.32 19.82 8.12 19.17L7.83 19.01L4.72 19.83L5.55 16.8L5.37 16.51C4.66 15.28 4.28 13.62 4.28 11.91C4.28 7.37 7.98 3.67 12.05 3.67ZM8.79 7.38C8.61 7.38 8.32 7.45 8.08 7.71C7.84 7.98 7.16 8.62 7.16 9.93C7.16 11.24 8.11 12.5 8.24 12.67C8.38 12.85 10.11 15.51 12.75 16.65C13.38 16.92 13.87 17.08 14.25 17.2C14.89 17.41 15.47 17.38 15.93 17.31C16.44 17.23 17.51 16.66 17.74 16.03C17.96 15.39 17.96 14.85 17.89 14.73C17.82 14.62 17.64 14.55 17.37 14.42C17.11 14.28 15.79 13.63 15.54 13.54C15.3 13.45 15.12 13.41 14.94 13.67C14.76 13.94 14.25 14.55 14.1 14.73C13.94 14.9 13.79 14.93 13.52 14.79C13.26 14.66 12.41 14.38 11.4 13.48C10.61 12.78 10.08 11.91 9.92 11.65C9.77 11.39 9.91 11.24 10.04 11.11C10.16 10.99 10.31 10.79 10.45 10.63C10.58 10.46 10.63 10.34 10.72 10.17C10.81 9.99 10.76 9.85 10.7 9.72C10.63 9.59 10.1 8.3 9.88 7.78C9.67 7.27 9.45 7.34 9.29 7.33C9.14 7.32 8.96 7.32 8.79 7.38Z" />
-                  </svg>
-                </div>
-                <span>Chat on WhatsApp</span>
-              </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 6. Decorative Bottom Curved Burgundy & Gold Wave */}
-      <div className={styles.bottomWaveContainer} aria-hidden="true">
-        <svg
-          viewBox="0 0 1440 96"
-          preserveAspectRatio="none"
-          className={styles.waveSvg}
-        >
-          {/* Main Burgundy Wave Fill */}
-          <path
-            d="M0,58 C220,32 440,70 680,52 C920,34 1160,12 1440,24 L1440,96 L0,96 Z"
-            fill="url(#burgundyWaveGrad)"
-          />
-          {/* Golden Contour Ribbon */}
-          <path
-            d="M0,58 C220,32 440,70 680,52 C920,34 1160,12 1440,24"
-            fill="none"
-            stroke="#D8A63B"
-            strokeWidth="2.5"
-          />
-          <defs>
-            <linearGradient id="burgundyWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#800019" />
-              <stop offset="55%" stopColor="#620013" />
-              <stop offset="100%" stopColor="#4A000E" />
-            </linearGradient>
-          </defs>
-        </svg>
+      {/* 6. Decorative Bottom Curved Burgundy & Gold Wave with Trust Indicators */}
+      <div className={styles.bottomWaveSection} aria-label="Trust Indicators">
+        <div className={styles.waveSvgWrapper} aria-hidden="true">
+          <svg
+            viewBox="0 0 1440 96"
+            preserveAspectRatio="none"
+            className={styles.waveSvg}
+          >
+            {/* Main Burgundy Wave Fill */}
+            <path
+              d="M0,62 C320,18 660,82 1020,38 C1220,12 1360,32 1440,24 L1440,96 L0,96 Z"
+              fill="url(#burgundyWaveGrad)"
+            />
+            {/* Golden Contour Ribbon */}
+            <path
+              d="M0,62 C320,18 660,82 1020,38 C1220,12 1360,32 1440,24"
+              fill="none"
+              stroke="#D8A63B"
+              strokeWidth="2.5"
+            />
+            <defs>
+              <linearGradient id="burgundyWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#800019" />
+                <stop offset="50%" stopColor="#640014" />
+                <stop offset="100%" stopColor="#4A000E" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className={styles.wavyContentBand}>
+          <div className={`container ${styles.wavyTrustContainer}`}>
+            {/* Item 1: 5-Star Google Ratings */}
+            <div className={styles.wavyTrustItem}>
+              <div className={styles.googleIconBadge}>
+                <svg className={styles.googleGLogo} viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                  />
+                </svg>
+              </div>
+              <div className={styles.wavyTextGroup}>
+                <span className={styles.wavyItemTitle}>5-Star Google Ratings</span>
+                <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={14} fill="#D8A63B" color="#D8A63B" />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.wavyDivider} aria-hidden="true" />
+
+            {/* Item 2: 500+ Google Clients / Satisfied Businesses */}
+            <div className={styles.wavyTrustItem}>
+              <div className={styles.wavyIconBadge}>
+                <Users size={20} color="#D8A63B" />
+              </div>
+              <div className={styles.wavyTextGroup}>
+                <span className={styles.wavyItemTitle}>500+ Google Clients</span>
+                <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
+              </div>
+            </div>
+
+            <div className={styles.wavyDivider} aria-hidden="true" />
+
+            {/* Item 3: PAN India Delivery / Doorstep Logistics */}
+            <div className={styles.wavyTrustItem}>
+              <div className={styles.wavyIconBadge}>
+                <Truck size={20} color="#D8A63B" />
+              </div>
+              <div className={styles.wavyTextGroup}>
+                <span className={styles.wavyItemTitle}>PAN India Delivery</span>
+                <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

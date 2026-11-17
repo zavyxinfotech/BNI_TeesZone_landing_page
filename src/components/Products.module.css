@@ -18,8 +18,8 @@
 
 .productsTrack {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
   align-items: flex-end;
   position: relative;
   z-index: 2;
@@ -75,8 +75,12 @@
   background: linear-gradient(180deg, #FFFFFF 0%, #F5E8D6 100%);
   border: 1.5px solid rgba(216, 166, 59, 0.4);
   border-radius: 20px;
-  padding: 8px 14px;
-  width: 90%;
+  padding: 10px 12px;
+  width: 95%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   box-shadow: 0 6px 16px rgba(87, 0, 20, 0.08);
   transition: all var(--transition-fast);

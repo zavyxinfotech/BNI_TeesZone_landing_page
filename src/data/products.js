@@ -1,45 +1,38 @@
 export const manufacturedProducts = [
   {
-    id: "polo-tshirts",
-    name: "Polo T-Shirts",
-    image: "/images/products/polo_tshirt.webp",
+    id: "corporate-polos",
+    name: "Corporate Uniforms & Executive Polos",
+    image: "/images/products/corporate-polos.webp",
     description: "Premium pique knit corporate polo shirts with custom embroidered or DTF printed chest branding.",
-    badge: "Most Popular"
+    badge: "Executive"
   },
   {
-    id: "round-neck",
-    name: "Round Neck T-Shirts",
-    image: "/images/products/round_neck.webp",
+    id: "blank-tshirts",
+    name: "Blank T-Shirts & Plain Apparel",
+    image: "/images/products/blank-tshirts.webp",
     description: "100% combed bio-washed cotton round neck t-shirts ideal for casual teams, promotional giveaways, and events.",
     badge: "Essential"
   },
   {
-    id: "uniforms",
-    name: "Uniforms",
-    image: "/images/products/uniform.webp",
+    id: "school-uniforms",
+    name: "School Uniforms & Academic T-Shirts",
+    image: "/images/products/school-uniforms.webp",
     description: "Structured corporate and institutional uniform shirts engineered for all-day comfort and long durability.",
-    badge: "Corporate"
+    badge: "Academic"
   },
   {
-    id: "hoodies-sweatshirts",
-    name: "Hoodies & Sweatshirts",
-    image: "/images/products/hoodie.webp",
-    description: "Heavyweight fleece hoodies and zip sweatshirts designed for startup teams, colleges, and winter workwear.",
-    badge: "Premium"
-  },
-  {
-    id: "caps",
-    name: "Caps",
-    image: "/images/products/cap.webp",
-    description: "Structured baseball caps and promotional headwear with custom front logo embroidery.",
+    id: "promotional-apparel",
+    name: "Promotional Merchandise & Event Apparel",
+    image: "/images/products/promotional-apparel.webp",
+    description: "Heavyweight fleece hoodies and promotional apparel designed for startup teams, colleges, and event merchandise.",
     badge: "Merchandise"
   },
   {
-    id: "custom-apparel",
-    name: "Custom Apparel",
-    image: "/images/products/custom_apparel.webp",
-    description: "Bespoke dual-tone raglan t-shirts, activewear jerseys, and custom tailored apparel for signature brands.",
-    badge: "Bespoke"
+    id: "sports-apparel",
+    name: "Sports Apparel for Academics & Teams",
+    image: "/images/products/sports-apparel.webp",
+    description: "High-performance dry-fit sublimated sports jerseys, athletic activewear, and tournament team kits.",
+    badge: "Activewear"
   }
 ];
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import TrustIndicators from './components/TrustIndicators';
 import About from './components/About';
 import Products from './components/Products';
 import WhoWeServe from './components/WhoWeServe';
@@ -34,13 +33,10 @@ export default function App() {
       <Header />
 
       <main id="main-content">
-        {/* 2. Hero Section */}
+        {/* 2. Hero Section with Integrated Wavy Trust Indicators */}
         <Hero onOpenIntroModal={() => handleOpenIntroModal('introduction')} />
 
-        {/* 3. Trust Indicators Bar */}
-        <TrustIndicators />
-
-        {/* 4. Who We Are */}
+        {/* 3. Who We Are */}
         <About onOpenAboutModal={() => handleOpenIntroModal('about')} />
 
         {/* 5. What We Manufacture (3D Floating Products) */}

@@ -41,7 +41,7 @@ export default function WhoWeServe() {
                 className={styles.groupPhoto}
                 loading="lazy"
                 width="980"
-                height="420"
+                height="336"
               />
             </picture>
             <div className={styles.photoOverlayGlow} aria-hidden="true" />

@@ -83,8 +83,8 @@ export default function Hero({ onOpenIntroModal }) {
                 src="/images/hero_polo_shirt.png"
                 alt="TeesZone Premium Burgundy Polo Shirt with YOUR BRAND customization"
                 className={styles.poloImage}
-                width="620"
-                height="440"
+                width="783"
+                height="512"
                 loading="eager"
                 fetchPriority="high"
               />

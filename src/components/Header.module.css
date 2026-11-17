@@ -13,9 +13,9 @@
 }
 
 .scrolled {
-  background-color: rgba(255, 248, 239, 0.96);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(87, 0, 20, 0.08);
+  background-color: rgba(255, 248, 239, 0.98);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(87, 0, 20, 0.06);
 }
 
 .headerContainer {
@@ -35,51 +35,9 @@
   object-fit: contain;
 }
 
-.desktopNav {
-  display: flex;
-  align-items: center;
-}
-
-.navList {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  list-style: none;
-}
-
-.navLink {
-  font-size: 0.93rem;
-  font-weight: 500;
-  color: var(--color-dark-text);
-  padding: 6px 2px;
-  position: relative;
-  transition: color var(--transition-fast);
-}
-
-.navLink:hover {
-  color: var(--color-primary-burgundy);
-}
-
-.activeLink {
-  color: var(--color-primary-burgundy);
-  font-weight: 600;
-}
-
-.activeLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--color-primary-burgundy);
-  border-radius: 2px;
-}
-
 .headerCta {
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
 .headerPhoneBtn {
@@ -88,10 +46,10 @@
   gap: 8px;
   background-color: var(--color-primary-burgundy);
   color: var(--color-white);
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.88rem;
+  font-weight: 500;
   letter-spacing: 0.4px;
   box-shadow: 0 4px 12px rgba(128, 0, 25, 0.2);
   transition: all var(--transition-fast);
@@ -100,140 +58,25 @@
 .headerPhoneBtn:hover {
   background-color: var(--color-deep-maroon);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(128, 0, 25, 0.3);
+  box-shadow: 0 6px 16px rgba(128, 0, 25, 0.28);
 }
 
-.whatsappIconCircle {
+.callIconCircle {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-}
-
-.hamburgerBtn {
-  display: none;
-  background: transparent;
-  padding: 6px;
-  border-radius: var(--radius-sm);
-}
-
-/* Mobile Drawer Styles */
-.mobileOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(37, 30, 34, 0.6);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: flex;
-  justify-content: flex-end;
-  animation: fadeIn 0.2s ease-out;
-}
-
-.mobileDrawer {
-  width: 82%;
-  max-width: 320px;
-  height: 100%;
-  background: var(--color-cream);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.drawerHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-cream-border);
-}
-
-.drawerLogo {
-  height: 32px;
-  width: auto;
-}
-
-.closeBtn {
-  padding: 4px;
-  color: var(--color-dark-text);
-}
-
-.mobileNav {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 28px 0;
-  flex: 1;
-}
-
-.mobileNavLink {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--color-dark-text);
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  transition: color var(--transition-fast);
-}
-
-.mobileNavLink:hover {
-  color: var(--color-primary-burgundy);
-}
-
-.drawerFooter {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-cream-border);
-}
-
-.drawerWhatsAppBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--color-primary-burgundy);
-  color: white;
-  padding: 12px 18px;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.drawerChapter {
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-deep-maroon);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@media (max-width: 900px) {
-  .desktopNav {
-    display: none;
-  }
-  .hamburgerBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 480px) {
+  .logoImg {
+    height: 32px;
+  }
   .headerPhoneBtn {
-    display: none;
+    padding: 6px 14px;
+    font-size: 0.82rem;
   }
 }

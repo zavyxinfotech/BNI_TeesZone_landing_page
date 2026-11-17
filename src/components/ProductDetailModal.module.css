@@ -32,7 +32,7 @@
   padding: 4px 10px;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -43,7 +43,7 @@
 
 .brandTag {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   color: var(--color-gold);
   letter-spacing: 0.5px;
@@ -51,7 +51,7 @@
 
 .modalTitle {
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--color-deep-maroon);
   margin: 4px 0 10px 0;
 }
@@ -74,7 +74,7 @@
   align-items: center;
   gap: 8px;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-dark-text);
 }
 

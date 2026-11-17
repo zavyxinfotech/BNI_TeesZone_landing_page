@@ -89,7 +89,7 @@
 
 .productLabel {
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-deep-maroon);
   line-height: 1.25;
   display: block;

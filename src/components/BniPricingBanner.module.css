@@ -59,7 +59,7 @@
   gap: 6px;
   color: #ECC274;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
@@ -71,7 +71,7 @@
 
 .bannerTitle {
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 500;
   color: #FFFFFF;
   line-height: 1.25;
   margin-bottom: 4px;
@@ -101,7 +101,7 @@
 
 .discountRate {
   font-size: 1.15rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: -0.3px;
 }
 
@@ -115,7 +115,7 @@
   padding: 8px 18px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   transition: all var(--transition-fast);
 }
 

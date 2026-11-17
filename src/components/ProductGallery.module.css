@@ -126,7 +126,7 @@
   padding: 6px 14px;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -139,7 +139,7 @@
 
 .categoryBadge {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   color: var(--color-primary-burgundy);
   letter-spacing: 0.5px;
@@ -147,7 +147,7 @@
 
 .cardTitle {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-dark-text);
   margin-top: 4px;
 }

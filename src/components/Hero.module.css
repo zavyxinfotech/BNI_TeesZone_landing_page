@@ -1,8 +1,12 @@
 .heroSection {
   position: relative;
   background-color: var(--color-cream);
-  padding: 38px 0 0 0;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .ambientGlow {
@@ -21,9 +25,15 @@
   position: relative;
   z-index: 2;
   max-width: 1260px;
-  margin: 0 auto;
+  width: 100%;
+  margin: auto auto;
   padding-left: 28px;
   padding-right: 28px;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 /* Desktop Grid: Left 52%, Right 48% */
@@ -38,6 +48,7 @@
     "buttons apparel";
   align-items: center;
   row-gap: 0;
+  width: 100%;
 }
 
 /* 1. Top Tagline */
@@ -48,7 +59,7 @@
 
 .taglineText {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-deep-maroon);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -100,7 +111,7 @@
 
 .bniChapterName {
   font-size: 0.74rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-deep-maroon);
   margin-top: 3px;
   letter-spacing: 0.4px;
@@ -114,7 +125,7 @@
 
 .mainHeading {
   font-size: 2.22rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--color-deep-maroon);
   line-height: 1.22;
   letter-spacing: -0.5px;
@@ -134,7 +145,7 @@
 .poloComposition {
   position: relative;
   width: 100%;
-  max-width: 580px;
+  max-width: 600px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -143,7 +154,7 @@
 .heroPoloImg {
   width: 100%;
   height: auto;
-  max-height: 440px;
+  max-height: 460px;
   object-fit: contain;
   filter: drop-shadow(0 20px 38px rgba(87, 0, 20, 0.2));
   position: relative;
@@ -201,7 +212,7 @@
 
 .pricingOverTitle {
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 500;
   color: #FFE6BC;
   letter-spacing: 0.4px;
   text-transform: uppercase;
@@ -209,7 +220,7 @@
 
 .pricingHighlight {
   font-size: 1.02rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #FFFFFF;
   letter-spacing: -0.2px;
 }
@@ -237,7 +248,7 @@
   padding: 12px 22px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   box-shadow: 0 4px 14px rgba(87, 0, 20, 0.05);
   transition: all var(--transition-fast);
   white-space: nowrap;
@@ -298,7 +309,9 @@
 /* Mobile Composition (Matching Image 1 Mobile) */
 @media (max-width: 800px) {
   .heroSection {
-    padding: 24px 0 0 0;
+    min-height: calc(100svh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
+    padding: 16px 0 0 0;
   }
 
   .heroContainer {

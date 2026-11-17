@@ -50,8 +50,12 @@ button:focus-visible, a:focus-visible {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--color-deep-maroon);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.25;
+}
+
+strong, b {
+  font-weight: 500;
 }
 
 .container {
@@ -65,7 +69,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-wrapper {
   position: relative;
-  padding: 80px 0;
+  padding: 56px 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Button Styles matching reference */
@@ -76,10 +83,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
   background: var(--color-primary-burgundy);
   color: var(--color-white);
-  padding: 13px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   box-shadow: var(--shadow-pill);
   transition: all var(--transition-fast);
   white-space: nowrap;
@@ -99,10 +106,10 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-white);
   color: var(--color-dark-text);
   border: 1.5px solid var(--color-cream-border);
-  padding: 12px 24px;
+  padding: 11px 22px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   box-shadow: var(--shadow-subtle);
   transition: all var(--transition-fast);
   white-space: nowrap;

@@ -1,19 +1,38 @@
-import React from 'react';
-import { ArrowRight, Percent, Users, Truck, Star } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Users, Truck, Star } from 'lucide-react';
 import { companyInfo } from '../data/companyInfo';
+import WordReveal from './animations/WordReveal';
+import { useInView } from './animations/useInView';
+import { useReducedMotion } from './animations/useReducedMotion';
 import styles from './Hero.module.css';
 
 export default function Hero({ onOpenIntroModal }) {
+  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: false });
+  const [isMounted, setIsMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    // Initial mount trigger
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Animate on load and whenever hero is scrolled into view
+  const isHeroActive = prefersReduced ? true : (isMounted && heroInView);
+  const loadedClass = isHeroActive ? styles.heroLoaded : '';
+
   return (
-    <section id="home" className={styles.heroSection}>
+    <section ref={heroRef} id="home" className={`${styles.heroSection} ${loadedClass}`}>
       {/* Background ambient lighting */}
       <div className={styles.ambientGlow} aria-hidden="true" />
 
       <div className={`container ${styles.heroContainer}`}>
         <div className={styles.heroGrid}>
-          {/* 1. Top Tagline */}
+          {/* 1. Top Tagline (Hero Eyebrow: Fade-up + tracking transition) */}
           <div className={styles.taglineArea}>
-            <span className={styles.taglineText}>
+            <span className={`${styles.taglineText} ${styles.animateEyebrow}`}>
               {companyInfo.bniTagline}
             </span>
           </div>
@@ -21,8 +40,8 @@ export default function Hero({ onOpenIntroModal }) {
           {/* 2. Brand Logo Row (TeesZone | Divider | BNI Proud Member) */}
           <div className={styles.brandArea}>
             <div className={styles.brandRow}>
-              {/* TeesZone Logo */}
-              <div className={styles.tzLogoWrap}>
+              {/* TeesZone Logo: Smooth fade-in and scale-in */}
+              <div className={`${styles.tzLogoWrap} ${styles.animateTzLogo}`}>
                 <img
                   src="/images/logos/teeszone_logo.png"
                   alt="TeesZone"
@@ -33,52 +52,98 @@ export default function Hero({ onOpenIntroModal }) {
               </div>
 
               {/* Vertical Burgundy Divider */}
-              <div className={styles.verticalDivider} aria-hidden="true" />
+              <div className={`${styles.verticalDivider} ${styles.animateDivider}`} aria-hidden="true" />
 
-              {/* BNI Proud Member Badge & Chapter Title */}
+              {/* BNI Proud Member Badge: Fade-in & slight scale */}
               <div className={styles.bniBadgeWrap}>
-                <img
-                  src="/images/logos/BNI_logo-removebg-preview.png"
-                  alt="Proud BNI Member"
-                  className={styles.bniBadgeImg}
-                  width="92"
-                  height="58"
-                />
-                <span className={styles.bniChapterName}>
+                <div className={styles.animateBniBadge}>
+                  <img
+                    src="/images/logos/BNI_logo-removebg-preview.png"
+                    alt="Proud BNI Member"
+                    className={styles.bniBadgeImg}
+                    width="92"
+                    height="58"
+                  />
+                </div>
+                {/* BNI Tycoon Erode text animates subtly after badge */}
+                <span className={`${styles.bniChapterName} ${styles.animateBniChapter}`}>
                   {companyInfo.bniChapter}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* 3. Main Hero Heading */}
+          {/* 3. Main Hero Heading: Word-by-word staggered reveal */}
           <div className={styles.headingArea}>
             <h1 className={styles.mainHeading}>
-              Custom Corporate Uniforms &amp; Apparel Manufacturing for Growing Businesses.
+              {prefersReduced ? (
+                "Custom Corporate Uniforms & Apparel Manufacturing for Growing Businesses."
+              ) : (
+                <WordReveal
+                  text="Custom Corporate Uniforms & Apparel Manufacturing for Growing Businesses."
+                  trigger={isHeroActive}
+                  delay={0.25}
+                  stagger={0.075}
+                />
+              )}
             </h1>
           </div>
 
-          {/* 4. Apparel Presentation Area (Polo Shirt + Pricing Overlay) */}
+          {/* 4. Apparel Presentation Area (Polo Shirt + Pricing Overlay + Connected Background Curve) */}
           <div className={styles.apparelArea}>
             <div className={styles.poloComposition}>
-              {/* Main 3D Polo Shirt Image */}
-              <picture>
-                <source srcSet="/images/hero_polo_shirt.webp" type="image/webp" />
-                <img
-                  src="/images/hero_polo_shirt.png"
-                  alt="TeesZone Premium Burgundy Polo Shirt with YOUR BRAND customization"
-                  className={styles.heroPoloImg}
-                  width="783"
-                  height="512"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </picture>
+              {/* Sweeping curve accent connecting right into the bottom wave */}
+              <div className={`${styles.curveConnector} ${styles.animateCurve}`} aria-hidden="true">
+                <svg viewBox="0 0 500 500" className={styles.curveConnectorSvg} preserveAspectRatio="none">
+                  {/* Outer sweeping gold ribbon */}
+                  <path
+                    d="M 20,480 C 120,420 320,380 440,240 C 490,170 480,80 430,20"
+                    fill="none"
+                    stroke="#D8A63B"
+                    strokeWidth="3.5"
+                    opacity="0.8"
+                  />
+                  {/* Inner burgundy accent swoosh */}
+                  <path
+                    d="M 50,495 C 160,445 350,400 460,260"
+                    fill="none"
+                    stroke="#5B0013"
+                    strokeWidth="6"
+                    opacity="0.35"
+                  />
+                </svg>
+              </div>
 
-              {/* BNI Member Pricing Overlay Badge */}
-              <div className={styles.bniPricingOverlay}>
-                <div className={styles.discountTag}>
-                  <Percent size={18} className={styles.percentGlyph} />
+              {/* Main 3D Polo Shirt Image: Fade-in, slight upward movement, subtle scale reveal */}
+              <div className={styles.animatePoloWrapper}>
+                <picture>
+                  <source srcSet="/images/hero_polo_shirt.webp" type="image/webp" />
+                  <img
+                    src="/images/hero_polo_shirt.png"
+                    alt="TeesZone Premium Burgundy Polo Shirt with YOUR BRAND customization"
+                    className={styles.heroPoloImg}
+                    width="783"
+                    height="512"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </picture>
+              </div>
+
+              {/* BNI Member Pricing Overlay Badge: Scale-in, opacity reveal, subtle spring */}
+              <div className={`${styles.bniPricingOverlay} ${styles.animatePricingBadge}`}>
+                <div className={styles.goldOfferTagWrapper}>
+                  <picture>
+                    <source srcSet="/images/gold_offer_tag.webp" type="image/webp" />
+                    <img
+                      src="/images/gold_offer_tag.png"
+                      alt="Offer Tag"
+                      className={styles.goldOfferTagImg}
+                      width="38"
+                      height="44"
+                    />
+                  </picture>
+                  <span className={styles.tagOfferSymbol}>%</span>
                 </div>
                 <div className={styles.pricingTextGroup}>
                   <span className={styles.pricingOverTitle}>
@@ -92,8 +157,8 @@ export default function Hero({ onOpenIntroModal }) {
             </div>
           </div>
 
-          {/* 5. CTA Button Area */}
-          <div className={styles.buttonsArea}>
+          {/* 5. CTA Button Area: Fade-up and slight scale-in */}
+          <div className={`${styles.buttonsArea} ${styles.animateButtons}`}>
             <div className={styles.ctasRow}>
               <button
                 onClick={onOpenIntroModal}
@@ -108,7 +173,7 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
       </div>
 
-      {/* 6. Decorative Bottom Curved Burgundy & Gold Wave with Trust Indicators */}
+      {/* 6. Decorative Bottom Curved Burgundy & Gold Wave with Sequentially Animated Trust Indicators */}
       <div className={styles.bottomWaveSection} aria-label="Trust Indicators">
         <div className={styles.waveSvgWrapper} aria-hidden="true">
           <svg
@@ -116,10 +181,10 @@ export default function Hero({ onOpenIntroModal }) {
             preserveAspectRatio="none"
             className={styles.waveSvg}
           >
-            {/* Main Burgundy Wave Fill */}
+            {/* Main Burgundy Wave Fill - Uniform #5B0013 matching below content */}
             <path
               d="M0,62 C320,18 660,82 1020,38 C1220,12 1360,32 1440,24 L1440,96 L0,96 Z"
-              fill="url(#burgundyWaveGrad)"
+              fill="#5B0013"
             />
             {/* Golden Contour Ribbon */}
             <path
@@ -128,21 +193,14 @@ export default function Hero({ onOpenIntroModal }) {
               stroke="#D8A63B"
               strokeWidth="2.5"
             />
-            <defs>
-              <linearGradient id="burgundyWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#800019" />
-                <stop offset="50%" stopColor="#640014" />
-                <stop offset="100%" stopColor="#4A000E" />
-              </linearGradient>
-            </defs>
           </svg>
         </div>
 
         <div className={styles.wavyContentBand}>
           <div className={`container ${styles.wavyTrustContainer}`}>
-            {/* Item 1: 5-Star Google Ratings */}
-            <div className={styles.wavyTrustItem}>
-              <div className={styles.googleIconBadge}>
+            {/* Item 1: 5 Star Google Ratings */}
+            <div className={`${styles.wavyTrustItem} ${styles.trustItem1}`}>
+              <div className={`${styles.googleIconBadge} ${styles.trustIcon}`}>
                 <svg className={styles.googleGLogo} viewBox="0 0 24 24" width="22" height="22">
                   <path
                     fill="#4285F4"
@@ -162,11 +220,17 @@ export default function Hero({ onOpenIntroModal }) {
                   />
                 </svg>
               </div>
-              <div className={styles.wavyTextGroup}>
-                <span className={styles.wavyItemTitle}>5-Star Google Ratings</span>
+              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
+                <span className={styles.wavyItemTitle}>5 Star Google Ratings</span>
                 <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#D8A63B" color="#D8A63B" />
+                    <span
+                      key={i}
+                      className={styles.starWrap}
+                      style={{ transitionDelay: `${0.95 + i * 0.08}s` }}
+                    >
+                      <Star size={14} fill="#D8A63B" color="#D8A63B" />
+                    </span>
                   ))}
                 </div>
               </div>
@@ -174,13 +238,13 @@ export default function Hero({ onOpenIntroModal }) {
 
             <div className={styles.wavyDivider} aria-hidden="true" />
 
-            {/* Item 2: 500+ Google Clients / Satisfied Businesses */}
-            <div className={styles.wavyTrustItem}>
-              <div className={styles.wavyIconBadge}>
+            {/* Item 2: 500+ Happy Clients */}
+            <div className={`${styles.wavyTrustItem} ${styles.trustItem2}`}>
+              <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
                 <Users size={20} color="#D8A63B" />
               </div>
-              <div className={styles.wavyTextGroup}>
-                <span className={styles.wavyItemTitle}>500+ Google Clients</span>
+              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
+                <span className={styles.wavyItemTitle}>500+ Happy Clients</span>
                 <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
               </div>
             </div>
@@ -188,11 +252,11 @@ export default function Hero({ onOpenIntroModal }) {
             <div className={styles.wavyDivider} aria-hidden="true" />
 
             {/* Item 3: PAN India Delivery / Doorstep Logistics */}
-            <div className={styles.wavyTrustItem}>
-              <div className={styles.wavyIconBadge}>
+            <div className={`${styles.wavyTrustItem} ${styles.trustItem3}`}>
+              <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
                 <Truck size={20} color="#D8A63B" />
               </div>
-              <div className={styles.wavyTextGroup}>
+              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
                 <span className={styles.wavyItemTitle}>PAN India Delivery</span>
                 <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
               </div>

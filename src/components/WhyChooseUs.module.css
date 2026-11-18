@@ -190,7 +190,9 @@
   .mainLayout {
     flex-direction: column;
   }
-  .benefitsGrid, .equipmentDemonstration {
+
+  .benefitsGrid,
+  .equipmentDemonstration {
     flex: 0 0 100%;
     max-width: 100%;
   }

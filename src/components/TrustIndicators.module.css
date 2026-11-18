@@ -91,37 +91,46 @@
   .trustSection {
     padding: 14px 0;
   }
+
   .trustGrid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
     align-items: center;
   }
+
   .trustItem {
     flex-direction: column;
     text-align: center;
     gap: 6px;
     padding: 2px 4px;
   }
-  .googleIconWrap, .circleIconWrap {
+
+  .googleIconWrap,
+  .circleIconWrap {
     width: 34px;
     height: 34px;
   }
+
   .itemTitle {
     font-size: 0.78rem;
     line-height: 1.2;
   }
+
   .itemSubtitle {
     display: none;
   }
+
   .starsRow {
     justify-content: center;
     gap: 2px;
   }
+
   .starsRow svg {
     width: 10px;
     height: 10px;
   }
+
   .divider {
     display: none;
   }

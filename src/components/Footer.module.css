@@ -242,13 +242,17 @@
     flex-direction: column;
     gap: 36px;
   }
-  .footerLeft, .footerRight {
+
+  .footerLeft,
+  .footerRight {
     flex: 0 0 100%;
     max-width: 100%;
   }
+
   .mapContainer {
     height: 190px;
   }
+
   .bottomBar {
     flex-direction: column;
     gap: 8px;

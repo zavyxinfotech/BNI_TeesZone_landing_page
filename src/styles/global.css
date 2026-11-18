@@ -1,6 +1,8 @@
 @import './variables.css';
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -23,7 +25,9 @@ body {
   width: 100%;
 }
 
-img, picture, svg {
+img,
+picture,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -42,19 +46,26 @@ button {
   outline: none;
 }
 
-button:focus-visible, a:focus-visible {
+button:focus-visible,
+a:focus-visible {
   outline: 2px solid var(--color-primary-burgundy);
   outline-offset: 3px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--color-deep-maroon);
   font-weight: 500;
   line-height: 1.25;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 500;
 }
 
@@ -168,9 +179,11 @@ strong, b {
   0% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
   }
+
   70% {
     box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
@@ -216,7 +229,10 @@ strong, b {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

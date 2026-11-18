@@ -48,7 +48,9 @@
   color: var(--color-dark-text);
 }
 
-.input, .select, .textarea {
+.input,
+.select,
+.textarea {
   width: 100%;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
@@ -60,7 +62,9 @@
   transition: border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
-.input:focus, .select:focus, .textarea:focus {
+.input:focus,
+.select:focus,
+.textarea:focus {
   outline: none;
   border-color: var(--color-primary-burgundy);
   background: #FFFFFF;

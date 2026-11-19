@@ -5,12 +5,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center right;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
+  padding-top: var(--header-height, 76px);
 }
 
 .ambientGlow {
@@ -33,7 +34,7 @@
   margin: auto auto;
   padding-left: 28px;
   padding-right: 28px;
-  padding-top: 24px;
+  padding-top: 16px;
   padding-bottom: 12px;
   flex: 1;
   display: flex;
@@ -96,7 +97,7 @@
               letter-spacing 1.1s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
-/* 2. Brand Row (TeesZone | Divider | BNI Badge) */
+/* 2. Brand Row (TeesZone | Thin Line Divider | BNI Badge) */
 .brandArea {
   grid-area: brand;
   margin-bottom: 20px;
@@ -133,12 +134,12 @@
   object-fit: contain;
 }
 
+/* Thin line between TeesZone logo and BNI logo */
 .verticalDivider {
-  width: 2px;
-  height: 54px;
-  background-color: var(--color-burgundy);
-  border-radius: 1px;
-  opacity: 0.85;
+  width: 1px;
+  height: 44px;
+  background-color: rgba(91, 0, 19, 0.35);
+  border-radius: 0.5px;
 }
 
 .animateDivider {
@@ -185,7 +186,7 @@
 
 .bniChapterName {
   font-size: 0.74rem;
-  font-weight: 700;
+  font-weight: 500; /* Non-bold clean typography */
   color: var(--color-deep-maroon);
   letter-spacing: 0.5px;
   margin-top: 2px;
@@ -205,19 +206,19 @@
               transform 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s;
 }
 
-/* 3. Main Hero Heading */
+/* 3. Main Hero Heading: Non-bold typography (font-weight: 500) */
 .headingArea {
   grid-area: heading;
   margin-bottom: 24px;
 }
 
 .mainHeading {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.1vw, 2.85rem);
-  font-weight: 800;
-  line-height: 1.22;
+  font-weight: 500; /* Elegant non-bold font */
+  line-height: 1.24;
   color: var(--color-deep-maroon);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
   max-width: 580px;
 }
 
@@ -249,42 +250,9 @@
 }
 
 .ctasRow :global(.btn-primary) {
-  padding: 13px 26px;
-  font-size: 0.95rem;
-}
-
-.whatsappCtaBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--color-white);
-  color: var(--color-dark-text);
-  border: 1.5px solid var(--color-cream-border);
-  padding: 12px 22px;
-  border-radius: var(--radius-full);
+  padding: 13px 28px;
   font-size: 0.95rem;
   font-weight: 500;
-  box-shadow: 0 4px 14px rgba(87, 0, 20, 0.05);
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.whatsappCtaBtn:hover {
-  background: var(--color-cream);
-  border-color: var(--color-gold);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(87, 0, 20, 0.1);
-}
-
-.whatsappIconCircle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
 }
 
 /* 5. Bottom Curved Burgundy Wave with Trust Indicators */
@@ -461,9 +429,9 @@
 }
 
 .wavyItemTitle {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 500; /* Non-bold clean typography */
   color: #FFFFFF;
   letter-spacing: 0.3px;
   display: block;
@@ -480,7 +448,7 @@
   font-size: 0.85rem;
   color: #D8A63B;
   display: block;
-  font-weight: 500;
+  font-weight: 400; /* Non-bold clean typography */
 }
 
 .wavyDivider {
@@ -503,7 +471,7 @@
     background-size: cover;
     background-position: center top;
     min-height: auto;
-    padding: 20px 0 0 0;
+    padding: calc(var(--header-height, 76px) + 8px) 0 0 0;
   }
 
   .ambientGlow {
@@ -540,6 +508,7 @@
 
   .taglineText {
     font-size: 0.74rem;
+    font-weight: 500;
     letter-spacing: 2px;
   }
 
@@ -557,7 +526,7 @@
   }
 
   .verticalDivider {
-    height: 40px;
+    height: 38px;
   }
 
   .bniBadgeImg {
@@ -566,6 +535,7 @@
 
   .bniChapterName {
     font-size: 0.7rem;
+    font-weight: 500;
   }
 
   .headingArea {
@@ -574,6 +544,7 @@
 
   .mainHeading {
     font-size: 1.55rem;
+    font-weight: 500; /* Non-bold on mobile too */
     line-height: 1.28;
     margin: 0 auto;
     max-width: 100%;
@@ -590,8 +561,7 @@
     width: 100%;
   }
 
-  .ctasRow :global(.btn-primary),
-  .whatsappCtaBtn {
+  .ctasRow :global(.btn-primary) {
     width: 100%;
     justify-content: center;
     padding: 12px 18px;
@@ -648,10 +618,12 @@
 
   .wavyItemTitle {
     font-size: 0.92rem;
+    font-weight: 500;
   }
 
   .wavyItemSubtitle {
     font-size: 0.78rem;
+    font-weight: 400;
   }
 
   .googleIconBadge,

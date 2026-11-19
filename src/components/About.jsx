@@ -76,20 +76,20 @@ export default function About({ onOpenAboutModal }) {
           </div>
         </div>
 
-        {/* Right Column: Premium Apparel Photography on Hangers with Curved Mask */}
+        {/* Right Column: TeesZone Corporate Office, Design Studio & Uniform Gallery */}
         <div className={styles.aboutRight}>
           <ScaleReveal trigger={inView} delay={0.28}>
             <div className={styles.imageCard}>
               <div className={styles.curvedMaskWrapper}>
                 <picture>
-                  <source srcSet="/images/who_we_are_hangers.webp" type="image/webp" />
+                  <source srcSet="/images/who_we_are_office.webp" type="image/webp" />
                   <img
-                    src="/images/who_we_are_hangers.png"
-                    alt="TeesZone custom branded apparel on wooden hangers showing YOUR LOGO"
-                    className={styles.hangerImg}
+                    src="/images/who_we_are_office.jpg"
+                    alt="TeesZone Corporate Office, Design & Innovation Studio and Uniform Gallery"
+                    className={styles.officeImg}
                     loading="lazy"
-                    width="540"
-                    height="340"
+                    width="720"
+                    height="480"
                   />
                 </picture>
               </div>

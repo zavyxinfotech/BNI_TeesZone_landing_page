@@ -1,7 +1,10 @@
 .aboutSection {
   background-color: #FFF8F0;
+  background: linear-gradient(135deg, #FFFDF9 0%, #FFF8F1 50%, #FFF4E8 100%);
   position: relative;
-  padding: 44px 0 64px 0;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .svgClipDefs {
@@ -12,31 +15,13 @@
   pointer-events: none;
 }
 
-.aboutContainer {
-  max-width: 1220px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* Main Editorial Card replicating Image 1 */
-.editorialCard {
-  position: relative;
-  background-color: #FFF9F3;
-  background: linear-gradient(135deg, #FFFDF9 0%, #FFF8F1 60%, #FFF5EB 100%);
-  border: 1px solid rgba(217, 164, 65, 0.24);
-  border-radius: 28px;
-  box-shadow: 0 20px 50px rgba(87, 0, 20, 0.06), 0 4px 16px rgba(217, 164, 65, 0.05);
-  overflow: hidden;
-}
-
-/* Bottom-Left Deep Burgundy Wave Accent */
+/* Bottom-Left Deep Burgundy Wave Accent - Edge-to-edge in section corner */
 .bottomLeftWaveWrap {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 340px;
-  height: 100px;
+  width: 380px;
+  height: 110px;
   z-index: 1;
   pointer-events: none;
 }
@@ -51,8 +36,8 @@
 .bottomSweepRibbonWrap {
   position: absolute;
   bottom: 0;
-  right: 60px;
-  width: 650px;
+  right: 120px;
+  width: 700px;
   height: 90px;
   z-index: 1;
   pointer-events: none;
@@ -64,25 +49,32 @@
   display: block;
 }
 
-/* Card Content Grid / Layout */
-.cardInnerLayout {
+/* Full-width Section Layout (Desktop Edge-to-Edge) */
+.fullWidthLayout {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  min-height: 540px;
+  width: 100%;
+  min-height: 580px;
 }
 
-/* Left Column: Story, Description, Bullet Highlights & CTA */
+/* Left Column: Content - Padded to align with global container */
 .aboutLeft {
-  flex: 0 0 46%;
-  max-width: 46%;
-  padding: 56px 0 56px 56px;
-  box-sizing: border-box;
+  flex: 0 0 48%;
+  max-width: 48%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+  padding: 64px 32px 64px max(24px, calc((100vw - var(--container-max, 1240px)) / 2 + 24px));
+  box-sizing: border-box;
+}
+
+.contentInner {
+  width: 100%;
+  max-width: 520px;
 }
 
 .eyebrowWrapper {
@@ -93,7 +85,7 @@
 }
 
 .eyebrow {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 2.8px;
   text-transform: uppercase;
@@ -111,7 +103,7 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 3.2vw, 3.1rem);
+  font-size: clamp(2.4rem, 3.4vw, 3.3rem);
   font-weight: 600;
   color: #7A001F;
   line-height: 1.15;
@@ -120,10 +112,9 @@
 }
 
 .leadText {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   color: #292524;
   line-height: 1.65;
-  max-width: 480px;
   margin-bottom: 28px;
 }
 
@@ -193,10 +184,10 @@
   transform: translateX(4px);
 }
 
-/* Right Column: Immersive Office Photography */
+/* Right Column: Full-Height Edge-to-Edge Image */
 .aboutRight {
-  flex: 0 0 54%;
-  max-width: 54%;
+  flex: 0 0 52%;
+  max-width: 52%;
   position: relative;
   display: flex;
   align-items: stretch;
@@ -206,16 +197,15 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 540px;
+  min-height: 580px;
   display: flex;
-  border-radius: 0 28px 28px 0;
   overflow: hidden;
 }
 
 .organicMaskedFrame {
   width: 100%;
   height: 100%;
-  min-height: 540px;
+  min-height: 580px;
   clip-path: url(#whoWeAreClipDesktop);
   -webkit-clip-path: url(#whoWeAreClipDesktop);
   background-color: #F8F4EE;
@@ -231,14 +221,14 @@
 .officeImg {
   width: 100%;
   height: 100%;
-  min-height: 540px;
+  min-height: 580px;
   object-fit: cover;
   object-position: center left;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.editorialCard:hover .officeImg {
+.aboutSection:hover .officeImg {
   transform: scale(1.025);
 }
 
@@ -263,21 +253,9 @@
   display: none;
 }
 
-/* Responsive Tablet & Mobile Styles (Replicating Mobile Mockup in Image 1) */
+/* Responsive Tablet & Mobile Styles (Full Mobile Size Edge-to-Edge) */
 @media (max-width: 960px) {
-  .aboutSection {
-    padding: 30px 0 50px 0;
-  }
-
-  .aboutContainer {
-    padding: 0 16px;
-  }
-
-  .editorialCard {
-    border-radius: 24px;
-  }
-
-  .cardInnerLayout {
+  .fullWidthLayout {
     flex-direction: column;
     min-height: auto;
   }
@@ -285,16 +263,21 @@
   .aboutLeft {
     flex: 0 0 100%;
     max-width: 100%;
-    padding: 36px 24px 32px 24px;
+    align-items: flex-start;
+    padding: 44px 20px 32px 20px;
+  }
+
+  .contentInner {
+    max-width: 100%;
   }
 
   .heading {
-    font-size: 2.15rem;
+    font-size: 2.2rem;
     margin-bottom: 18px;
   }
 
   .leadText {
-    font-size: 0.98rem;
+    font-size: 1rem;
     margin-bottom: 24px;
   }
 
@@ -304,7 +287,7 @@
   }
 
   .highlightItem {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
 
   .aboutRight {
@@ -315,21 +298,20 @@
   }
 
   .imageStage {
-    min-height: 320px;
-    height: 320px;
-    border-radius: 0 0 24px 24px;
+    min-height: 340px;
+    height: 380px;
   }
 
   .organicMaskedFrame {
     clip-path: url(#whoWeAreClipMobile);
     -webkit-clip-path: url(#whoWeAreClipMobile);
-    min-height: 320px;
-    height: 320px;
+    min-height: 340px;
+    height: 380px;
   }
 
   .officeImg {
-    min-height: 320px;
-    height: 320px;
+    min-height: 340px;
+    height: 380px;
     object-position: center center;
   }
 
@@ -343,14 +325,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 32px;
+    height: 36px;
     z-index: 3;
     pointer-events: none;
   }
 
   .bottomLeftWaveWrap {
-    width: 240px;
-    height: 70px;
+    width: 260px;
+    height: 75px;
   }
 
   .bottomSweepRibbonWrap {
@@ -360,18 +342,18 @@
 
 @media (max-width: 480px) {
   .aboutLeft {
-    padding: 28px 18px 26px 18px;
+    padding: 36px 16px 26px 16px;
   }
 
   .heading {
-    font-size: 1.85rem;
+    font-size: 1.95rem;
   }
 
   .imageStage,
   .organicMaskedFrame,
   .officeImg {
-    min-height: 260px;
-    height: 260px;
+    min-height: 280px;
+    height: 300px;
   }
 
   .aboutCtaBtn {

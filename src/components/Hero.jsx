@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Users, Truck, Star } from 'lucide-react';
 import { companyInfo } from '../data/companyInfo';
 import WordReveal from './animations/WordReveal';
+import CountUp from './animations/CountUp';
 import { useInView } from './animations/useInView';
 import { useReducedMotion } from './animations/useReducedMotion';
 import styles from './Hero.module.css';
+
+const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/search?q=teeszone+google+reviews+&sca_esv=a1f7945095f7d3aa&biw=1536&bih=730&sxsrf=AKL5yDgd6XR05pb5VUdybTy75HEH3fSQig%3A1795067535887&ei=j47-asfTNbifseMPyZKQ-QQ&uact=5&oq=teeszone+google+reviews+&gs_lp=Egxnd3Mtd2l6LXNlcnAiGHRlZXN6b25lIGdvb2dsZSByZXZpZXdzIDIIECEYoAEYwwQyCBAhGKABGMMESP0vULkCWMYucAF4AJABAJgByQGgAagNqgEGMC4xMC4xuAEDyAEA-AEBmAIKoAK0C8ICCBAAGO8FGLADwgILEAAYgAQYogQYsAPCAgQQIxgnwgILEAAYgAQYigUYkQLCAgUQABiABMICChAAGIAEGIoFGEPCAgoQABiABBgUGIcCwgIHECMYsAIYJ8ICBhAAGAcYHsICBxAAGIAEGA3CAgoQABiABBgNGLQHwgIIEAAYBRgHGB7CAgoQABgFGAcYHhgKwgIFEAAY7wXCAggQABiABBiiBMICCBAAGAUYHhgNwgIKEAAYBRgeGA0YCsICCBAAGAgYHhgNwgIKECEYChigARjDBJgDAIgGAZAGBJIHAzEuOaAH3j2yBwMwLjm4B6ILwgcFMi01LjXIB0iACAE&sclient=gws-wiz-serp#sv=CAwSigIKBmxjbF9wdhKsAQoEbXN0axKjAUFVdEV4ZkJya3ZIc0FseUFmOHQyR0JSd3VHd1RtckNXbUdmQmpXWUFFXzN4aVRQeDhROWNnUjJFLXJRNXZ1S2lHNGNWMlg1RzFlUWNUWDk4Mjh3MjVQV1NHenU2T25zQXMyUTFTQjNuNHpBdlM4ZUVuTDdUZmxfbXNpYVloWVVkTFVZM2MyTzQ4S3U5bFF4NDA0dGg4ZmNaWXJWUkRvWUxFWVkSHAoBcRIXdGVlc3pvbmUgZ29vZ2xlIHJldmlld3MSHwoDcHZxEhhDZzB2Wnk4eE1XMXNkSEk1WnpaMGdBRUIaEmxvY2FsLXBsYWNlLXZpZXdlchgKIJyZhd8E';
 
 export default function Hero({ onOpenIntroModal }) {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: false });
@@ -12,7 +16,6 @@ export default function Hero({ onOpenIntroModal }) {
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
-    // Initial mount trigger
     const timer = setTimeout(() => {
       setIsMounted(true);
     }, 50);
@@ -20,8 +23,87 @@ export default function Hero({ onOpenIntroModal }) {
   }, []);
 
   // Animate on load and whenever hero is scrolled into view
-  const isHeroActive = prefersReduced ? true : (isMounted && heroInView);
+  const isHeroActive = prefersReduced ? true : isMounted && heroInView;
   const loadedClass = isHeroActive ? styles.heroLoaded : '';
+
+  // Render individual trust item content
+  const renderTrustItems = (keyPrefix = 'main') => (
+    <>
+      {/* Item 1: 5 Star Google Ratings with Navigation URL and Counting Animation */}
+      <a
+        href={GOOGLE_REVIEWS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.wavyTrustItem} ${styles.wavyTrustLink} ${styles.trustItem1}`}
+        aria-label="5 Star Google Ratings - View TeesZone Google Reviews"
+      >
+        <div className={`${styles.googleIconBadge} ${styles.trustIcon}`}>
+          <svg className={styles.googleGLogo} viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            />
+            <path
+              fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+            />
+            <path
+              fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+            />
+          </svg>
+        </div>
+        <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
+          <span className={styles.wavyItemTitle}>
+            <CountUp end={5} duration={1400} trigger={isHeroActive} /> Star Google Ratings
+          </span>
+          <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
+            {[...Array(5)].map((_, i) => (
+              <span
+                key={`${keyPrefix}-star-${i}`}
+                className={styles.starWrap}
+                style={{ transitionDelay: `${0.95 + i * 0.08}s` }}
+              >
+                <Star size={14} fill="#D8A63B" color="#D8A63B" />
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
+
+      <div className={styles.wavyDivider} aria-hidden="true" />
+
+      {/* Item 2: 500+ Happy Clients with Counting Animation */}
+      <div className={`${styles.wavyTrustItem} ${styles.trustItem2}`}>
+        <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
+          <Users size={20} color="#D8A63B" />
+        </div>
+        <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
+          <span className={styles.wavyItemTitle}>
+            <CountUp end={500} suffix="+" duration={1600} trigger={isHeroActive} /> Happy Clients
+          </span>
+          <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
+        </div>
+      </div>
+
+      <div className={styles.wavyDivider} aria-hidden="true" />
+
+      {/* Item 3: PAN India Delivery */}
+      <div className={`${styles.wavyTrustItem} ${styles.trustItem3}`}>
+        <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
+          <Truck size={20} color="#D8A63B" />
+        </div>
+        <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
+          <span className={styles.wavyItemTitle}>PAN India Delivery</span>
+          <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <section ref={heroRef} id="home" className={`${styles.heroSection} ${loadedClass}`}>
@@ -54,7 +136,7 @@ export default function Hero({ onOpenIntroModal }) {
               {/* Vertical Burgundy Divider */}
               <div className={`${styles.verticalDivider} ${styles.animateDivider}`} aria-hidden="true" />
 
-              {/* BNI Proud Member Badge: Fade-in & slight scale */}
+              {/* BNI Proud Member Badge */}
               <div className={styles.bniBadgeWrap}>
                 <div className={styles.animateBniBadge}>
                   <img
@@ -65,7 +147,6 @@ export default function Hero({ onOpenIntroModal }) {
                     height="58"
                   />
                 </div>
-                {/* BNI Tycoon Erode text animates subtly after badge */}
                 <span className={`${styles.bniChapterName} ${styles.animateBniChapter}`}>
                   {companyInfo.bniChapter}
                 </span>
@@ -89,70 +170,22 @@ export default function Hero({ onOpenIntroModal }) {
             </h1>
           </div>
 
-          {/* 4. Apparel Presentation Area (Polo Shirt + Pricing Overlay + Connected Background Curve) */}
+          {/* 4. Apparel Presentation Area: Responsive Desktop & Mobile Showcase Images */}
           <div className={styles.apparelArea}>
-            <div className={styles.poloComposition}>
-              {/* Sweeping curve accent connecting right into the bottom wave */}
-              <div className={`${styles.curveConnector} ${styles.animateCurve}`} aria-hidden="true">
-                <svg viewBox="0 0 500 500" className={styles.curveConnectorSvg} preserveAspectRatio="none">
-                  {/* Outer sweeping gold ribbon */}
-                  <path
-                    d="M 20,480 C 120,420 320,380 440,240 C 490,170 480,80 430,20"
-                    fill="none"
-                    stroke="#D8A63B"
-                    strokeWidth="3.5"
-                    opacity="0.8"
-                  />
-                  {/* Inner burgundy accent swoosh */}
-                  <path
-                    d="M 50,495 C 160,445 350,400 460,260"
-                    fill="none"
-                    stroke="#5B0013"
-                    strokeWidth="6"
-                    opacity="0.35"
-                  />
-                </svg>
-              </div>
-
-              {/* Main 3D Polo Shirt Image: Fade-in, slight upward movement, subtle scale reveal */}
-              <div className={styles.animatePoloWrapper}>
-                <picture>
-                  <source srcSet="/images/hero_polo_shirt.webp" type="image/webp" />
+            <div className={styles.showcaseComposition}>
+              <div className={styles.animateShowcaseWrapper}>
+                <picture className={styles.showcasePicture}>
+                  <source media="(max-width: 800px)" srcSet="/images/hero_showcase_mobile.jpg" />
                   <img
-                    src="/images/hero_polo_shirt.png"
-                    alt="TeesZone Premium Burgundy Polo Shirt with YOUR BRAND customization"
-                    className={styles.heroPoloImg}
-                    width="783"
+                    src="/images/hero_showcase_desktop.jpg"
+                    alt="TeesZone Premium Apparel Collection - Corporate Uniforms, Sports Jerseys, Blank Apparel, Hoodies, School Uniforms"
+                    className={styles.heroShowcaseImg}
+                    width="1024"
                     height="512"
                     loading="eager"
                     fetchPriority="high"
                   />
                 </picture>
-              </div>
-
-              {/* BNI Member Pricing Overlay Badge: Scale-in, opacity reveal, subtle spring */}
-              <div className={`${styles.bniPricingOverlay} ${styles.animatePricingBadge}`}>
-                <div className={styles.goldOfferTagWrapper}>
-                  <picture>
-                    <source srcSet="/images/gold_offer_tag.webp" type="image/webp" />
-                    <img
-                      src="/images/gold_offer_tag.png"
-                      alt="Offer Tag"
-                      className={styles.goldOfferTagImg}
-                      width="38"
-                      height="44"
-                    />
-                  </picture>
-                  <span className={styles.tagOfferSymbol}>%</span>
-                </div>
-                <div className={styles.pricingTextGroup}>
-                  <span className={styles.pricingOverTitle}>
-                    {companyInfo.bniOffer.title}
-                  </span>
-                  <span className={styles.pricingHighlight}>
-                    {companyInfo.bniOffer.discount}
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -173,7 +206,7 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
       </div>
 
-      {/* 6. Decorative Bottom Curved Burgundy & Gold Wave with Sequentially Animated Trust Indicators */}
+      {/* 6. Hero Section Bottom Contents: Positioned below hero with counting animation in both desktop and mobile view, and continuous single-row auto-scroll in mobile view */}
       <div className={styles.bottomWaveSection} aria-label="Trust Indicators">
         <div className={styles.waveSvgWrapper} aria-hidden="true">
           <svg
@@ -197,68 +230,21 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
 
         <div className={styles.wavyContentBand}>
-          <div className={`container ${styles.wavyTrustContainer}`}>
-            {/* Item 1: 5 Star Google Ratings */}
-            <div className={`${styles.wavyTrustItem} ${styles.trustItem1}`}>
-              <div className={`${styles.googleIconBadge} ${styles.trustIcon}`}>
-                <svg className={styles.googleGLogo} viewBox="0 0 24 24" width="22" height="22">
-                  <path
-                    fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
-                  />
-                  <path
-                    fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-                  />
-                </svg>
-              </div>
-              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
-                <span className={styles.wavyItemTitle}>5 Star Google Ratings</span>
-                <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={styles.starWrap}
-                      style={{ transitionDelay: `${0.95 + i * 0.08}s` }}
-                    >
-                      <Star size={14} fill="#D8A63B" color="#D8A63B" />
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+          {/* Desktop View: Centered single row with dividers */}
+          <div className={`container ${styles.wavyTrustContainer} ${styles.desktopOnlyTrust}`}>
+            {renderTrustItems('desktop')}
+          </div>
 
-            <div className={styles.wavyDivider} aria-hidden="true" />
-
-            {/* Item 2: 500+ Happy Clients */}
-            <div className={`${styles.wavyTrustItem} ${styles.trustItem2}`}>
-              <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
-                <Users size={20} color="#D8A63B" />
+          {/* Mobile View: Single row with smooth infinite auto-scroll animation */}
+          <div className={styles.mobileMarqueeWrapper} aria-label="Key highlights">
+            <div className={styles.mobileMarqueeTrack}>
+              <div className={styles.marqueeRow}>
+                {renderTrustItems('mobile-1')}
+                <div className={styles.wavyDivider} aria-hidden="true" />
               </div>
-              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
-                <span className={styles.wavyItemTitle}>500+ Happy Clients</span>
-                <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
-              </div>
-            </div>
-
-            <div className={styles.wavyDivider} aria-hidden="true" />
-
-            {/* Item 3: PAN India Delivery / Doorstep Logistics */}
-            <div className={`${styles.wavyTrustItem} ${styles.trustItem3}`}>
-              <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
-                <Truck size={20} color="#D8A63B" />
-              </div>
-              <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
-                <span className={styles.wavyItemTitle}>PAN India Delivery</span>
-                <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
+              <div className={styles.marqueeRow} aria-hidden="true">
+                {renderTrustItems('mobile-2')}
+                <div className={styles.wavyDivider} aria-hidden="true" />
               </div>
             </div>
           </div>

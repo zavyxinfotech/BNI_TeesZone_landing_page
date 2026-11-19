@@ -36,10 +36,10 @@
   align-items: center;
 }
 
-/* Desktop Grid: Left 52%, Right 48% */
+/* Desktop Grid: Left 48%, Right 52% */
 .heroGrid {
   display: grid;
-  grid-template-columns: 52% 48%;
+  grid-template-columns: 48% 52%;
   grid-template-rows: auto auto auto auto;
   grid-template-areas:
     "tagline apparel"
@@ -211,7 +211,7 @@
   max-width: 530px;
 }
 
-/* 4. Apparel Visual & BNI Pricing Badge (Right Column) */
+/* 4. Apparel Presentation Area: Showcase Images */
 .apparelArea {
   grid-area: apparel;
   position: relative;
@@ -221,151 +221,48 @@
   width: 100%;
 }
 
-.poloComposition {
+.showcaseComposition {
   position: relative;
   width: 100%;
-  max-width: 680px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
-/* Connected Sweeping Curve Design connecting behind polo to bottom wave */
-.curveConnector {
-  position: absolute;
-  top: -10px;
-  right: -30px;
-  width: 520px;
-  height: 520px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.animateCurve {
-  opacity: 0;
-  transition: opacity 0.8s ease 0.35s;
-}
-
-.heroLoaded .animateCurve {
-  opacity: 1;
-}
-
-.curveConnectorSvg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Apparel Image Reveal: Fade-in, slight upward movement, very subtle scale reveal (Slow & smooth pace) */
-.animatePoloWrapper {
+/* Showcase Image Reveal: Fade-in, slight upward movement, very subtle scale reveal */
+.animateShowcaseWrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   opacity: 0;
-  transform: translateY(28px) scale(0.96);
+  transform: translateY(24px) scale(0.97);
   transition: opacity 0.25s ease,
               transform 0.25s ease;
   will-change: opacity, transform;
 }
 
-.heroLoaded .animatePoloWrapper {
+.heroLoaded .animateShowcaseWrapper {
   opacity: 1;
   transform: translateY(0) scale(1);
   transition: opacity 1.15s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.32s,
               transform 1.15s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.32s;
 }
 
-.heroPoloImg {
+.showcasePicture {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.heroShowcaseImg {
   width: 100%;
   height: auto;
-  max-height: 510px;
+  max-height: 520px;
   object-fit: contain;
-  filter: drop-shadow(0 22px 42px rgba(87, 0, 20, 0.22));
+  filter: drop-shadow(0 20px 38px rgba(87, 0, 20, 0.16));
+  border-radius: var(--radius-lg, 16px);
   position: relative;
   z-index: 2;
-  margin-bottom: -15px; /* Directly connects with bottom wave curve */
-}
-
-/* Floating BNI Member Pricing Badge Overlapping Lower Polo */
-.bniPricingOverlay {
-  position: absolute;
-  bottom: 24px;
-  left: 15px;
-  z-index: 6;
-  background: linear-gradient(135deg, #780018 0%, #4D0012 100%);
-  border: 1.5px solid #ECC274;
-  border-radius: var(--radius-md);
-  padding: 8px 18px 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 14px 32px rgba(87, 0, 20, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-/* Pricing Badge Animation: Scale-in with subtle spring ease (Decreased speed) */
-.animatePricingBadge {
-  opacity: 0;
-  transform: scale(0.88) translateY(16px);
-  transition: opacity 0.25s ease,
-              transform 0.25s ease;
-  will-change: opacity, transform;
-}
-
-.heroLoaded .animatePricingBadge {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  transition: opacity 1.05s cubic-bezier(0.22, 1.1, 0.36, 1) 0.72s,
-              transform 1.05s cubic-bezier(0.22, 1.1, 0.36, 1) 0.72s;
-}
-
-/* Transparent Image 2 Tag with centered offer symbol */
-.goldOfferTagWrapper {
-  position: relative;
-  width: 36px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
-}
-
-.goldOfferTagImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.tagOfferSymbol {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.12rem;
-  font-weight: 800;
-  color: #570014;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.pricingTextGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.pricingOverTitle {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: #FFE6BC;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-}
-
-.pricingHighlight {
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  letter-spacing: -0.2px;
 }
 
 /* 5. CTA Buttons */
@@ -435,7 +332,7 @@
   position: relative;
   width: 100%;
   z-index: 5;
-  margin-top: -24px;
+  margin-top: 10px;
 }
 
 .waveSvgWrapper {
@@ -477,6 +374,60 @@
 
 .wavyTrustItem:hover {
   transform: translateY(-2px);
+}
+
+.wavyTrustLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wavyTrustLink:hover .wavyItemTitle {
+  color: #FFE6BC;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.desktopOnlyTrust {
+  display: flex;
+}
+
+.mobileMarqueeWrapper {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.mobileMarqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: mobileMarquee 22s linear infinite;
+  will-change: transform;
+}
+
+.mobileMarqueeTrack:hover,
+.mobileMarqueeTrack:active {
+  animation-play-state: paused;
+}
+
+.marqueeRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-right: 24px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@keyframes mobileMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 /* Sequential Trust Indicators Entrance (Paced & Visibly Smooth) */
@@ -557,9 +508,7 @@
   .animateDivider,
   .animateBniBadge,
   .animateBniChapter,
-  .animatePoloWrapper,
-  .animateCurve,
-  .animatePricingBadge,
+  .animateShowcaseWrapper,
   .animateButtons,
   .trustIcon,
   .trustText,
@@ -568,6 +517,11 @@
     transform: none !important;
     letter-spacing: normal !important;
     transition: none !important;
+  }
+
+  .mobileMarqueeTrack {
+    animation: none !important;
+    overflow-x: auto;
   }
 }
 
@@ -634,22 +588,17 @@
 /* Laptop & Tablet Adjustments (769px - 1080px) */
 @media (max-width: 1080px) {
   .heroGrid {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 48% 52%;
   }
   .mainHeading {
     font-size: 1.85rem;
   }
-  .heroPoloImg {
-    max-height: 380px;
-  }
-  .bniPricingOverlay {
-    bottom: 20px;
-    left: 10px;
-    padding: 8px 14px;
+  .heroShowcaseImg {
+    max-height: 400px;
   }
 }
 
-/* Mobile Composition (Matching Image 1 Mobile) */
+/* Mobile Composition (Matching Image 2 Mobile) */
 @media (max-width: 800px) {
   .heroSection {
     min-height: calc(100svh - var(--header-height));
@@ -723,25 +672,18 @@
     margin: 8px 0;
   }
 
-  .poloComposition {
-    max-width: 340px;
+  .showcaseComposition {
+    max-width: 440px;
+    margin: 0 auto;
   }
 
-  .heroPoloImg {
-    max-height: 270px;
-  }
-
-  .bniPricingOverlay {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    margin-top: -24px;
-    align-self: center;
-    padding: 8px 14px;
+  .heroShowcaseImg {
+    max-height: 380px;
+    border-radius: 12px;
   }
 
   .buttonsArea {
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     width: 100%;
   }
 
@@ -759,26 +701,36 @@
     font-size: 0.92rem;
   }
 
-  .waveSvg {
-    height: 48px;
+  .bottomWaveSection {
+    margin-top: 4px;
   }
 
-  .wavyTrustContainer {
-    flex-direction: column;
-    gap: 14px;
-    padding: 4px 16px 16px 16px;
+  .waveSvg {
+    height: 44px;
+  }
+
+  .desktopOnlyTrust {
+    display: none !important;
+  }
+
+  .mobileMarqueeWrapper {
+    display: flex;
+    padding: 6px 0 16px 0;
   }
 
   .wavyDivider {
-    width: 65%;
-    height: 1px;
-    background: rgba(216, 166, 59, 0.25);
+    width: 1px;
+    height: 30px;
+    background: rgba(216, 166, 59, 0.4);
+    flex-shrink: 0;
   }
 
   .wavyTrustItem {
-    width: 100%;
-    justify-content: flex-start;
-    max-width: 290px;
+    width: auto;
+    flex-shrink: 0;
+    max-width: none;
+    white-space: nowrap;
+    gap: 12px;
   }
 
   .wavyItemTitle {

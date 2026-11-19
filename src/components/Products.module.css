@@ -1,43 +1,174 @@
 .productsSection {
-  background: linear-gradient(180deg, var(--color-cream) 0%, #FAF1E4 50%, var(--color-cream) 100%);
+  background: linear-gradient(180deg, #FFFDF9 0%, #FFF8F0 50%, #FAF1E4 100%);
   position: relative;
   overflow: hidden;
+  padding: 56px 0 76px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* Corner Burgundy Waves with Champagne Gold Contour */
+.bottomLeftWave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 340px;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bottomRightWave {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 340px;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cornerWaveSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.productsContainer {
+  position: relative;
+  z-index: 2;
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Centered Heading Area */
+.headingArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 3;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 3.2vw, 3.1rem);
+  font-weight: 600;
+  color: #650018;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.goldAccentLine {
+  width: 44px;
+  height: 2.5px;
+  background: #D9A441;
+  border-radius: 2px;
+  margin: 4px auto 14px auto;
+}
+
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #6F6260;
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+/* 3D Showcase Wrapper */
 .showcaseWrapper {
   position: relative;
   width: 100%;
-  margin-top: 10px;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
-.pedestalStage {
-  position: relative;
+/* Swirling Champagne Gold Ribbons behind Apparel */
+.swirlingGoldRibbons {
+  position: absolute;
+  top: 15px;
+  left: -2%;
+  width: 104%;
+  height: 320px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 3D Oval Pedestal Stage Surface */
+.pedestalStageSurface {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
   width: 100%;
-  padding-bottom: 24px;
+  height: 155px;
+  border-radius: 50% / 36px;
+  background: linear-gradient(180deg, #FFFDF8 0%, #F5EADB 65%, #E6D2BD 100%);
+  border: 2px solid rgba(217, 164, 65, 0.55);
+  box-shadow:
+    inset 0 2px 10px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 12px rgba(184, 133, 35, 0.22),
+    0 18px 45px rgba(87, 0, 20, 0.12),
+    0 4px 14px rgba(217, 164, 65, 0.2);
+  z-index: 1;
+  pointer-events: none;
 }
 
+/* 3D Depth Face Drop */
+.pedestalStageSurface::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 1%;
+  width: 98%;
+  height: 36px;
+  border-radius: 50% / 18px;
+  background: linear-gradient(180deg, #D9A441 0%, #A87625 60%, #7A4E0E 100%);
+  z-index: -1;
+  box-shadow: 0 16px 36px rgba(87, 0, 20, 0.16);
+}
+
+.pedestalGlow {
+  position: absolute;
+  top: -20px;
+  left: 20%;
+  width: 60%;
+  height: 80px;
+  background: radial-gradient(ellipse, rgba(217, 164, 65, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* 5 Products Grid Layout */
 .productsTrack {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  gap: 20px;
   align-items: flex-end;
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
+/* Individual Product Stage Card */
 .productStageCard {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   position: relative;
-  transition: transform var(--transition-normal);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
 }
 
-.productStageCard:hover {
+.productStageCard:hover,
+.productStageCard:focus-visible {
   transform: translateY(-8px);
 }
 
+/* Floating 3D Garment */
 .floatingGarmentWrap {
   position: relative;
   width: 100%;
@@ -45,102 +176,212 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 160px;
+  min-height: 220px;
+  animation: floatSubtle 4.5s ease-in-out infinite;
 }
+
+/* Staggered Floating Delays for Showroom Ambiance */
+.garmentCard1 .floatingGarmentWrap { animation-delay: 0s; }
+.garmentCard2 .floatingGarmentWrap { animation-delay: 0.9s; }
+.garmentCard3 .floatingGarmentWrap { animation-delay: 1.8s; }
+.garmentCard4 .floatingGarmentWrap { animation-delay: 2.7s; }
+.garmentCard5 .floatingGarmentWrap { animation-delay: 3.6s; }
 
 .garmentImg {
   width: 100%;
-  max-width: 160px;
+  max-width: 195px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 12px 18px rgba(87, 0, 20, 0.16));
-  transition: transform 0.4s ease;
+  filter: drop-shadow(0 14px 22px rgba(87, 0, 20, 0.18));
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .productStageCard:hover .garmentImg {
-  transform: scale(1.08) rotate(1.5deg);
+  transform: scale(1.06);
+  filter: drop-shadow(0 18px 28px rgba(87, 0, 20, 0.28));
 }
 
-.garmentShadow {
-  width: 70%;
-  height: 14px;
-  background: radial-gradient(ellipse, rgba(87, 0, 20, 0.25) 0%, transparent 70%);
+/* Soft Realistic Contact Shadow on Stage */
+.contactShadow {
+  width: 65%;
+  height: 16px;
+  background: radial-gradient(ellipse, rgba(87, 0, 20, 0.28) 0%, transparent 70%);
   border-radius: 50%;
-  margin-top: 4px;
-  filter: blur(2px);
+  margin-top: 6px;
+  filter: blur(2.5px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.ovalPedestal {
-  margin-top: 12px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F5E8D6 100%);
-  border: 1.5px solid rgba(216, 166, 59, 0.4);
-  border-radius: 20px;
-  padding: 10px 12px;
-  width: 95%;
-  min-height: 56px;
+.productStageCard:hover .contactShadow {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+
+/* Premium Pill-shaped Category Label */
+.labelPill {
+  margin-top: 14px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F2 100%);
+  border: 1.5px solid rgba(217, 164, 65, 0.48);
+  border-radius: var(--radius-full);
+  padding: 10px 14px;
+  width: 100%;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(87, 0, 20, 0.08);
-  transition: all var(--transition-fast);
+  box-shadow: 0 6px 18px rgba(87, 0, 20, 0.07), 0 2px 6px rgba(217, 164, 65, 0.1);
+  transition: all 0.25s ease;
+  box-sizing: border-box;
 }
 
-.productStageCard:hover .ovalPedestal {
-  background: var(--color-primary-burgundy);
-  border-color: var(--color-gold);
-}
-
-.productLabel {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--color-deep-maroon);
+.labelText {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #650018;
   line-height: 1.25;
   display: block;
+  transition: color 0.25s ease;
 }
 
-.productStageCard:hover .productLabel {
+.productStageCard:hover .labelPill,
+.productStageCard:focus-visible .labelPill {
+  background: #7A001F;
+  border-color: #D9A441;
+  box-shadow: 0 10px 24px rgba(87, 0, 20, 0.22);
+  transform: translateY(-2px);
+}
+
+.productStageCard:hover .labelText,
+.productStageCard:focus-visible .labelText {
   color: #FFFFFF;
 }
 
-/* Curved Arc Stage Base */
-.curvedArcBase {
-  position: absolute;
-  bottom: 0;
-  left: 5%;
-  width: 90%;
-  height: 35px;
-  background: linear-gradient(180deg, rgba(216, 166, 59, 0.15) 0%, rgba(128, 0, 25, 0.06) 100%);
-  border-top: 2px solid rgba(216, 166, 59, 0.35);
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  z-index: 1;
-}
-
-/* Horizontal Scroll for Mobile */
-@media (max-width: 992px) {
-  .productsTrack {
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 32px;
+/* Subtle Floating Animation */
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
   }
-  .curvedArcBase {
-    display: none;
+  50% {
+    transform: translateY(-7px);
   }
 }
 
-@media (max-width: 600px) {
+/* Tablet Layout (Matching Image 1 bottom preview: 3 on top, 2 below) */
+@media (max-width: 992px) and (min-width: 681px) {
   .productsTrack {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding-bottom: 16px;
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 20px;
   }
+
   .productStageCard {
-    flex: 0 0 160px;
-    scroll-snap-align: start;
+    flex: 0 0 calc(33.333% - 16px);
+    max-width: 230px;
   }
-  .productLabel {
-    font-size: 0.85rem;
+
+  .productStageCard:nth-child(4),
+  .productStageCard:nth-child(5) {
+    flex: 0 0 calc(33.333% - 16px);
+    max-width: 230px;
+  }
+
+  .garmentImg {
+    max-width: 180px;
+  }
+
+  .pedestalStageSurface {
+    height: 240px;
+    bottom: 24px;
+    border-radius: 50% / 60px;
+  }
+
+  .bottomLeftWave,
+  .bottomRightWave {
+    width: 260px;
+    height: 85px;
+  }
+}
+
+/* Mobile Layout: Balanced 2-Column with 5th Item Centered */
+@media (max-width: 680px) {
+  .productsSection {
+    padding: 44px 0 60px 0;
+  }
+
+  .productsContainer {
+    padding: 0 16px;
+  }
+
+  .headingArea {
+    margin-bottom: 28px;
+  }
+
+  .sectionTitle {
+    font-size: 1.95rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.92rem;
+  }
+
+  .showcaseWrapper {
+    padding-bottom: 16px;
+  }
+
+  .productsTrack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 14px;
+  }
+
+  /* 5th product centered across both columns */
+  .productStageCard:nth-child(5) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 220px;
+    width: 100%;
+  }
+
+  .floatingGarmentWrap {
+    min-height: 170px;
+  }
+
+  .garmentImg {
+    max-width: 150px;
+  }
+
+  .labelPill {
+    min-height: 46px;
+    padding: 8px 10px;
+    margin-top: 10px;
+  }
+
+  .labelText {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .pedestalStageSurface {
+    display: none;
+  }
+
+  .swirlingGoldRibbons {
+    height: 220px;
+    top: 50px;
+  }
+
+  .bottomLeftWave,
+  .bottomRightWave {
+    width: 180px;
+    height: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingGarmentWrap {
+    animation: none !important;
   }
 }

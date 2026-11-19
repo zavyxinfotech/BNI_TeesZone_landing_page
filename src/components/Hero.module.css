@@ -1,6 +1,10 @@
 .heroSection {
   position: relative;
-  background-color: var(--color-cream);
+  background-color: #FDFBF7;
+  background-image: url('/images/hero_bg_desktop.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
@@ -29,26 +33,32 @@
   margin: auto auto;
   padding-left: 28px;
   padding-right: 28px;
-  padding-top: 16px;
-  padding-bottom: 8px;
+  padding-top: 24px;
+  padding-bottom: 12px;
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-/* Desktop Grid: Left 48%, Right 52% */
+/* Desktop Grid: Left 52% for text, Right 48% reserved for artwork */
 .heroGrid {
   display: grid;
-  grid-template-columns: 48% 52%;
+  grid-template-columns: 52% 48%;
   grid-template-rows: auto auto auto auto;
   grid-template-areas:
-    "tagline apparel"
-    "brand   apparel"
-    "heading apparel"
-    "buttons apparel";
+    "tagline art"
+    "brand   art"
+    "heading art"
+    "buttons art";
   align-items: center;
   row-gap: 0;
   width: 100%;
+}
+
+.desktopArtSpacer {
+  grid-area: art;
+  min-height: 480px;
+  pointer-events: none;
 }
 
 /* 1. Top Tagline */
@@ -67,7 +77,7 @@
   opacity: 0.95;
 }
 
-/* Eyebrow Tracking & Fade-up Entrance (Decreased speed for graceful reveal) */
+/* Eyebrow Tracking & Fade-up Entrance */
 .animateEyebrow {
   opacity: 0;
   transform: translateY(18px);
@@ -103,7 +113,6 @@
   align-items: center;
 }
 
-/* TeesZone Logo: Smooth fade-in and scale-in (Relaxed cinematic speed) */
 .animateTzLogo {
   opacity: 0;
   transform: scale(0.9);
@@ -125,36 +134,38 @@
 }
 
 .verticalDivider {
-  width: 1.5px;
-  height: 50px;
-  background: rgba(87, 0, 20, 0.4);
+  width: 2px;
+  height: 54px;
+  background-color: var(--color-burgundy);
+  border-radius: 1px;
+  opacity: 0.85;
 }
 
 .animateDivider {
   opacity: 0;
-  transform: scaleY(0);
+  transform: scaleY(0.4);
   transform-origin: center;
   transition: opacity 0.25s ease,
               transform 0.25s ease;
 }
 
 .heroLoaded .animateDivider {
-  opacity: 1;
+  opacity: 0.85;
   transform: scaleY(1);
-  transition: opacity 0.8s ease 0.22s,
-              transform 0.8s ease 0.22s;
+  transition: opacity 0.85s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.2s,
+              transform 0.85s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.2s;
 }
 
 .bniBadgeWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-/* BNI Badge: Fade-in & slight scale (Relaxed speed) */
 .animateBniBadge {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.88);
   transition: opacity 0.25s ease,
               transform 0.25s ease;
 }
@@ -162,29 +173,27 @@
 .heroLoaded .animateBniBadge {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.26s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.26s;
+  transition: opacity 0.95s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.24s,
+              transform 0.95s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.24s;
 }
 
 .bniBadgeImg {
   height: 52px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(215, 25, 50, 0.22));
 }
 
 .bniChapterName {
   font-size: 0.74rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-deep-maroon);
-  margin-top: 3px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
 }
 
-/* BNI Tycoon Erode chapter entrance after badge */
 .animateBniChapter {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(6px);
   transition: opacity 0.25s ease,
               transform 0.25s ease;
 }
@@ -192,8 +201,8 @@
 .heroLoaded .animateBniChapter {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.85s ease 0.4s,
-              transform 0.85s ease 0.4s;
+  transition: opacity 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s,
+              transform 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s;
 }
 
 /* 3. Main Hero Heading */
@@ -203,95 +212,45 @@
 }
 
 .mainHeading {
-  font-size: 2.22rem;
-  font-weight: 500;
-  color: var(--color-deep-maroon);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.1vw, 2.85rem);
+  font-weight: 800;
   line-height: 1.22;
-  letter-spacing: -0.5px;
-  max-width: 530px;
+  color: var(--color-deep-maroon);
+  letter-spacing: -0.025em;
+  max-width: 580px;
 }
 
-/* 4. Apparel Presentation Area: Showcase Images */
-.apparelArea {
-  grid-area: apparel;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.showcaseComposition {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Showcase Image Reveal: Fade-in, slight upward movement, very subtle scale reveal */
-.animateShowcaseWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  transform: translateY(24px) scale(0.97);
-  transition: opacity 0.25s ease,
-              transform 0.25s ease;
-  will-change: opacity, transform;
-}
-
-.heroLoaded .animateShowcaseWrapper {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: opacity 1.15s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.32s,
-              transform 1.15s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.32s;
-}
-
-.showcasePicture {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.heroShowcaseImg {
-  width: 100%;
-  height: auto;
-  max-height: 520px;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 38px rgba(87, 0, 20, 0.16));
-  border-radius: var(--radius-lg, 16px);
-  position: relative;
-  z-index: 2;
-}
-
-/* 5. CTA Buttons */
+/* 4. CTA Buttons Area */
 .buttonsArea {
   grid-area: buttons;
-  padding-bottom: 24px;
+  padding-bottom: 12px;
 }
 
-/* CTA Button Reveal: Fade-up & slight scale-in (Relaxed cinematic speed) */
 .animateButtons {
   opacity: 0;
-  transform: translateY(22px) scale(0.95);
+  transform: translateY(20px) scale(0.97);
   transition: opacity 0.25s ease,
               transform 0.25s ease;
-  will-change: opacity, transform;
 }
 
 .heroLoaded .animateButtons {
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.65s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.65s;
+  transition: opacity 1s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.65s,
+              transform 1s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.65s;
 }
 
 .ctasRow {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
+}
+
+.ctasRow :global(.btn-primary) {
+  padding: 13px 26px;
+  font-size: 0.95rem;
 }
 
 .whatsappCtaBtn {
@@ -308,6 +267,7 @@
   box-shadow: 0 4px 14px rgba(87, 0, 20, 0.05);
   transition: all var(--transition-fast);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .whatsappCtaBtn:hover {
@@ -327,12 +287,12 @@
   border-radius: 50%;
 }
 
-/* 6. Decorative Bottom Curved Burgundy & Gold Wave with Trust Indicators */
+/* 5. Bottom Curved Burgundy Wave with Trust Indicators */
 .bottomWaveSection {
   position: relative;
   width: 100%;
   z-index: 5;
-  margin-top: 10px;
+  margin-top: -16px;
 }
 
 .waveSvgWrapper {
@@ -344,19 +304,18 @@
 
 .waveSvg {
   width: 100%;
-  height: 76px;
+  height: 64px;
   display: block;
 }
 
-/* Same unified color #5B0013 for both wave design and below content */
 .wavyContentBand {
   background-color: #5B0013;
-  background: #5B0013;
-  padding: 8px 0 20px 0;
+  padding: 4px 0 18px 0;
   box-shadow: 0 12px 32px rgba(87, 0, 20, 0.25);
 }
 
-.wavyTrustContainer {
+/* Desktop Trust Container: Spaced centered row */
+.desktopTrustContainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -370,67 +329,32 @@
   align-items: center;
   gap: 16px;
   transition: transform var(--transition-fast);
+  white-space: nowrap;
 }
 
 .wavyTrustItem:hover {
   transform: translateY(-2px);
 }
 
-.wavyTrustLink {
+/* Google Reviews Link Specifics */
+.googleReviewLink {
   text-decoration: none;
   cursor: pointer;
+  border-radius: var(--radius-md);
+  padding: 4px 8px;
+  margin: -4px -8px;
+  transition: transform var(--transition-fast), filter var(--transition-fast), background-color var(--transition-fast);
 }
 
-.wavyTrustLink:hover .wavyItemTitle {
-  color: #FFE6BC;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.googleReviewLink:hover,
+.googleReviewLink:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+  background-color: rgba(255, 255, 255, 0.06);
+  outline: none;
 }
 
-.desktopOnlyTrust {
-  display: flex;
-}
-
-.mobileMarqueeWrapper {
-  display: none;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-
-.mobileMarqueeTrack {
-  display: flex;
-  width: max-content;
-  animation: mobileMarquee 22s linear infinite;
-  will-change: transform;
-}
-
-.mobileMarqueeTrack:hover,
-.mobileMarqueeTrack:active {
-  animation-play-state: paused;
-}
-
-.marqueeRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding-right: 24px;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-@keyframes mobileMarquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-/* Sequential Trust Indicators Entrance (Paced & Visibly Smooth) */
+/* Sequential Trust Indicators Entrance */
 .trustIcon {
   opacity: 0;
   transform: scale(0.7);
@@ -448,43 +372,43 @@
 .heroLoaded .trustItem1 .trustIcon {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.82s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.82s;
+  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.72s,
+              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.72s;
 }
 
 .heroLoaded .trustItem1 .trustText {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.86s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.86s;
+  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.76s,
+              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.76s;
 }
 
 .heroLoaded .trustItem2 .trustIcon {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.98s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.98s;
+  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.88s,
+              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.88s;
 }
 
 .heroLoaded .trustItem2 .trustText {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.02s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.02s;
+  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.92s,
+              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.92s;
 }
 
 .heroLoaded .trustItem3 .trustIcon {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.14s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.14s;
+  transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.04s,
+              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.04s;
 }
 
 .heroLoaded .trustItem3 .trustText {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.18s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.18s;
+  transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.08s,
+              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.08s;
 }
 
 .starWrap {
@@ -502,51 +426,32 @@
               transform 0.65s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animateEyebrow,
-  .animateTzLogo,
-  .animateDivider,
-  .animateBniBadge,
-  .animateBniChapter,
-  .animateShowcaseWrapper,
-  .animateButtons,
-  .trustIcon,
-  .trustText,
-  .starWrap {
-    opacity: 1 !important;
-    transform: none !important;
-    letter-spacing: normal !important;
-    transition: none !important;
-  }
-
-  .mobileMarqueeTrack {
-    animation: none !important;
-    overflow-x: auto;
-  }
-}
-
 .googleIconBadge {
   width: 44px;
   height: 44px;
-  background: #FFFFFF;
   border-radius: 50%;
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
+}
+
+.googleGLogo {
+  width: 22px;
+  height: 22px;
 }
 
 .wavyIconBadge {
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(216, 166, 59, 0.65);
   border-radius: 50%;
+  background: rgba(216, 166, 59, 0.15);
+  border: 1px solid rgba(216, 166, 59, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
 }
 
@@ -556,59 +461,61 @@
 }
 
 .wavyItemTitle {
-  font-size: 1.02rem;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #FFFFFF;
-  letter-spacing: -0.2px;
-  line-height: 1.3;
-}
-
-.wavyItemSubtitle {
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: #FFE6BC;
-  letter-spacing: 0.2px;
-  line-height: 1.25;
+  letter-spacing: 0.3px;
+  display: block;
 }
 
 .wavyStarsRow {
   display: flex;
+  align-items: center;
   gap: 3px;
   margin-top: 3px;
 }
 
+.wavyItemSubtitle {
+  font-size: 0.85rem;
+  color: #D8A63B;
+  display: block;
+  font-weight: 500;
+}
+
 .wavyDivider {
   width: 1px;
-  height: 40px;
-  background: rgba(216, 166, 59, 0.35);
+  height: 38px;
+  background: rgba(216, 166, 59, 0.3);
+  flex-shrink: 0;
 }
 
-/* RESPONSIVE DESIGN */
-
-/* Laptop & Tablet Adjustments (769px - 1080px) */
-@media (max-width: 1080px) {
-  .heroGrid {
-    grid-template-columns: 48% 52%;
-  }
-  .mainHeading {
-    font-size: 1.85rem;
-  }
-  .heroShowcaseImg {
-    max-height: 400px;
-  }
+/* Mobile Ticker Auto-scroll marquee (Hidden by default on Desktop) */
+.mobileTickerWrapper {
+  display: none;
 }
 
-/* Mobile Composition (Matching Image 2 Mobile) */
+/* Responsive Styles for Mobile */
 @media (max-width: 800px) {
   .heroSection {
-    min-height: calc(100svh - var(--header-height));
-    min-height: calc(100dvh - var(--header-height));
-    padding: 16px 0 0 0;
+    background-image: url('/images/hero_bg_mobile.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    min-height: auto;
+    padding: 20px 0 0 0;
+  }
+
+  .ambientGlow {
+    display: none;
   }
 
   .heroContainer {
     padding-left: 16px;
     padding-right: 16px;
+    min-height: 560px;
+    padding-bottom: 240px; /* Leaves clear space for the 5-garment pedestal at bottom of mobile background */
+    align-items: flex-start;
   }
 
   .heroGrid {
@@ -618,14 +525,17 @@
       "tagline"
       "brand"
       "heading"
-      "apparel"
       "buttons";
     text-align: center;
-    row-gap: 16px;
+    row-gap: 14px;
+  }
+
+  .desktopArtSpacer {
+    display: none;
   }
 
   .taglineArea {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .taglineText {
@@ -634,7 +544,7 @@
   }
 
   .brandArea {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   .brandRow {
@@ -643,15 +553,15 @@
   }
 
   .tzLogoImg {
-    height: 34px;
+    height: 32px;
   }
 
   .verticalDivider {
-    height: 42px;
+    height: 40px;
   }
 
   .bniBadgeImg {
-    height: 44px;
+    height: 42px;
   }
 
   .bniChapterName {
@@ -659,31 +569,18 @@
   }
 
   .headingArea {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .mainHeading {
     font-size: 1.55rem;
+    line-height: 1.28;
     margin: 0 auto;
     max-width: 100%;
   }
 
-  .apparelArea {
-    margin: 8px 0;
-  }
-
-  .showcaseComposition {
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .heroShowcaseImg {
-    max-height: 380px;
-    border-radius: 12px;
-  }
-
   .buttonsArea {
-    padding-bottom: 16px;
+    padding-bottom: 12px;
     width: 100%;
   }
 
@@ -702,42 +599,79 @@
   }
 
   .bottomWaveSection {
-    margin-top: 4px;
+    margin-top: -20px;
   }
 
   .waveSvg {
-    height: 44px;
+    height: 42px;
   }
 
-  .desktopOnlyTrust {
-    display: none !important;
+  /* Hide Desktop static container */
+  .desktopTrustContainer {
+    display: none;
   }
 
-  .mobileMarqueeWrapper {
-    display: flex;
+  /* Show Mobile continuous single-row ticker */
+  .mobileTickerWrapper {
+    display: block;
+    width: 100%;
+    overflow: hidden;
     padding: 6px 0 16px 0;
+    position: relative;
+    mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
   }
 
-  .wavyDivider {
-    width: 1px;
-    height: 30px;
-    background: rgba(216, 166, 59, 0.4);
+  .mobileTickerTrack {
+    display: flex;
+    width: max-content;
+    animation: tickerScroll 18s linear infinite;
+    will-change: transform;
+  }
+
+  .mobileTickerTrack:hover,
+  .mobileTickerTrack:active {
+    animation-play-state: paused;
+  }
+
+  .tickerGroup {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 0 12px;
     flex-shrink: 0;
   }
 
   .wavyTrustItem {
-    width: auto;
     flex-shrink: 0;
-    max-width: none;
-    white-space: nowrap;
-    gap: 12px;
   }
 
   .wavyItemTitle {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
 
   .wavyItemSubtitle {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  .googleIconBadge,
+  .wavyIconBadge {
+    width: 38px;
+    height: 38px;
+  }
+
+  .googleGLogo {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+/* Continuous Marquee Auto-Scroll Animation for Mobile View */
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

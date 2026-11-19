@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Users, Truck, Star } from 'lucide-react';
 import { companyInfo } from '../data/companyInfo';
 import WordReveal from './animations/WordReveal';
-import CountUp from './animations/CountUp';
+import CountingNumber from './animations/CountingNumber';
 import { useInView } from './animations/useInView';
 import { useReducedMotion } from './animations/useReducedMotion';
 import styles from './Hero.module.css';
 
-const GOOGLE_REVIEWS_URL =
-  'https://www.google.com/search?q=teeszone+google+reviews+&sca_esv=a1f7945095f7d3aa&biw=1536&bih=730&sxsrf=AKL5yDgd6XR05pb5VUdybTy75HEH3fSQig%3A1795067535887&ei=j47-asfTNbifseMPyZKQ-QQ&uact=5&oq=teeszone+google+reviews+&gs_lp=Egxnd3Mtd2l6LXNlcnAiGHRlZXN6b25lIGdvb2dsZSByZXZpZXdzIDIIECEYoAEYwwQyCBAhGKABGMMESP0vULkCWMYucAF4AJABAJgByQGgAagNqgEGMC4xMC4xuAEDyAEA-AEBmAIKoAK0C8ICCBAAGO8FGLADwgILEAAYgAQYogQYsAPCAgQQIxgnwgILEAAYgAQYigUYkQLCAgUQABiABMICChAAGIAEGIoFGEPCAgoQABiABBgUGIcCwgIHECMYsAIYJ8ICBhAAGAcYHsICBxAAGIAEGA3CAgoQABiABBgNGLQHwgIIEAAYBRgHGB7CAgoQABgFGAcYHhgKwgIFEAAY7wXCAggQABiABBiiBMICCBAAGAUYHhgNwgIKEAAYBRgeGA0YCsICCBAAGAgYHhgNwgIKECEYChigARjDBJgDAIgGAZAGBJIHAzEuOaAH3j2yBwMwLjm4B6ILwgcFMi01LjXIB0iACAE&sclient=gws-wiz-serp#sv=CAwSigIKBmxjbF9wdhKsAQoEbXN0axKjAUFVdEV4ZkJya3ZIc0FseUFmOHQyR0JSd3VHd1RtckNXbUdmQmpXWUFFXzN4aVRQeDhROWNnUjJFLXJRNXZ1S2lHNGNWMlg1RzFlUWNUWDk4Mjh3MjVQV1NHenU2T25zQXMyUTFTQjNuNHpBdlM4ZUVuTDdUZmxfbXNpYVloWVVkTFVZM2MyTzQ4S3U5bFF4NDA0dGg4ZmNaWXJWUkRvWUxFWVkSHAoBcRIXdGVlc3pvbmUgZ29vZ2xlIHJldmlld3MSHwoDcHZxEhhDZzB2Wnk4eE1XMXNkSEk1WnpaMGdBRUIaEmxvY2FsLXBsYWNlLXZpZXdlchgKIJyZhd8E';
+const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=teeszone+google+reviews+&sca_esv=a1f7945095f7d3aa&biw=1536&bih=730&sxsrf=AKL5yDgd6XR05pb5VUdybTy75HEH3fSQig%3A1795067535887&ei=j47-asfTNbifseMPyZKQ-QQ&uact=5&oq=teeszone+google+reviews+&gs_lp=Egxnd3Mtd2l6LXNlcnAiGHRlZXN6b25lIGdvb2dsZSByZXZpZXdzIDIIECEYoAEYwwQyCBAhGKABGMMESP0vULkCWMYucAF4AJABAJgByQGgAagNqgEGMC4xMC4xuAEDyAEA-AEBmAIKoAK0C8ICCBAAGO8FGLADwgILEAAYgAQYogQYsAPCAgQQIxgnwgILEAAYgAQYigUYkQLCAgUQABiABMICChAAGIAEGIoFGEPCAgoQABiABBgUGIcCwgIHECMYsAIYJ8ICBhAAGAcYHsICBxAAGIAEGA3CAgoQABiABBgNGLQHwgIIEAAYBRgHGB7CAgoQABgFGAcYHhgKwgIFEAAY7wXCAggQABiABBiiBMICCBAAGAUYHhgNwgIKEAAYBRgeGA0YCsICCBAAGAgYHhgNwgIKECEYChigARjDBJgDAIgGAZAGBJIHAzEuOaAH3j2yBwMwLjm4B6ILwgcFMi01LjXIB0iACAE&sclient=gws-wiz-serp#sv=CAwSigIKBmxjbF9wdhKsAQoEbXN0axKjAUFVdEV4ZkJya3ZIc0FseUFmOHQyR0JSd3VHd1RtckNXbUdmQmpXWUFFXzN4aVRQeDhROWNnUjJFLXJRNXZ1S2lHNGNWMlg1RzFlUWNUWDk4Mjh3MjVQV1NHenU2T25zQXMyUTFTQjNuNHpBdlM4ZUVuTDdUZmxfbXNpYVloWVVkTFVZM2MyTzQ4S3U5bFF4NDA0dGg4ZmNaWXJWUkRvWUxFWVkSHAoBcRIXdGVlc3pvbmUgZ29vZ2xlIHJldmlld3MSHwoDcHZxEhhDZzB2Wnk4eE1XMXNkSEk1WnpaMGdBRUIaEmxvY2FsLXBsYWNlLXZpZXdlchgKIJyZhd8E";
 
 export default function Hero({ onOpenIntroModal }) {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: false });
+  const [trustRef, trustInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const [isMounted, setIsMounted] = useState(false);
   const prefersReduced = useReducedMotion();
 
@@ -22,20 +22,22 @@ export default function Hero({ onOpenIntroModal }) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Animate on load and whenever hero is scrolled into view
-  const isHeroActive = prefersReduced ? true : isMounted && heroInView;
+  // Animate on initial mount and whenever section enters viewport
+  const isHeroActive = prefersReduced ? true : (isMounted && heroInView);
+  const isTrustActive = prefersReduced ? true : (isMounted && (heroInView || trustInView));
   const loadedClass = isHeroActive ? styles.heroLoaded : '';
 
-  // Render individual trust item content
+  // Render individual trust item nodes for reuse in desktop and mobile ticker
   const renderTrustItems = (keyPrefix = 'main') => (
     <>
-      {/* Item 1: 5 Star Google Ratings with Navigation URL and Counting Animation */}
+      {/* 1. 5 Star Google Ratings - Navigates to Google Reviews URL */}
       <a
         href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${styles.wavyTrustItem} ${styles.wavyTrustLink} ${styles.trustItem1}`}
-        aria-label="5 Star Google Ratings - View TeesZone Google Reviews"
+        className={`${styles.wavyTrustItem} ${styles.trustItem1} ${styles.googleReviewLink}`}
+        title="Read TeesZone Google Reviews (opens in new tab)"
+        aria-label="5 Star Google Ratings - Read Reviews on Google"
       >
         <div className={`${styles.googleIconBadge} ${styles.trustIcon}`}>
           <svg className={styles.googleGLogo} viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
@@ -59,14 +61,18 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
         <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
           <span className={styles.wavyItemTitle}>
-            <CountUp end={5} duration={1400} trigger={isHeroActive} /> Star Google Ratings
+            <CountingNumber
+              end={5}
+              duration={1400}
+              trigger={isTrustActive}
+            /> Star Google Ratings
           </span>
           <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
             {[...Array(5)].map((_, i) => (
               <span
                 key={`${keyPrefix}-star-${i}`}
                 className={styles.starWrap}
-                style={{ transitionDelay: `${0.95 + i * 0.08}s` }}
+                style={{ transitionDelay: `${0.85 + i * 0.08}s` }}
               >
                 <Star size={14} fill="#D8A63B" color="#D8A63B" />
               </span>
@@ -77,14 +83,19 @@ export default function Hero({ onOpenIntroModal }) {
 
       <div className={styles.wavyDivider} aria-hidden="true" />
 
-      {/* Item 2: 500+ Happy Clients with Counting Animation */}
+      {/* 2. 500+ Happy Clients */}
       <div className={`${styles.wavyTrustItem} ${styles.trustItem2}`}>
         <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
           <Users size={20} color="#D8A63B" />
         </div>
         <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
           <span className={styles.wavyItemTitle}>
-            <CountUp end={500} suffix="+" duration={1600} trigger={isHeroActive} /> Happy Clients
+            <CountingNumber
+              end={500}
+              suffix="+"
+              duration={1800}
+              trigger={isTrustActive}
+            /> Happy Clients
           </span>
           <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
         </div>
@@ -92,13 +103,20 @@ export default function Hero({ onOpenIntroModal }) {
 
       <div className={styles.wavyDivider} aria-hidden="true" />
 
-      {/* Item 3: PAN India Delivery */}
+      {/* 3. PAN India Delivery */}
       <div className={`${styles.wavyTrustItem} ${styles.trustItem3}`}>
         <div className={`${styles.wavyIconBadge} ${styles.trustIcon}`}>
           <Truck size={20} color="#D8A63B" />
         </div>
         <div className={`${styles.wavyTextGroup} ${styles.trustText}`}>
-          <span className={styles.wavyItemTitle}>PAN India Delivery</span>
+          <span className={styles.wavyItemTitle}>
+            <CountingNumber
+              end={100}
+              suffix="%"
+              duration={1600}
+              trigger={isTrustActive}
+            /> PAN India Delivery
+          </span>
           <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
         </div>
       </div>
@@ -110,6 +128,7 @@ export default function Hero({ onOpenIntroModal }) {
       {/* Background ambient lighting */}
       <div className={styles.ambientGlow} aria-hidden="true" />
 
+      {/* Hero Content Area */}
       <div className={`container ${styles.heroContainer}`}>
         <div className={styles.heroGrid}>
           {/* 1. Top Tagline (Hero Eyebrow: Fade-up + tracking transition) */}
@@ -170,27 +189,7 @@ export default function Hero({ onOpenIntroModal }) {
             </h1>
           </div>
 
-          {/* 4. Apparel Presentation Area: Responsive Desktop & Mobile Showcase Images */}
-          <div className={styles.apparelArea}>
-            <div className={styles.showcaseComposition}>
-              <div className={styles.animateShowcaseWrapper}>
-                <picture className={styles.showcasePicture}>
-                  <source media="(max-width: 800px)" srcSet="/images/hero_showcase_mobile.jpg" />
-                  <img
-                    src="/images/hero_showcase_desktop.jpg"
-                    alt="TeesZone Premium Apparel Collection - Corporate Uniforms, Sports Jerseys, Blank Apparel, Hoodies, School Uniforms"
-                    className={styles.heroShowcaseImg}
-                    width="1024"
-                    height="512"
-                    loading="eager"
-                    fetchPriority="high"
-                  />
-                </picture>
-              </div>
-            </div>
-          </div>
-
-          {/* 5. CTA Button Area: Fade-up and slight scale-in */}
+          {/* 4. CTA Buttons Area: Fade-up and scale-in */}
           <div className={`${styles.buttonsArea} ${styles.animateButtons}`}>
             <div className={styles.ctasRow}>
               <button
@@ -201,27 +200,44 @@ export default function Hero({ onOpenIntroModal }) {
                 <span>Request a Business Introduction</span>
                 <ArrowRight size={17} />
               </button>
+              <a
+                href={companyInfo.whatsapp.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.whatsappCtaBtn}
+                aria-label="Chat with TeesZone on WhatsApp"
+              >
+                <span className={styles.whatsappIconCircle}>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+                  </svg>
+                </span>
+                <span>Chat on WhatsApp</span>
+              </a>
             </div>
           </div>
+
+          {/* Right Area placeholder for desktop grid: leaves the artwork on the right unobstructed */}
+          <div className={styles.desktopArtSpacer} aria-hidden="true" />
         </div>
       </div>
 
-      {/* 6. Hero Section Bottom Contents: Positioned below hero with counting animation in both desktop and mobile view, and continuous single-row auto-scroll in mobile view */}
-      <div className={styles.bottomWaveSection} aria-label="Trust Indicators">
+      {/* Hero Bottom Contents: Trust Indicators Band with Counting Animation & Mobile Auto-scroll Ticker */}
+      <div ref={trustRef} className={styles.bottomWaveSection} aria-label="Trust Indicators">
         <div className={styles.waveSvgWrapper} aria-hidden="true">
           <svg
-            viewBox="0 0 1440 96"
+            viewBox="0 0 1440 80"
             preserveAspectRatio="none"
             className={styles.waveSvg}
           >
             {/* Main Burgundy Wave Fill - Uniform #5B0013 matching below content */}
             <path
-              d="M0,62 C320,18 660,82 1020,38 C1220,12 1360,32 1440,24 L1440,96 L0,96 Z"
+              d="M0,52 C320,14 660,72 1020,32 C1220,10 1360,26 1440,18 L1440,80 L0,80 Z"
               fill="#5B0013"
             />
             {/* Golden Contour Ribbon */}
             <path
-              d="M0,62 C320,18 660,82 1020,38 C1220,12 1360,32 1440,24"
+              d="M0,52 C320,14 660,72 1020,32 C1220,10 1360,26 1440,18"
               fill="none"
               stroke="#D8A63B"
               strokeWidth="2.5"
@@ -230,21 +246,19 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
 
         <div className={styles.wavyContentBand}>
-          {/* Desktop View: Centered single row with dividers */}
-          <div className={`container ${styles.wavyTrustContainer} ${styles.desktopOnlyTrust}`}>
+          {/* Desktop Layout: Centered spaced row */}
+          <div className={`container ${styles.desktopTrustContainer}`}>
             {renderTrustItems('desktop')}
           </div>
 
-          {/* Mobile View: Single row with smooth infinite auto-scroll animation */}
-          <div className={styles.mobileMarqueeWrapper} aria-label="Key highlights">
-            <div className={styles.mobileMarqueeTrack}>
-              <div className={styles.marqueeRow}>
-                {renderTrustItems('mobile-1')}
-                <div className={styles.wavyDivider} aria-hidden="true" />
+          {/* Mobile Layout: Single continuous row with infinite auto-scroll animation */}
+          <div className={styles.mobileTickerWrapper}>
+            <div className={styles.mobileTickerTrack}>
+              <div className={styles.tickerGroup}>
+                {renderTrustItems('m-group-1')}
               </div>
-              <div className={styles.marqueeRow} aria-hidden="true">
-                {renderTrustItems('mobile-2')}
-                <div className={styles.wavyDivider} aria-hidden="true" />
+              <div className={styles.tickerGroup} aria-hidden="true">
+                {renderTrustItems('m-group-2')}
               </div>
             </div>
           </div>

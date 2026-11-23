@@ -32,7 +32,7 @@ export default function Products({ onSelectProduct }) {
   const sectionElRef = useRef(null);
   const touchStartX = useRef(null);
   const isWheelingRef = useRef(false);
-  const wheelAccRef = useRef(0);
+  const wheelDeltaRef = useRef(0);
 
   const total = manufacturedProducts.length;
 
@@ -44,50 +44,60 @@ export default function Products({ onSelectProduct }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Smooth wheel scroll listener: accumulates wheel delta to ensure butter-smooth card sliding
+  // Silky smooth scroll listener: intentional scroll threshold and paced 800ms glide
   useEffect(() => {
     const el = sectionElRef.current;
     if (!el) return;
 
-    let wheelTimer = null;
-    let resetAccTimer = null;
+    let resetTimer = null;
+    let lockTimer = null;
 
     const handleWheel = (e) => {
       const rect = el.getBoundingClientRect();
+      // Only capture when section is visible in the viewport
       const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
       if (!isVisible) return;
 
-      wheelAccRef.current += e.deltaY;
-      clearTimeout(resetAccTimer);
-      resetAccTimer = setTimeout(() => {
-        wheelAccRef.current = 0;
+      // When an animation is actively playing, prevent erratic rushing
+      if (isWheelingRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      wheelDeltaRef.current += e.deltaY;
+      e.preventDefault();
+
+      // Clear accumulated inertia if user stopped scrolling
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        wheelDeltaRef.current = 0;
       }, 150);
 
-      if (isWheelingRef.current) return;
-
-      if (Math.abs(wheelAccRef.current) > 25) {
-        e.preventDefault();
+      // Require a deliberate scroll threshold before smoothly advancing 1 item
+      if (Math.abs(wheelDeltaRef.current) > 30) {
         isWheelingRef.current = true;
 
-        if (wheelAccRef.current > 0) {
+        if (wheelDeltaRef.current > 0) {
           nextProduct();
         } else {
           prevProduct();
         }
 
-        wheelAccRef.current = 0;
+        wheelDeltaRef.current = 0;
 
-        wheelTimer = setTimeout(() => {
+        // Paced cooldown matching the 0.8s luxurious CSS transition
+        if (lockTimer) clearTimeout(lockTimer);
+        lockTimer = setTimeout(() => {
           isWheelingRef.current = false;
-        }, 550);
+        }, 800);
       }
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });
     return () => {
       el.removeEventListener('wheel', handleWheel);
-      if (wheelTimer) clearTimeout(wheelTimer);
-      if (resetAccTimer) clearTimeout(resetAccTimer);
+      if (resetTimer) clearTimeout(resetTimer);
+      if (lockTimer) clearTimeout(lockTimer);
     };
   }, [nextProduct, prevProduct]);
 
@@ -119,7 +129,7 @@ export default function Products({ onSelectProduct }) {
       aria-label="What We Manufacture"
     >
       <div className={styles.productsContainer}>
-        {/* Right-Aligned Heading & Enlarged Description (Balanced Spacing) */}
+        {/* Right-Aligned Heading & Enlarged Description (User Point 6) */}
         <div className={styles.headingArea}>
           <h2 className={styles.sectionTitle}>
             {prefersReduced ? (
@@ -179,8 +189,8 @@ export default function Products({ onSelectProduct }) {
                     <CardShapeBackdrop className={styles.cardSvgBackdrop} />
 
                     {/* Garment Image:
-                        - Main Card: Enlarged to 410px, half extending out of card to the top
-                        - Small Cards: Enlarged to 160px, aligned neatly WITHIN the card
+                        - Main Card: Enlarged, half extending out of card to the top (User Point 2 & 5)
+                        - Small Cards: Aligned completely WITHIN the card (User Point 2 & 4)
                     */}
                     <div className={isMain ? styles.mainGarmentWrap : styles.smallGarmentWrap}>
                       <picture>
@@ -190,14 +200,14 @@ export default function Products({ onSelectProduct }) {
                           alt={`${product.name} customized with YOUR LOGO`}
                           className={isMain ? styles.mainGarmentImg : styles.smallGarmentImg}
                           loading={isMain ? 'eager' : 'lazy'}
-                          width={isMain ? 370 : 180}
-                          height={isMain ? 410 : 170}
+                          width={isMain ? 400 : 180}
+                          height={isMain ? 430 : 190}
                         />
                       </picture>
                       <div className={isMain ? styles.mainContactShadow : styles.smallContactShadow} aria-hidden="true" />
                     </div>
 
-                    {/* Text INSIDE the card ONLY in the Main Card */}
+                    {/* Text INSIDE the card ONLY in the Main Card (User Point 3) */}
                     {isMain && (
                       <div className={styles.mainCardTextInside}>
                         <h3 className={styles.mainCardTitle}>
@@ -207,7 +217,7 @@ export default function Products({ onSelectProduct }) {
                     )}
                   </div>
 
-                  {/* Text below card ONLY for Small Cards */}
+                  {/* Text below card ONLY for Small Cards (User Point 3 & 4) */}
                   {!isMain && (
                     <p className={styles.smallCardLabel}>
                       {product.name}

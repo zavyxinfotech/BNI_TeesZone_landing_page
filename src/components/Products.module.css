@@ -36,16 +36,16 @@
   box-sizing: border-box;
 }
 
-/* Heading Area: Aligned with the Secondary Cards with Balanced Spacing (Point 1) */
+/* 1. Proportional Spacing: Right-Aligned Heading & Description */
 .headingArea {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
   width: 100%;
-  max-width: 795px;
-  margin: 0 15px 16px auto;
-  padding-right: 6px;
+  max-width: 780px;
+  margin: 0 0 16px auto;
+  padding-right: 12px;
   position: relative;
   z-index: 3;
 }
@@ -71,8 +71,8 @@
 .sectionSubtitle {
   font-size: clamp(1.15rem, 1.4vw, 1.32rem);
   color: #625553;
-  max-width: 620px;
-  line-height: 1.48;
+  max-width: 600px;
+  line-height: 1.5;
   margin: 0;
   font-weight: 400;
 }
@@ -81,19 +81,19 @@
 .stageWrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
-/* Cards Stage holding animated card slots */
+/* 3D Cards Stage holding persistent card slots */
 .cardsStage {
   position: relative;
   width: 100%;
-  height: 490px;
+  height: 520px;
   margin: 0 auto;
 }
 
-/* 3. Smooth Hardware-Accelerated Sliding Animation (Point 3) */
+/* 3. Silky-Smooth 0.8s Transition for Hardware-Accelerated Sliding Animation */
 .cardSlotItem {
   position: absolute;
   display: flex;
@@ -102,24 +102,23 @@
   cursor: pointer;
   user-select: none;
   transition:
-    left 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    bottom 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.5s ease,
-    z-index 0.65s step-start;
-  will-change: left, bottom, transform, opacity;
+    left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    bottom 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s ease,
+    z-index 0.8s step-start;
+  will-change: left, bottom, transform;
 }
 
 /* ========================================================
    SLOT 0: Main Card Position (Left Side)
-   - Height of image increased to 415px (Point 2)
-   - Positioned with half above card (top: -155px) (Point 5)
-   - Text INSIDE the card at bottom (Point 3)
-   - Balanced spacing to Slot 1 (Point 1)
+   - 2. Increased card size (320px) & image height (420px)
+   - 5. Half size of the garment extends above the card
+   - 3. Text INSIDE the card at bottom
    ======================================================== */
 .slotPos0 {
-  left: 15px;
-  bottom: 30px;
+  left: 20px;
+  bottom: 35px;
   z-index: 10;
   opacity: 1;
 }
@@ -132,20 +131,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  filter: drop-shadow(0 14px 28px rgba(122, 0, 31, 0.08));
+  filter: drop-shadow(0 16px 32px rgba(122, 0, 31, 0.08));
 }
 
 @media (min-width: 1200px) {
   .slotPos0 .cardBox {
-    width: 330px;
-    height: 330px;
+    width: 335px;
+    height: 335px;
   }
 }
 
-/* 5. Main Garment: Half of it extends out of the card to the top */
+/* 5. Main Image Positioned Half of its size extending to the top */
 .mainGarmentWrap {
   position: absolute;
-  top: -155px;
+  top: -165px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -157,25 +156,24 @@
 
 @media (min-width: 1200px) {
   .mainGarmentWrap {
-    top: -165px;
+    top: -180px;
   }
 }
 
-/* 2. Increased height of main image without cuts */
 .mainGarmentImg {
   width: auto;
-  height: 415px;
-  max-width: 370px;
+  height: 420px;
+  max-width: 380px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.16));
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 1200px) {
   .mainGarmentImg {
-    height: 430px;
-    max-width: 390px;
+    height: 440px;
+    max-width: 400px;
   }
 }
 
@@ -184,8 +182,8 @@
 }
 
 .mainContactShadow {
-  width: 200px;
-  height: 16px;
+  width: 210px;
+  height: 18px;
   background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.22) 0%, rgba(30, 20, 20, 0.05) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -8px;
@@ -197,15 +195,15 @@
   position: relative;
   z-index: 4;
   width: 100%;
-  padding: 0 18px 22px 18px;
+  padding: 0 18px 24px 18px;
   text-align: center;
   box-sizing: border-box;
 }
 
 .mainCardTitle {
   font-family: var(--font-heading);
-  font-size: 1.22rem;
-  font-weight: 500; /* Non-bold */
+  font-size: 1.25rem;
+  font-weight: 500; /* Non-bold per user instruction */
   color: #7A001F;
   margin: 0;
   line-height: 1.3;
@@ -213,51 +211,68 @@
 }
 
 /* ========================================================
-   SLOTS 1 to 4: Secondary Cards in Balanced Row to Right (Point 1 & 2)
-   - Increased card size to 180px x 220px (Point 2)
-   - Garment aligned completely WITHIN card (Point 4)
-   - Text placed outside below card
+   SLOTS 1 to 4: Small Cards in Horizontal Row to the Right
+   - 1. Balanced Proportional Spacing (neither too much nor too little)
+   - 2. Increased Card Size (185px) & Images (165px)
+   - 4. Garment aligned completely WITHIN the cards
    ======================================================== */
 .slotPos1 {
   left: 375px;
-  bottom: 40px;
+  bottom: 45px;
   z-index: 6;
   opacity: 1;
 }
 
 .slotPos2 {
-  left: 580px;
-  bottom: 40px;
+  left: 585px;
+  bottom: 45px;
   z-index: 6;
   opacity: 1;
 }
 
 .slotPos3 {
-  left: 785px;
-  bottom: 40px;
+  left: 795px;
+  bottom: 45px;
   z-index: 6;
   opacity: 1;
 }
 
 .slotPos4 {
-  left: 990px;
-  bottom: 40px;
+  left: 1005px;
+  bottom: 45px;
   z-index: 6;
   opacity: 1;
+}
+
+@media (min-width: 1200px) {
+  .slotPos1 { left: 390px; }
+  .slotPos2 { left: 605px; }
+  .slotPos3 { left: 820px; }
+  .slotPos4 { left: 1035px; }
 }
 
 .slotPos1 .cardBox,
 .slotPos2 .cardBox,
 .slotPos3 .cardBox,
 .slotPos4 .cardBox {
-  width: 180px;
-  height: 220px;
+  width: 185px;
+  height: 235px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 8px 18px rgba(122, 0, 31, 0.05));
+  filter: drop-shadow(0 10px 22px rgba(122, 0, 31, 0.06));
   transition: transform 0.35s ease;
+}
+
+@media (min-width: 1200px) {
+  .slotPos1 .cardBox,
+  .slotPos2 .cardBox,
+  .slotPos3 .cardBox,
+  .slotPos4 .cardBox {
+    width: 195px;
+    height: 245px;
+  }
 }
 
 .cardSlotItem:hover .cardBox {
@@ -278,15 +293,21 @@
   box-sizing: border-box;
 }
 
-/* 2. Increased size of small garment (160px height) but smaller than main */
 .smallGarmentImg {
   width: auto;
-  height: 160px;
-  max-width: 155px;
+  height: 165px;
+  max-width: 160px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
   transition: transform 0.35s ease;
+}
+
+@media (min-width: 1200px) {
+  .smallGarmentImg {
+    height: 175px;
+    max-width: 170px;
+  }
 }
 
 .cardSlotItem:hover .smallGarmentImg {
@@ -294,8 +315,8 @@
 }
 
 .smallContactShadow {
-  width: 100px;
-  height: 10px;
+  width: 105px;
+  height: 11px;
   background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.18) 0%, rgba(30, 20, 20, 0.04) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -4px;
@@ -304,12 +325,12 @@
 
 .smallCardLabel {
   font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 400; /* Non-bold */
+  font-size: 0.94rem;
+  font-weight: 400; /* Non-bold per user instruction */
   color: #7A001F;
   text-align: center;
   margin: 10px 0 0 0;
-  max-width: 175px;
+  max-width: 180px;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
@@ -328,11 +349,11 @@
 /* Modern 3D Viewed Golden Stage Bar beneath cards */
 .modern3dGoldenStage {
   position: absolute;
-  bottom: 10px;
+  bottom: 12px;
   left: 0;
   width: 100%;
-  max-width: 1200px;
-  height: 42px;
+  max-width: 1220px;
+  height: 44px;
   pointer-events: none;
   z-index: 1;
 }
@@ -380,7 +401,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 36px;
   }
 
   .cardSlotItem {
@@ -397,20 +418,20 @@
   }
 
   .mainGarmentWrap {
-    top: -130px;
+    top: -140px;
   }
 
   .mainGarmentImg {
-    height: 340px;
-    max-width: 300px;
+    height: 350px;
+    max-width: 310px;
   }
 
   .slotPos1 .cardBox,
   .slotPos2 .cardBox,
   .slotPos3 .cardBox,
   .slotPos4 .cardBox {
-    width: 170px;
-    height: 210px;
+    width: 175px;
+    height: 220px;
   }
 
   .modern3dGoldenStage {
@@ -420,37 +441,37 @@
 
 @media (max-width: 600px) {
   .slotPos0 .cardBox {
-    width: 230px;
-    height: 230px;
+    width: 240px;
+    height: 240px;
   }
 
   .mainGarmentWrap {
-    top: -110px;
+    top: -120px;
   }
 
   .mainGarmentImg {
-    height: 280px;
-    max-width: 250px;
+    height: 290px;
+    max-width: 260px;
   }
 
   .mainCardTitle {
-    font-size: 1.08rem;
+    font-size: 1.1rem;
   }
 
   .slotPos1 .cardBox,
   .slotPos2 .cardBox,
   .slotPos3 .cardBox,
   .slotPos4 .cardBox {
-    width: 150px;
-    height: 180px;
+    width: 155px;
+    height: 195px;
   }
 
   .smallGarmentImg {
-    height: 130px;
-    max-width: 130px;
+    height: 135px;
+    max-width: 135px;
   }
 
   .smallCardLabel {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 }

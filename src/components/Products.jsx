@@ -119,7 +119,7 @@ export default function Products({ onSelectProduct }) {
     <section
       id="manufacturing"
       ref={(node) => {
-        sectionRef(node);
+        sectionRef.current = node;
         containerRef.current = node;
       }}
       className={styles.productsSection}

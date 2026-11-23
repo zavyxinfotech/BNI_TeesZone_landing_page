@@ -1,22 +1,24 @@
+/* What We Manufacture Section - Exact Reference Match to Image 1 and Card Shapes from Image 3 */
+
 .productsSection {
-  background: linear-gradient(180deg, #FFFDF9 0%, #FFF8F1 50%, #FAF2E6 100%);
+  background: #FFFBF7;
   position: relative;
+  overflow: hidden;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
-  padding: 40px 0 48px 0;
+  padding: 32px 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Requirement 6: Fit the entire section within the desktop view height */
+/* 6. Fit entire section within desktop view height */
 @media (min-width: 1024px) {
   .productsSection {
     height: 100vh;
     min-height: 640px;
     max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(16px, 3vh, 36px) 0;
+    padding: 20px 0 28px 0;
   }
 }
 
@@ -27,6 +29,10 @@
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -36,376 +42,361 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: clamp(14px, 2.6vh, 28px);
+  margin-bottom: 24px;
   position: relative;
   z-index: 3;
 }
 
+@media (min-width: 1024px) {
+  .headingArea {
+    margin-bottom: 20px;
+  }
+}
+
 .sectionTitle {
-  font-family: var(--font-heading, "Playfair Display", serif);
-  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 2.8vw, 2.7rem);
   font-weight: 700;
-  color: #650018;
+  color: #7A001F;
   letter-spacing: -0.02em;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   line-height: 1.15;
 }
 
 .goldAccentLine {
   width: 44px;
-  height: 3px;
+  height: 2.5px;
   background: #D9A441;
   border-radius: 2px;
   margin: 4px auto 10px auto;
 }
 
 .sectionSubtitle {
-  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  font-size: 0.98rem;
   color: #6F6260;
-  max-width: 620px;
+  max-width: 580px;
   line-height: 1.45;
   margin: 0;
+  font-weight: 400;
 }
 
-/* =========================================
-   DESKTOP SHOWCASE (Matching Image 1 Left)
-   ========================================= */
-.desktopShowcase {
-  display: block;
+/* Showcase Wrapper */
+.showcaseWrapper {
   position: relative;
   width: 100%;
-  max-width: 1180px;
   margin: 0 auto;
-}
-
-@media (max-width: 960px) {
-  .desktopShowcase {
-    display: none;
-  }
-}
-
-.cardsRow {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Two-column Layout: Left Featured Card + Right Secondary Track */
+.cardsLayout {
+  display: flex;
+  flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(12px, 1.6vw, 20px);
+  gap: 24px;
+  width: 100%;
   position: relative;
   z-index: 2;
 }
 
-/* 1. Featured Hero Card (Left) */
-.featuredCard {
-  width: clamp(230px, 22vw, 280px);
-  height: clamp(340px, 49vh, 415px);
-  background: #FFFFFF;
-  border-radius: 26px;
-  box-shadow: 0 16px 36px rgba(184, 133, 35, 0.16), 0 4px 14px rgba(0, 0, 0, 0.05);
+/* --- 1. Featured Card in Position 1 (Image 1 & Image 3 Shape) --- */
+.featuredCardWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding: 14px 18px clamp(18px, 2.4vh, 26px) 18px;
-  box-sizing: border-box;
+  flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
+  user-select: none;
   position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.featuredCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(184, 133, 35, 0.22), 0 8px 20px rgba(0, 0, 0, 0.08);
+.featuredCardWrap:hover {
+  transform: translateY(-4px);
+}
+
+/* Card Shape from Image 3 & Image 1: Rounded rectangle with white background & soft gold shadow */
+.featuredCardShape {
+  width: 250px;
+  height: 250px;
+  background: #FFFFFF;
+  border-radius: 28px;
+  border: 1px solid rgba(228, 218, 204, 0.75);
+  box-shadow:
+    0 16px 36px rgba(122, 0, 31, 0.07),
+    0 4px 14px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (min-width: 1200px) {
+  .featuredCardShape {
+    width: 265px;
+    height: 260px;
+  }
 }
 
 .featuredGarmentWrap {
-  flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-  margin-top: -34px;
+  margin-top: -65px; /* Floats garment above the card matching Image 1 */
 }
 
 .featuredGarmentImg {
-  width: clamp(190px, 19vw, 250px);
-  height: auto;
-  max-height: clamp(220px, 33vh, 285px);
+  width: auto;
+  height: 290px;
+  max-width: 270px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.12));
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.14));
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.featuredCard:hover .featuredGarmentImg {
-  transform: scale(1.03);
+@media (min-width: 1200px) {
+  .featuredGarmentImg {
+    height: 310px;
+    max-width: 290px;
+  }
 }
 
-.contactShadowFeatured {
-  width: 72%;
-  height: 14px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, transparent 72%);
+.featuredCardWrap:hover .featuredGarmentImg {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.featuredContactShadow {
+  width: 160px;
+  height: 16px;
+  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.24) 0%, rgba(30, 20, 20, 0.06) 55%, transparent 75%);
   border-radius: 50%;
-  margin-top: -6px;
+  margin-top: -8px;
+  pointer-events: none;
 }
 
 .featuredLabel {
-  margin-top: clamp(10px, 1.6vh, 18px);
-  text-align: center;
-}
-
-.featuredLabelText {
-  font-family: var(--font-heading, "Playfair Display", serif);
-  font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
   font-weight: 700;
-  color: #650018;
+  color: #7A001F;
+  text-align: center;
+  margin: 14px 0 0 0;
+  max-width: 240px;
   line-height: 1.28;
-  display: block;
+  letter-spacing: -0.01em;
 }
 
-/* 2. Side Cards Track (4 Cards) */
-.sideCardsTrack {
+/* --- 2. Secondary Cards Row on the Right (Positions 2 to 5) --- */
+.secondaryCardsTrack {
   display: flex;
+  flex-direction: row;
   align-items: flex-end;
-  gap: clamp(10px, 1.3vw, 16px);
+  gap: 16px;
+  flex-shrink: 0;
 }
 
-.sideCard {
-  width: clamp(145px, 14.5vw, 180px);
-  height: clamp(275px, 39vh, 335px);
-  background: #FFFFFF;
-  border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(184, 133, 35, 0.11), 0 3px 10px rgba(0, 0, 0, 0.04);
+@media (min-width: 1200px) {
+  .secondaryCardsTrack {
+    gap: 20px;
+  }
+}
+
+.secondaryCardWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding: 12px 12px clamp(14px, 1.8vh, 20px) 12px;
-  box-sizing: border-box;
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
-  position: relative;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
 }
 
-.sideCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(184, 133, 35, 0.18), 0 6px 16px rgba(0, 0, 0, 0.07);
+.secondaryCardWrap:hover {
+  transform: translateY(-5px);
 }
 
-.sideGarmentWrap {
-  flex: 1;
+/* Card Shape from Image 3: Elegant rounded rectangle with white background */
+.secondaryCardShape {
+  width: 135px;
+  height: 195px;
+  background: #FFFFFF;
+  border-radius: 22px;
+  border: 1px solid rgba(230, 222, 210, 0.7);
+  box-shadow:
+    0 10px 24px rgba(122, 0, 31, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   position: relative;
-  margin-top: -22px;
+  transition: all 0.35s ease;
 }
 
-.sideGarmentImg {
-  width: clamp(120px, 12vw, 155px);
-  height: auto;
-  max-height: clamp(145px, 22vh, 185px);
+@media (min-width: 1200px) {
+  .secondaryCardShape {
+    width: 145px;
+    height: 205px;
+    border-radius: 24px;
+  }
+}
+
+.secondaryCardWrap:hover .secondaryCardShape {
+  border-color: rgba(217, 164, 65, 0.45);
+  box-shadow:
+    0 14px 28px rgba(122, 0, 31, 0.08),
+    0 4px 12px rgba(217, 164, 65, 0.12);
+}
+
+.secondaryGarmentWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secondaryGarmentImg {
+  width: auto;
+  height: 135px;
+  max-width: 130px;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.sideCard:hover .sideGarmentImg {
-  transform: scale(1.04);
+@media (min-width: 1200px) {
+  .secondaryGarmentImg {
+    height: 145px;
+    max-width: 140px;
+  }
 }
 
-.contactShadowSide {
-  width: 66%;
+.secondaryCardWrap:hover .secondaryGarmentImg {
+  transform: scale(1.05) translateY(-3px);
+}
+
+.secondaryContactShadow {
+  width: 90px;
   height: 10px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.2) 0%, rgba(30, 20, 20, 0.04) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -4px;
+  pointer-events: none;
 }
 
-.sideLabel {
-  margin-top: clamp(8px, 1.2vh, 14px);
+.secondaryLabel {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7A001F;
   text-align: center;
-  min-height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 10px 0 0 0;
+  max-width: 130px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
 }
 
-.sideLabelText {
-  font-family: var(--font-heading, "Playfair Display", serif);
-  font-size: clamp(0.82rem, 0.88vw, 0.94rem);
-  font-weight: 700;
-  color: #650018;
-  line-height: 1.24;
-  display: block;
+@media (min-width: 1200px) {
+  .secondaryLabel {
+    font-size: 0.82rem;
+    max-width: 140px;
+  }
 }
 
-/* 3. Golden Pedestal Shelf (Under cards) */
+/* Continuous Gold Ribbon Shelf beneath the cards matching Image 1 */
 .goldPedestalShelf {
-  width: 98%;
-  max-width: 1120px;
-  height: clamp(14px, 2vh, 18px);
-  background: linear-gradient(180deg, #E6B860 0%, #D49B35 45%, #B37D20 100%);
-  border-radius: 12px;
-  margin: -8px auto 0 auto;
-  box-shadow: 0 10px 22px rgba(184, 133, 35, 0.26), 0 3px 8px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 980px;
+  height: 10px;
+  background: linear-gradient(90deg, transparent 0%, #D9A441 12%, #F9E7C4 50%, #B88523 88%, transparent 100%);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(217, 164, 65, 0.28);
+  margin-top: 2px;
+  pointer-events: none;
   position: relative;
   z-index: 1;
 }
 
-/* 4. Continuous Scroll Indicator */
-.scrollIndicatorRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: clamp(12px, 2.2vh, 22px);
-  user-select: none;
-}
+/* --- Responsive Adjustments --- */
+@media (max-width: 1023px) {
+  .productsSection {
+    padding: 44px 0 52px 0;
+    height: auto;
+    min-height: auto;
+  }
 
-.scrollText {
-  font-size: clamp(0.8rem, 0.95vw, 0.92rem);
-  font-weight: 500;
-  color: #C49337;
-  letter-spacing: 0.04em;
-}
+  .cardsLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
 
-.arrowLeft,
-.arrowRight {
-  font-size: 1.05rem;
-  color: #C49337;
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
+  .secondaryCardsTrack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 380px;
+    justify-content: center;
+  }
 
-.scrollIndicatorRow:hover .arrowLeft {
-  transform: translateX(-3px);
-}
+  .secondaryCardShape {
+    width: 100%;
+    max-width: 170px;
+    height: 180px;
+  }
 
-.scrollIndicatorRow:hover .arrowRight {
-  transform: translateX(3px);
-}
+  .secondaryLabel {
+    max-width: 160px;
+  }
 
-/* =========================================
-   MOBILE SHOWCASE (Matching Image 1 Right)
-   ========================================= */
-.mobileShowcase {
-  display: none;
-  width: 100%;
-}
-
-@media (max-width: 960px) {
-  .mobileShowcase {
-    display: block;
+  .goldPedestalShelf {
+    display: none;
   }
 }
 
-.mobileCardsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  position: relative;
-  width: 100%;
-  padding: 10px 0;
-}
+@media (max-width: 600px) {
+  .featuredCardShape {
+    width: 220px;
+    height: 220px;
+    border-radius: 24px;
+  }
 
-.mobileCardsList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  max-width: 320px;
-  max-height: 68vh;
-  overflow-y: auto;
-  padding: 10px 4px;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #D9A441 transparent;
-}
+  .featuredGarmentImg {
+    height: 240px;
+    max-width: 220px;
+  }
 
-.mobileCard {
-  width: 100%;
-  max-width: 270px;
-  background: #FFFFFF;
-  border-radius: 22px;
-  box-shadow: 0 10px 24px rgba(184, 133, 35, 0.12), 0 3px 10px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 16px 18px 16px;
-  box-sizing: border-box;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
+  .featuredGarmentWrap {
+    margin-top: -50px;
+  }
 
-.mobileCard:active {
-  transform: scale(0.98);
-}
+  .featuredLabel {
+    font-size: 1rem;
+    max-width: 220px;
+  }
 
-.mobileGarmentWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-}
+  .secondaryCardsTrack {
+    gap: 12px;
+  }
 
-.mobileGarmentImg {
-  width: 175px;
-  height: auto;
-  max-height: 195px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
-}
+  .secondaryCardShape {
+    height: 160px;
+    border-radius: 18px;
+  }
 
-.contactShadowMobile {
-  width: 65%;
-  height: 10px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, transparent 70%);
-  border-radius: 50%;
-  margin-top: -4px;
-}
+  .secondaryGarmentImg {
+    height: 120px;
+  }
 
-.mobileLabel {
-  margin-top: 14px;
-  text-align: center;
-}
-
-.mobileLabelText {
-  font-family: var(--font-heading, "Playfair Display", serif);
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #650018;
-  line-height: 1.25;
-  display: block;
-}
-
-.mobileScrollIndicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  color: #C49337;
-  font-size: 0.76rem;
-  font-weight: 500;
-  text-align: center;
-  line-height: 1.2;
-  user-select: none;
-}
-
-.mobileArrow {
-  font-size: 0.95rem;
-}
-
-.mobileScrollText {
-  letter-spacing: 0.02em;
+  .secondaryLabel {
+    font-size: 0.72rem;
+  }
 }

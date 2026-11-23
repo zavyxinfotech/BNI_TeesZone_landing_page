@@ -6,7 +6,7 @@ import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import styles from './Products.module.css';
 
-// Exact SVG card shape from Image 2 with clean white fill and NO border (User Point 1 & 3)
+// Exact SVG card shape from Image 2 with clean white fill and NO border
 function CardShapeBackdrop({ className }) {
   return (
     <svg
@@ -32,6 +32,7 @@ export default function Products({ onSelectProduct }) {
   const sectionElRef = useRef(null);
   const touchStartX = useRef(null);
   const isWheelingRef = useRef(false);
+  const wheelAccRef = useRef(0);
 
   const total = manufacturedProducts.length;
 
@@ -43,34 +44,42 @@ export default function Products({ onSelectProduct }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Robust wheel scroll listener: rotates cards on every scroll event (User Point 2)
+  // Smooth wheel scroll listener: accumulates wheel delta to ensure butter-smooth card sliding
   useEffect(() => {
     const el = sectionElRef.current;
     if (!el) return;
 
     let wheelTimer = null;
+    let resetAccTimer = null;
 
     const handleWheel = (e) => {
       const rect = el.getBoundingClientRect();
-      // Triggers whenever section is visible in the viewport
       const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
       if (!isVisible) return;
 
+      wheelAccRef.current += e.deltaY;
+      clearTimeout(resetAccTimer);
+      resetAccTimer = setTimeout(() => {
+        wheelAccRef.current = 0;
+      }, 150);
+
       if (isWheelingRef.current) return;
 
-      if (Math.abs(e.deltaY) > 15) {
+      if (Math.abs(wheelAccRef.current) > 25) {
         e.preventDefault();
         isWheelingRef.current = true;
 
-        if (e.deltaY > 0) {
+        if (wheelAccRef.current > 0) {
           nextProduct();
         } else {
           prevProduct();
         }
 
+        wheelAccRef.current = 0;
+
         wheelTimer = setTimeout(() => {
           isWheelingRef.current = false;
-        }, 450);
+        }, 550);
       }
     };
 
@@ -78,6 +87,7 @@ export default function Products({ onSelectProduct }) {
     return () => {
       el.removeEventListener('wheel', handleWheel);
       if (wheelTimer) clearTimeout(wheelTimer);
+      if (resetAccTimer) clearTimeout(resetAccTimer);
     };
   }, [nextProduct, prevProduct]);
 
@@ -109,7 +119,7 @@ export default function Products({ onSelectProduct }) {
       aria-label="What We Manufacture"
     >
       <div className={styles.productsContainer}>
-        {/* Right-Aligned Heading & Enlarged Description (User Point 6) */}
+        {/* Right-Aligned Heading & Enlarged Description (Balanced Spacing) */}
         <div className={styles.headingArea}>
           <h2 className={styles.sectionTitle}>
             {prefersReduced ? (
@@ -169,8 +179,8 @@ export default function Products({ onSelectProduct }) {
                     <CardShapeBackdrop className={styles.cardSvgBackdrop} />
 
                     {/* Garment Image:
-                        - Main Card: Enlarged, half extending out of card to the top (User Point 3 & 5)
-                        - Small Cards: Aligned completely WITHIN the card (User Point 4)
+                        - Main Card: Enlarged to 410px, half extending out of card to the top
+                        - Small Cards: Enlarged to 160px, aligned neatly WITHIN the card
                     */}
                     <div className={isMain ? styles.mainGarmentWrap : styles.smallGarmentWrap}>
                       <picture>
@@ -180,14 +190,14 @@ export default function Products({ onSelectProduct }) {
                           alt={`${product.name} customized with YOUR LOGO`}
                           className={isMain ? styles.mainGarmentImg : styles.smallGarmentImg}
                           loading={isMain ? 'eager' : 'lazy'}
-                          width={isMain ? 360 : 160}
-                          height={isMain ? 380 : 170}
+                          width={isMain ? 370 : 180}
+                          height={isMain ? 410 : 170}
                         />
                       </picture>
                       <div className={isMain ? styles.mainContactShadow : styles.smallContactShadow} aria-hidden="true" />
                     </div>
 
-                    {/* Text INSIDE the card ONLY in the Main Card (User Point 3) */}
+                    {/* Text INSIDE the card ONLY in the Main Card */}
                     {isMain && (
                       <div className={styles.mainCardTextInside}>
                         <h3 className={styles.mainCardTitle}>
@@ -197,7 +207,7 @@ export default function Products({ onSelectProduct }) {
                     )}
                   </div>
 
-                  {/* Text below card ONLY for Small Cards (User Point 3 & 4) */}
+                  {/* Text below card ONLY for Small Cards */}
                   {!isMain && (
                     <p className={styles.smallCardLabel}>
                       {product.name}

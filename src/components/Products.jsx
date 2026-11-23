@@ -14,7 +14,6 @@ export default function Products({ onSelectProduct }) {
   const containerRef = useRef(null);
   const touchStartX = useRef(null);
   const isWheelingRef = useRef(false);
-  const cycleCountRef = useRef(0);
 
   const total = manufacturedProducts.length;
 
@@ -26,7 +25,7 @@ export default function Products({ onSelectProduct }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Wheel scroll handler: on scroll, cards slide so next card moves to 1st position and 1st moves to last
+  // Wheel scroll listener: on every scroll, cards animate in a circular motion
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -34,46 +33,25 @@ export default function Products({ onSelectProduct }) {
     let wheelTimer = null;
 
     const handleWheel = (e) => {
-      // Only capture when mouse is scrolling over this section
       const rect = el.getBoundingClientRect();
-      const inViewport = rect.top <= 120 && rect.bottom >= window.innerHeight - 120;
-
+      const inViewport = rect.top <= 140 && rect.bottom >= window.innerHeight - 140;
       if (!inViewport) return;
 
-      if (isWheelingRef.current) {
-        // Debounce / throttle wheel ticks so it rotates one card at a time smoothly
-        return;
-      }
+      if (isWheelingRef.current) return;
 
-      if (Math.abs(e.deltaY) > 22) {
+      if (Math.abs(e.deltaY) > 20) {
+        e.preventDefault();
+        isWheelingRef.current = true;
+
         if (e.deltaY > 0) {
-          // Scroll down: slide next card to 1st position
-          if (cycleCountRef.current < total * 2) {
-            e.preventDefault();
-            cycleCountRef.current += 1;
-            nextProduct();
-            isWheelingRef.current = true;
-            wheelTimer = setTimeout(() => {
-              isWheelingRef.current = false;
-            }, 420);
-          } else {
-            // Once user has cycled through completely, allow natural page scroll to next section
-            cycleCountRef.current = 0;
-          }
-        } else if (e.deltaY < 0) {
-          // Scroll up: slide previous card to 1st position
-          if (cycleCountRef.current > -total * 2) {
-            e.preventDefault();
-            cycleCountRef.current -= 1;
-            prevProduct();
-            isWheelingRef.current = true;
-            wheelTimer = setTimeout(() => {
-              isWheelingRef.current = false;
-            }, 420);
-          } else {
-            cycleCountRef.current = 0;
-          }
+          nextProduct();
+        } else {
+          prevProduct();
         }
+
+        wheelTimer = setTimeout(() => {
+          isWheelingRef.current = false;
+        }, 400);
       }
     };
 
@@ -82,9 +60,9 @@ export default function Products({ onSelectProduct }) {
       el.removeEventListener('wheel', handleWheel);
       if (wheelTimer) clearTimeout(wheelTimer);
     };
-  }, [nextProduct, prevProduct, total]);
+  }, [nextProduct, prevProduct]);
 
-  // Touch swipe support for mobile
+  // Touch swipe handling for mobile
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -92,28 +70,12 @@ export default function Products({ onSelectProduct }) {
   const handleTouchEnd = (e) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
+    if (Math.abs(diff) > 35) {
       if (diff > 0) nextProduct();
       else prevProduct();
     }
     touchStartX.current = null;
   };
-
-  // Compute ordered array starting from activeIndex
-  // Position 0 = 1st card (Featured Large Card)
-  // Positions 1..4 = Side cards (Smaller row on the right)
-  const orderedList = [];
-  for (let i = 0; i < total; i++) {
-    const prodIndex = (activeIndex + i) % total;
-    orderedList.push({
-      ...manufacturedProducts[prodIndex],
-      originalIndex: prodIndex,
-      slotPosition: i
-    });
-  }
-
-  const featuredProduct = orderedList[0];
-  const secondaryProducts = orderedList.slice(1);
 
   return (
     <section
@@ -127,8 +89,17 @@ export default function Products({ onSelectProduct }) {
       onTouchEnd={handleTouchEnd}
       aria-label="What We Manufacture"
     >
+      {/* SVG ClipPath for Exact Card Shape from Image 2 (no border, no shadow) */}
+      <svg width="0" height="0" className={styles.svgDef} aria-hidden="true">
+        <defs>
+          <clipPath id="cardShapeImg2" clipPathUnits="objectBoundingBox">
+            <path d="M 0.16,0 C 0.07,0 0,0.07 0,0.16 L 0,0.84 C 0,0.93 0.07,1 0.16,1 L 0.85,1 C 0.94,1 1,0.93 1,0.84 L 0.89,0.16 C 0.89,0.07 0.82,0 0.73,0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
       <div className={styles.productsContainer}>
-        {/* Section Heading with Centered Thin Gold Line and Subtitle */}
+        {/* Right-Aligned Heading & Enlarged Description (User Point 6) */}
         <div className={styles.headingArea}>
           <h2 className={styles.sectionTitle}>
             {prefersReduced ? (
@@ -152,94 +123,108 @@ export default function Products({ onSelectProduct }) {
           </FadeUp>
         </div>
 
-        {/* Product Cards Showcase matching Image 1 & Image 3 */}
-        <div className={styles.showcaseWrapper}>
-          <div className={styles.cardsLayout}>
-            {/* 1st Position: Large Featured Card on Left */}
-            <div
-              className={styles.featuredCardWrap}
-              onClick={() => onSelectProduct && onSelectProduct(featuredProduct)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onSelectProduct && onSelectProduct(featuredProduct);
-                }
-              }}
-              aria-label={`Featured product: ${featuredProduct.name}`}
-            >
-              <div className={styles.featuredCardShape}>
-                {/* 3D Floating Featured Garment */}
-                <div className={styles.featuredGarmentWrap}>
-                  <picture>
-                    <source srcSet={featuredProduct.image} type="image/webp" />
-                    <img
-                      src={featuredProduct.image.replace('.webp', '.png')}
-                      alt={`${featuredProduct.name} customized with YOUR LOGO`}
-                      className={styles.featuredGarmentImg}
-                      loading="eager"
-                      width="320"
-                      height="340"
-                    />
-                  </picture>
-                  <div className={styles.featuredContactShadow} aria-hidden="true" />
-                </div>
-              </div>
+        {/* 3D Circular Motion Track (User Points 1, 2, 3, 4, 5, 7) */}
+        <div className={styles.circularTrackWrapper}>
+          <div className={styles.circularCardsStage}>
+            {manufacturedProducts.map((product, originalIdx) => {
+              // Calculate circular slot position relative to activeIndex (0 to 4)
+              // Slot 0 is the 1st position (Featured, large, prominent)
+              // Slots 1 to 4 follow the circular path towards the right & back
+              const slot = (originalIdx - activeIndex + total) % total;
+              const isFeatured = slot === 0;
 
-              {/* Title below Featured Card */}
-              <h3 className={styles.featuredLabel}>
-                {featuredProduct.name}
-              </h3>
-            </div>
-
-            {/* Positions 2 to 5: Row of Smaller Cards on Right */}
-            <div className={styles.secondaryCardsTrack}>
-              {secondaryProducts.map((prod) => (
+              return (
                 <div
-                  key={prod.id}
-                  className={styles.secondaryCardWrap}
+                  key={product.id}
+                  className={`${styles.cardSlot} ${styles[`slotPos${slot}`]}`}
                   onClick={() => {
-                    // Clicking any side card immediately slides it to the 1st position
-                    setActiveIndex(prod.originalIndex);
+                    if (isFeatured) {
+                      onSelectProduct && onSelectProduct(product);
+                    } else {
+                      // Clicking any card animates it into 1st position
+                      setActiveIndex(originalIdx);
+                    }
                   }}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setActiveIndex(prod.originalIndex);
+                      if (isFeatured) onSelectProduct && onSelectProduct(product);
+                      else setActiveIndex(originalIdx);
                     }
                   }}
-                  aria-label={`Slide ${prod.name} to featured position`}
+                  aria-label={`${product.name}${isFeatured ? ' (Featured)' : ''}`}
                 >
-                  <div className={styles.secondaryCardShape}>
-                    <div className={styles.secondaryGarmentWrap}>
+                  {/* Card Shape from Image 2 (No border, No shadow) */}
+                  <div className={styles.cardBackdropShape}>
+                    <div className={styles.garmentWrap}>
                       <picture>
-                        <source srcSet={prod.image} type="image/webp" />
+                        <source srcSet={product.image} type="image/webp" />
                         <img
-                          src={prod.image.replace('.webp', '.png')}
-                          alt={`${prod.name} customized with YOUR LOGO`}
-                          className={styles.secondaryGarmentImg}
-                          loading="lazy"
-                          width="160"
-                          height="170"
+                          src={product.image.replace('.webp', '.png')}
+                          alt={`${product.name} customized with YOUR LOGO`}
+                          className={styles.garmentImg}
+                          loading={isFeatured ? 'eager' : 'lazy'}
+                          width={isFeatured ? 360 : 220}
+                          height={isFeatured ? 380 : 240}
                         />
                       </picture>
-                      <div className={styles.secondaryContactShadow} aria-hidden="true" />
+                      <div className={styles.contactShadow} aria-hidden="true" />
                     </div>
                   </div>
 
-                  <p className={styles.secondaryLabel}>
-                    {prod.name}
-                  </p>
+                  {/* Clean Non-Bold Label with increased font size */}
+                  <h3 className={styles.productLabel}>
+                    {product.name}
+                  </h3>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          {/* Continuous Gold Ribbon Shelf beneath the cards matching Image 1 */}
-          <div className={styles.goldPedestalShelf} aria-hidden="true" />
+          {/* New Modern 3D Viewed Golden Pedestal Stage Model (User Point 7) */}
+          <div className={styles.modern3dGoldenStage} aria-hidden="true">
+            <svg
+              viewBox="0 0 1200 48"
+              fill="none"
+              preserveAspectRatio="none"
+              className={styles.goldenStageSvg}
+            >
+              <defs>
+                <linearGradient id="goldSurfaceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#C49332" stopOpacity="0" />
+                  <stop offset="15%" stopColor="#D9A441" stopOpacity="0.85" />
+                  <stop offset="35%" stopColor="#F9E7C4" stopOpacity="1" />
+                  <stop offset="50%" stopColor="#FFFDF7" stopOpacity="1" />
+                  <stop offset="65%" stopColor="#F9E7C4" stopOpacity="1" />
+                  <stop offset="85%" stopColor="#D9A441" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#C49332" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="goldBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFF8E8" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#D9A441" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#8A5A12" stopOpacity="0.9" />
+                </linearGradient>
+              </defs>
+
+              {/* 3D Beveled Elliptical Surface */}
+              <ellipse cx="600" cy="20" rx="580" ry="16" fill="url(#goldSurfaceGrad)" />
+              {/* Top Bevel Highlight Rim */}
+              <path
+                d="M 20,20 C 180,6 420,0 600,0 C 780,0 1020,6 1180,20 C 1020,10 780,5 600,5 C 420,5 180,10 20,20 Z"
+                fill="url(#goldBevelGrad)"
+                opacity="0.85"
+              />
+              {/* Front 3D Drop Edge */}
+              <path
+                d="M 30,20 C 190,34 420,40 600,40 C 780,40 1010,34 1170,20 C 1010,37 780,44 600,44 C 420,44 190,37 30,20 Z"
+                fill="#946816"
+                opacity="0.75"
+              />
+            </svg>
+            <div className={styles.goldenAmbientGlow} />
+          </div>
         </div>
       </div>
     </section>

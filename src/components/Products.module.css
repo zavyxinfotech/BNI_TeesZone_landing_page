@@ -1,4 +1,4 @@
-/* What We Manufacture Section - Exact Reference Match to Image 1 & 2 with Circular Path Animation */
+/* What We Manufacture Section - Exact Reference Match to Image 1 & Card Shapes from Image 2 */
 
 .productsSection {
   background: #FFFBF7;
@@ -6,7 +6,7 @@
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
-  padding: 32px 0 36px 0;
+  padding: 24px 0 32px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +25,7 @@
 .productsContainer {
   position: relative;
   z-index: 2;
-  max-width: 1280px;
+  max-width: 1260px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
@@ -36,13 +36,125 @@
   box-sizing: border-box;
 }
 
-/* Hidden SVG Defs */
-.svgDef {
+/* Main Showcase Layout: Left Featured Column + Right Content Area */
+.mainShowcaseRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================================================
+   LEFT: 1st Position - Big Featured Card
+   ======================================================== */
+.featuredColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.featuredColumn:hover {
+  transform: translateY(-4px);
+}
+
+.featuredCardContainer {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1200px) {
+  .featuredCardContainer {
+    width: 285px;
+    height: 285px;
+  }
+}
+
+/* Image 2 Card Shape SVG Backdrop */
+.featuredCardSvg {
   position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  filter: drop-shadow(0 14px 28px rgba(122, 0, 31, 0.08));
   pointer-events: none;
+}
+
+/* Floating Featured Garment - 100% UNCROPPED */
+.featuredGarmentWrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -65px; /* Floats garment above the card matching Image 1 */
+  overflow: visible;
+}
+
+.featuredGarmentImg {
+  width: auto;
+  height: 335px;
+  max-width: 315px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.16));
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (min-width: 1200px) {
+  .featuredGarmentImg {
+    height: 355px;
+    max-width: 335px;
+  }
+}
+
+.featuredColumn:hover .featuredGarmentImg {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.featuredContactShadow {
+  width: 190px;
+  height: 16px;
+  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.24) 0%, rgba(30, 20, 20, 0.05) 55%, transparent 75%);
+  border-radius: 50%;
+  margin-top: -8px;
+  pointer-events: none;
+}
+
+.featuredLabel {
+  font-family: var(--font-heading);
+  font-size: 1.22rem;
+  font-weight: 500; /* Non-bold per user instruction */
+  color: #7A001F;
+  text-align: center;
+  margin: 14px 0 0 0;
+  max-width: 260px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* ========================================================
+   RIGHT: Heading area above + Straight Horizontal Row of 4 cards below
+   ======================================================== */
+.rightContentArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 860px;
 }
 
 /* 6. Heading & Description Aligned to the Right with Increased Font Size */
@@ -52,16 +164,15 @@
   align-items: flex-end;
   text-align: right;
   width: 100%;
-  max-width: 1220px;
-  margin: 0 auto 10px auto;
-  padding-right: 16px;
+  margin: 0 0 20px 0;
+  padding-right: 12px;
   position: relative;
   z-index: 3;
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 3.2vw, 3.1rem);
+  font-size: clamp(2.3rem, 3.2vw, 3rem);
   font-weight: 600;
   color: #7A001F;
   letter-spacing: -0.02em;
@@ -78,220 +189,139 @@
 }
 
 .sectionSubtitle {
-  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  font-size: clamp(1.15rem, 1.4vw, 1.32rem);
   color: #625553;
-  max-width: 620px;
+  max-width: 600px;
   line-height: 1.5;
   margin: 0;
   font-weight: 400;
 }
 
-/* Circular Track Showcase Wrapper */
-.circularTrackWrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
+/* Straight Horizontal Row of 4 Secondary Cards */
+.secondaryCardsRow {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* 3D Circular Cards Stage */
-.circularCardsStage {
-  position: relative;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
   width: 100%;
-  height: 500px;
-  margin: 0 auto;
-  perspective: 1200px;
 }
 
-/* General Card Slot - Coordinates along the circular perspective trajectory */
-.cardSlot {
-  position: absolute;
+@media (min-width: 1200px) {
+  .secondaryCardsRow {
+    gap: 20px;
+  }
+}
+
+.secondaryCardItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   user-select: none;
-  transition:
-    left 0.65s cubic-bezier(0.25, 1, 0.5, 1),
-    bottom 0.65s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.65s cubic-bezier(0.25, 1, 0.5, 1),
-    opacity 0.65s ease,
-    z-index 0.65s step-start;
-  will-change: left, bottom, transform, opacity;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  flex: 1;
 }
 
-/* Slot 0: 1st Position (Featured Front-Left, Large & Prominent) */
-.slotPos0 {
-  left: 20px;
-  bottom: 25px;
-  transform: scale(1) translate3d(0, 0, 0);
-  z-index: 10;
-  opacity: 1;
+.secondaryCardItem:hover {
+  transform: translateY(-5px);
 }
 
-.slotPos0 .cardBackdropShape {
-  width: 290px;
-  height: 295px;
-}
-
-.slotPos0 .garmentImg {
-  height: 380px;
-  max-width: 340px;
-  margin-top: -85px;
-  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.16));
-}
-
-.slotPos0 .contactShadow {
-  width: 200px;
-  height: 18px;
-  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.26) 0%, rgba(30, 20, 20, 0.05) 55%, transparent 75%);
-}
-
-.slotPos0 .productLabel {
-  font-size: 1.28rem;
-  font-weight: 500; /* Non-bold per user instruction */
-  color: #7A001F;
-  max-width: 280px;
-  margin-top: 14px;
-}
-
-/* Slot 1: Secondary Position along Circular Arc */
-.slotPos1 {
-  left: 310px;
-  bottom: 35px;
-  transform: scale(0.82) translate3d(0, 0, 0);
-  z-index: 8;
-  opacity: 0.96;
-}
-
-/* Slot 2: Secondary Position along Circular Arc */
-.slotPos2 {
-  left: 510px;
-  bottom: 58px;
-  transform: scale(0.76) translate3d(0, 0, 0);
-  z-index: 6;
-  opacity: 0.92;
-}
-
-/* Slot 3: Secondary Position along Circular Arc */
-.slotPos3 {
-  left: 700px;
-  bottom: 88px;
-  transform: scale(0.70) translate3d(0, 0, 0);
-  z-index: 4;
-  opacity: 0.88;
-}
-
-/* Slot 4: Last Position along Circular Arc (Back-Right) */
-.slotPos4 {
-  left: 880px;
-  bottom: 122px;
-  transform: scale(0.65) translate3d(0, 0, 0);
-  z-index: 2;
-  opacity: 0.84;
-}
-
-/* Common sizing for Secondary Slots 1 to 4 */
-.slotPos1 .cardBackdropShape,
-.slotPos2 .cardBackdropShape,
-.slotPos3 .cardBackdropShape,
-.slotPos4 .cardBackdropShape {
-  width: 200px;
-  height: 240px;
-}
-
-.slotPos1 .garmentImg,
-.slotPos2 .garmentImg,
-.slotPos3 .garmentImg,
-.slotPos4 .garmentImg {
-  height: 245px;
-  max-width: 220px;
-  margin-top: -30px;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
-}
-
-.slotPos1 .contactShadow,
-.slotPos2 .contactShadow,
-.slotPos3 .contactShadow,
-.slotPos4 .contactShadow {
-  width: 140px;
-  height: 12px;
-  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.2) 0%, rgba(30, 20, 20, 0.04) 55%, transparent 75%);
-}
-
-.slotPos1 .productLabel,
-.slotPos2 .productLabel,
-.slotPos3 .productLabel,
-.slotPos4 .productLabel {
-  font-size: 1.02rem;
-  font-weight: 400; /* Non-bold per user instruction */
-  color: #7A001F;
-  max-width: 190px;
-  margin-top: 10px;
-}
-
-/* 2 & 3. Card Shape from Image 2: NO border, NO shadow */
-.cardBackdropShape {
-  clip-path: url(#cardShapeImg2);
-  background: #FFFFFF;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none;
+.secondaryCardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 160px;
+  height: 195px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  transition: transform 0.4s ease;
 }
 
-.cardSlot:hover .cardBackdropShape {
-  transform: translateY(-4px);
+@media (min-width: 1200px) {
+  .secondaryCardContainer {
+    max-width: 175px;
+    height: 210px;
+  }
 }
 
-.garmentWrap {
+.secondaryCardSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  filter: drop-shadow(0 8px 18px rgba(122, 0, 31, 0.05));
+  pointer-events: none;
+  transition: stroke 0.3s ease;
+}
+
+.secondaryCardItem:hover .secondaryCardSvg {
+  stroke: #D9A441;
+}
+
+/* Floating Secondary Garment - 100% UNCROPPED */
+.secondaryGarmentWrap {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -25px;
+  overflow: visible;
 }
 
-.garmentImg {
+.secondaryGarmentImg {
   width: auto;
+  height: 185px;
+  max-width: 165px;
   object-fit: contain;
   display: block;
-  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.cardSlot:hover .garmentImg {
-  transform: scale(1.04) translateY(-3px);
+@media (min-width: 1200px) {
+  .secondaryGarmentImg {
+    height: 200px;
+    max-width: 180px;
+  }
 }
 
-.contactShadow {
+.secondaryCardItem:hover .secondaryGarmentImg {
+  transform: scale(1.05) translateY(-3px);
+}
+
+.secondaryContactShadow {
+  width: 110px;
+  height: 12px;
+  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.2) 0%, rgba(30, 20, 20, 0.04) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -6px;
   pointer-events: none;
 }
 
-/* 1. Labels with Increased Font Size and Non-Bold typography */
-.productLabel {
+.secondaryLabel {
   font-family: var(--font-heading);
+  font-size: 0.94rem;
+  font-weight: 400; /* Non-bold per user instruction */
+  color: #7A001F;
   text-align: center;
-  line-height: 1.28;
+  margin: 10px 0 0 0;
+  max-width: 155px;
+  line-height: 1.3;
   letter-spacing: -0.01em;
-  margin: 0;
-  transition: color 0.3s ease;
 }
 
-/* 7. New Modern 3D Viewed Golden Pedestal Stage Model */
+/* ========================================================
+   7. Modern 3D Viewed Golden Stage Bar beneath cards
+   ======================================================== */
 .modern3dGoldenStage {
-  position: absolute;
-  bottom: 8px;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 48px;
+  max-width: 1180px;
+  height: 42px;
+  margin: 6px auto 0 auto;
   pointer-events: none;
   z-index: 1;
 }
@@ -300,7 +330,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 10px 20px rgba(184, 133, 35, 0.28));
+  filter: drop-shadow(0 10px 20px rgba(184, 133, 35, 0.26));
 }
 
 .goldenAmbientGlow {
@@ -308,17 +338,30 @@
   bottom: -4px;
   left: 10%;
   width: 80%;
-  height: 24px;
-  background: radial-gradient(ellipse at center, rgba(217, 164, 65, 0.32) 0%, rgba(217, 164, 65, 0.06) 55%, transparent 75%);
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(217, 164, 65, 0.3) 0%, rgba(217, 164, 65, 0.05) 55%, transparent 75%);
   filter: blur(8px);
 }
 
-/* --- Responsive Adjustments --- */
+/* ========================================================
+   Responsive Adjustments
+   ======================================================== */
 @media (max-width: 1023px) {
   .productsSection {
     padding: 40px 0 48px 0;
     height: auto;
     min-height: auto;
+  }
+
+  .mainShowcaseRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .rightContentArea {
+    width: 100%;
+    align-items: center;
   }
 
   .headingArea {
@@ -332,46 +375,27 @@
     margin: 4px auto 10px auto;
   }
 
-  .circularCardsStage {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
+  .secondaryCardsRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 420px;
+    justify-content: center;
   }
 
-  .cardSlot {
-    position: relative;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    opacity: 1 !important;
+  .secondaryCardContainer {
+    max-width: 180px;
+    height: 200px;
   }
 
-  .slotPos0 .cardBackdropShape {
-    width: 260px;
-    height: 260px;
+  .secondaryGarmentImg {
+    height: 180px;
+    max-width: 160px;
   }
 
-  .slotPos0 .garmentImg {
-    height: 320px;
-    max-width: 290px;
-  }
-
-  .slotPos1 .cardBackdropShape,
-  .slotPos2 .cardBackdropShape,
-  .slotPos3 .cardBackdropShape,
-  .slotPos4 .cardBackdropShape {
-    width: 220px;
-    height: 240px;
-  }
-
-  .slotPos1 .garmentImg,
-  .slotPos2 .garmentImg,
-  .slotPos3 .garmentImg,
-  .slotPos4 .garmentImg {
-    height: 230px;
-    max-width: 200px;
+  .secondaryLabel {
+    max-width: 180px;
   }
 
   .modern3dGoldenStage {
@@ -380,40 +404,38 @@
 }
 
 @media (max-width: 600px) {
-  .slotPos0 .cardBackdropShape {
-    width: 220px;
-    height: 220px;
+  .featuredCardContainer {
+    width: 230px;
+    height: 230px;
   }
 
-  .slotPos0 .garmentImg {
-    height: 270px;
-    max-width: 240px;
+  .featuredGarmentImg {
+    height: 280px;
+    max-width: 250px;
   }
 
-  .slotPos0 .productLabel {
-    font-size: 1.15rem;
+  .featuredGarmentWrap {
+    margin-top: -50px;
   }
 
-  .slotPos1 .cardBackdropShape,
-  .slotPos2 .cardBackdropShape,
-  .slotPos3 .cardBackdropShape,
-  .slotPos4 .cardBackdropShape {
-    width: 190px;
-    height: 210px;
+  .featuredLabel {
+    font-size: 1.08rem;
+    max-width: 230px;
   }
 
-  .slotPos1 .garmentImg,
-  .slotPos2 .garmentImg,
-  .slotPos3 .garmentImg,
-  .slotPos4 .garmentImg {
-    height: 190px;
-    max-width: 170px;
+  .secondaryCardsRow {
+    gap: 14px;
   }
 
-  .slotPos1 .productLabel,
-  .slotPos2 .productLabel,
-  .slotPos3 .productLabel,
-  .slotPos4 .productLabel {
-    font-size: 0.92rem;
+  .secondaryCardContainer {
+    height: 170px;
+  }
+
+  .secondaryGarmentImg {
+    height: 150px;
+  }
+
+  .secondaryLabel {
+    font-size: 0.85rem;
   }
 }

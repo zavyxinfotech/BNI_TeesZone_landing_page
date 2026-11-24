@@ -6,7 +6,7 @@ import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import styles from './Products.module.css';
 
-// Exact SVG card shape from Image 2 with clean white fill and NO border
+// Exact SVG card shape from Image 2 with rich burgundy fill and NO border
 function CardShapeBackdrop({ className }) {
   return (
     <svg
@@ -17,7 +17,7 @@ function CardShapeBackdrop({ className }) {
     >
       <path
         d="M 24 2 C 10 2 2 10 2 24 L 2 134 C 2 148 10 156 24 156 L 130 156 C 144 156 152 148 152 134 L 138 24 C 138 10 128 2 114 2 Z"
-        fill="#FFFFFF"
+        fill="#800019"
         stroke="none"
       />
     </svg>
@@ -25,14 +25,13 @@ function CardShapeBackdrop({ className }) {
 }
 
 export default function Products({ onSelectProduct }) {
-  const [sectionRef, inView] = useInView({ threshold: 0.1, triggerOnce: false });
+  const [sectionRef, inView] = useInView({ threshold: 0.15, triggerOnce: false });
   const prefersReduced = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sectionElRef = useRef(null);
   const touchStartX = useRef(null);
-  const isWheelingRef = useRef(false);
-  const wheelDeltaRef = useRef(0);
+  const isHoveredRef = useRef(false);
 
   const total = manufacturedProducts.length;
 
@@ -44,62 +43,18 @@ export default function Products({ onSelectProduct }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Silky smooth scroll listener: intentional scroll threshold and paced 800ms glide
+  // Cinematic automatic scrolling when section is in view
   useEffect(() => {
-    const el = sectionElRef.current;
-    if (!el) return;
+    if (!inView || prefersReduced) return;
 
-    let resetTimer = null;
-    let lockTimer = null;
-
-    const handleWheel = (e) => {
-      const rect = el.getBoundingClientRect();
-      // Only capture when section is visible in the viewport
-      const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
-      if (!isVisible) return;
-
-      // When an animation is actively playing, prevent erratic rushing
-      if (isWheelingRef.current) {
-        e.preventDefault();
-        return;
+    const interval = setInterval(() => {
+      if (!isHoveredRef.current) {
+        nextProduct();
       }
+    }, 3200);
 
-      wheelDeltaRef.current += e.deltaY;
-      e.preventDefault();
-
-      // Clear accumulated inertia if user stopped scrolling
-      if (resetTimer) clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => {
-        wheelDeltaRef.current = 0;
-      }, 150);
-
-      // Require a deliberate scroll threshold before smoothly advancing 1 item
-      if (Math.abs(wheelDeltaRef.current) > 30) {
-        isWheelingRef.current = true;
-
-        if (wheelDeltaRef.current > 0) {
-          nextProduct();
-        } else {
-          prevProduct();
-        }
-
-        wheelDeltaRef.current = 0;
-
-        // Paced cooldown matching the 0.8s luxurious CSS transition
-        if (lockTimer) clearTimeout(lockTimer);
-        lockTimer = setTimeout(() => {
-          isWheelingRef.current = false;
-        }, 800);
-      }
-    };
-
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => {
-      el.removeEventListener('wheel', handleWheel);
-      if (resetTimer) clearTimeout(resetTimer);
-      if (lockTimer) clearTimeout(lockTimer);
-    };
-  }, [nextProduct, prevProduct]);
+    return () => clearInterval(interval);
+  }, [inView, prefersReduced, nextProduct]);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
@@ -154,7 +109,15 @@ export default function Products({ onSelectProduct }) {
         </div>
 
         {/* Dynamic Card Stage: Persistent items animate smoothly between slots on scroll */}
-        <div className={styles.stageWrapper}>
+        <div
+          className={styles.stageWrapper}
+          onMouseEnter={() => {
+            isHoveredRef.current = true;
+          }}
+          onMouseLeave={() => {
+            isHoveredRef.current = false;
+          }}
+        >
           <div className={styles.cardsStage}>
             {manufacturedProducts.map((product, originalIdx) => {
               // Circular slot index: 0 = Main Card, 1..4 = Small Cards

@@ -1,4 +1,4 @@
-/* What We Manufacture Section - Exact Reference Match to Image 1 & Card Shapes from Image 2 */
+/* What We Manufacture Section - Exact Reference Match & Burgundy Cards */
 
 .productsSection {
   background: #FFFBF7;
@@ -6,19 +6,20 @@
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
-  padding: 24px 0 32px 0;
+  scroll-margin-top: var(--header-height, 76px);
+  padding: calc(var(--header-height, 76px) + 20px) 0 24px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Fit entire section within desktop view height */
+/* Fit entire section within desktop view height with safe navbar clearance */
 @media (min-width: 1024px) {
   .productsSection {
     height: 100vh;
-    min-height: 660px;
+    min-height: 680px;
     max-height: 100vh;
-    padding: 16px 0 24px 0;
+    padding: calc(var(--header-height, 76px) + 16px) 0 20px 0;
   }
 }
 
@@ -31,7 +32,7 @@
   padding: 0 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
   box-sizing: border-box;
 }
@@ -44,7 +45,7 @@
   text-align: right;
   width: 100%;
   max-width: 780px;
-  margin: 0 0 16px auto;
+  margin: 0 0 10px auto;
   padding-right: 12px;
   position: relative;
   z-index: 3;
@@ -52,11 +53,11 @@
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 3.2vw, 3rem);
+  font-size: clamp(2.1rem, 2.8vw, 2.75rem);
   font-weight: 600;
   color: #7A001F;
   letter-spacing: -0.02em;
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   line-height: 1.15;
 }
 
@@ -65,14 +66,14 @@
   height: 3px;
   background: #D9A441;
   border-radius: 2px;
-  margin: 4px 0 10px auto;
+  margin: 2px 0 8px auto;
 }
 
 .sectionSubtitle {
-  font-size: clamp(1.15rem, 1.4vw, 1.32rem);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
   color: #625553;
   max-width: 600px;
-  line-height: 1.5;
+  line-height: 1.45;
   margin: 0;
   font-weight: 400;
 }
@@ -89,11 +90,11 @@
 .cardsStage {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 480px;
   margin: 0 auto;
 }
 
-/* 3. Silky-Smooth 0.8s Transition for Hardware-Accelerated Sliding Animation */
+/* 3. Cinematic Hardware-Accelerated Sliding Animation */
 .cardSlotItem {
   position: absolute;
   display: flex;
@@ -102,49 +103,55 @@
   cursor: pointer;
   user-select: none;
   transition:
-    left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    bottom 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.8s ease,
-    z-index 0.8s step-start;
-  will-change: left, bottom, transform;
+    left 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    bottom 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    z-index 0.85s step-start;
+  will-change: left, bottom, transform, opacity;
 }
 
 /* ========================================================
    SLOT 0: Main Card Position (Left Side)
-   - 2. Increased card size (320px) & image height (420px)
-   - 5. Half size of the garment extends above the card
-   - 3. Text INSIDE the card at bottom
+   - Burgundy Card Fill with NO border
+   - Minimal background shadow
+   - Main Image Positioned with half extending to the top
+   - Crisp white title inside the card
    ======================================================== */
 .slotPos0 {
   left: 20px;
-  bottom: 35px;
+  bottom: 30px;
   z-index: 10;
   opacity: 1;
 }
 
 .slotPos0 .cardBox {
-  width: 320px;
-  height: 320px;
+  width: 310px;
+  height: 310px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  filter: drop-shadow(0 16px 32px rgba(122, 0, 31, 0.08));
+  filter: drop-shadow(0 6px 16px rgba(80, 0, 16, 0.16));
+  transition:
+    width 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s ease,
+    filter 0.35s ease;
 }
 
 @media (min-width: 1200px) {
   .slotPos0 .cardBox {
-    width: 335px;
-    height: 335px;
+    width: 325px;
+    height: 325px;
   }
 }
 
-/* 5. Main Image Positioned Half of its size extending to the top */
+/* Main Image Positioned Half of its size extending to the top */
 .mainGarmentWrap {
   position: absolute;
-  top: -165px;
+  top: -150px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -152,28 +159,34 @@
   align-items: center;
   z-index: 3;
   overflow: visible;
+  transition:
+    top 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (min-width: 1200px) {
   .mainGarmentWrap {
-    top: -180px;
+    top: -165px;
   }
 }
 
 .mainGarmentImg {
   width: auto;
-  height: 420px;
-  max-width: 380px;
+  height: 390px;
+  max-width: 350px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.16));
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.18));
+  transition:
+    height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 1200px) {
   .mainGarmentImg {
-    height: 440px;
-    max-width: 400px;
+    height: 410px;
+    max-width: 370px;
   }
 }
 
@@ -182,87 +195,92 @@
 }
 
 .mainContactShadow {
-  width: 210px;
-  height: 18px;
+  width: 200px;
+  height: 16px;
   background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.22) 0%, rgba(30, 20, 20, 0.05) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -8px;
   pointer-events: none;
 }
 
-/* 3. Text INSIDE the card ONLY in the Main Card */
+/* Text INSIDE the card ONLY in the Main Card (Clean White on Burgundy) */
 .mainCardTextInside {
   position: relative;
   z-index: 4;
   width: 100%;
-  padding: 0 18px 24px 18px;
+  padding: 0 18px 22px 18px;
   text-align: center;
   box-sizing: border-box;
 }
 
 .mainCardTitle {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 500; /* Non-bold per user instruction */
-  color: #7A001F;
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: #FFFFFF;
   margin: 0;
   line-height: 1.3;
   letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* ========================================================
-   SLOTS 1 to 4: Small Cards in Horizontal Row to the Right
-   - 1. Balanced Proportional Spacing (neither too much nor too little)
-   - 2. Increased Card Size (185px) & Images (165px)
-   - 4. Garment aligned completely WITHIN the cards
+   SLOTS 1 to 4: Secondary Cards in Balanced Row to the Right
+   - Burgundy Fill with NO border
+   - Minimal background shadow
+   - Garment aligned completely WITHIN the cards
    ======================================================== */
 .slotPos1 {
-  left: 375px;
-  bottom: 45px;
+  left: 360px;
+  bottom: 38px;
   z-index: 6;
   opacity: 1;
 }
 
 .slotPos2 {
-  left: 585px;
-  bottom: 45px;
-  z-index: 6;
+  left: 565px;
+  bottom: 38px;
+  z-index: 5;
   opacity: 1;
 }
 
 .slotPos3 {
-  left: 795px;
-  bottom: 45px;
-  z-index: 6;
+  left: 770px;
+  bottom: 38px;
+  z-index: 4;
   opacity: 1;
 }
 
 .slotPos4 {
-  left: 1005px;
-  bottom: 45px;
-  z-index: 6;
+  left: 975px;
+  bottom: 38px;
+  z-index: 2;
   opacity: 1;
 }
 
 @media (min-width: 1200px) {
-  .slotPos1 { left: 390px; }
-  .slotPos2 { left: 605px; }
-  .slotPos3 { left: 820px; }
-  .slotPos4 { left: 1035px; }
+  .slotPos1 { left: 380px; }
+  .slotPos2 { left: 595px; }
+  .slotPos3 { left: 810px; }
+  .slotPos4 { left: 1025px; }
 }
 
 .slotPos1 .cardBox,
 .slotPos2 .cardBox,
 .slotPos3 .cardBox,
 .slotPos4 .cardBox {
-  width: 185px;
-  height: 235px;
+  width: 175px;
+  height: 220px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 10px 22px rgba(122, 0, 31, 0.06));
-  transition: transform 0.35s ease;
+  filter: drop-shadow(0 4px 12px rgba(80, 0, 16, 0.12));
+  transition:
+    width 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s ease,
+    filter 0.35s ease;
 }
 
 @media (min-width: 1200px) {
@@ -270,8 +288,8 @@
   .slotPos2 .cardBox,
   .slotPos3 .cardBox,
   .slotPos4 .cardBox {
-    width: 195px;
-    height: 245px;
+    width: 185px;
+    height: 230px;
   }
 }
 
@@ -279,7 +297,7 @@
   transform: translateY(-4px);
 }
 
-/* 4. Small Cards: Garment aligned cleanly WITHIN the card */
+/* Secondary Cards: Garment aligned cleanly WITHIN the card */
 .smallGarmentWrap {
   position: relative;
   z-index: 2;
@@ -291,22 +309,28 @@
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
+  transition:
+    top 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .smallGarmentImg {
   width: auto;
-  height: 165px;
-  max-width: 160px;
+  height: 155px;
+  max-width: 150px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
-  transition: transform 0.35s ease;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
+  transition:
+    height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s ease;
 }
 
 @media (min-width: 1200px) {
   .smallGarmentImg {
-    height: 175px;
-    max-width: 170px;
+    height: 165px;
+    max-width: 160px;
   }
 }
 
@@ -315,9 +339,9 @@
 }
 
 .smallContactShadow {
-  width: 105px;
-  height: 11px;
-  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.18) 0%, rgba(30, 20, 20, 0.04) 55%, transparent 75%);
+  width: 95px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(30, 20, 20, 0.2) 0%, rgba(30, 20, 20, 0.05) 55%, transparent 75%);
   border-radius: 50%;
   margin-top: -4px;
   pointer-events: none;
@@ -325,12 +349,12 @@
 
 .smallCardLabel {
   font-family: var(--font-heading);
-  font-size: 0.94rem;
-  font-weight: 400; /* Non-bold per user instruction */
+  font-size: 0.92rem;
+  font-weight: 500;
   color: #7A001F;
   text-align: center;
   margin: 10px 0 0 0;
-  max-width: 180px;
+  max-width: 175px;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
@@ -349,11 +373,11 @@
 /* Modern 3D Viewed Golden Stage Bar beneath cards */
 .modern3dGoldenStage {
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 0;
   width: 100%;
   max-width: 1220px;
-  height: 44px;
+  height: 42px;
   pointer-events: none;
   z-index: 1;
 }
@@ -376,62 +400,127 @@
 }
 
 /* ========================================================
-   Responsive Adjustments
+   Responsive Adjustments (Mobile & Tablet)
+   - Proper alignment within mobile viewport height and width
+   - No cropping of the heading
+   - Smooth cinematic carousel presentation
    ======================================================== */
 @media (max-width: 1023px) {
   .productsSection {
-    padding: 40px 0 48px 0;
-    height: auto;
-    min-height: auto;
+    padding-top: calc(var(--header-height, 76px) + 16px);
+    padding-bottom: 24px;
+    min-height: 100svh;
+    max-height: 100vh;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .productsContainer {
+    padding: 0 16px;
+    height: 100%;
+    justify-content: space-evenly;
   }
 
   .headingArea {
     align-items: center;
     text-align: center;
     padding-right: 0;
-    margin: 0 auto 24px auto;
+    margin: 0 auto 8px auto;
   }
 
   .goldAccentLine {
-    margin: 4px auto 10px auto;
+    margin: 3px auto 6px auto;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.8rem, 5vw, 2.3rem);
+    margin-bottom: 2px;
+  }
+
+  .sectionSubtitle {
+    font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+    max-width: 480px;
+    line-height: 1.35;
   }
 
   .cardsStage {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 36px;
+    height: 380px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
-  .cardSlotItem {
-    position: relative;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    opacity: 1 !important;
+  /* Mobile Slot Positions: active slot 0 centered, slot 1 peeks right, slot 4 peeks left */
+  .slotPos0 {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18px;
+    z-index: 10;
+    opacity: 1;
   }
 
   .slotPos0 .cardBox {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
+    filter: drop-shadow(0 6px 14px rgba(80, 0, 16, 0.16));
   }
 
   .mainGarmentWrap {
-    top: -140px;
+    top: -115px;
   }
 
   .mainGarmentImg {
-    height: 350px;
-    max-width: 310px;
+    height: 280px;
+    max-width: 250px;
+  }
+
+  .mainCardTitle {
+    font-size: 1.08rem;
+    padding: 0 8px;
+  }
+
+  .slotPos1 {
+    left: calc(50% + 145px);
+    bottom: 22px;
+    transform: scale(0.82);
+    z-index: 5;
+    opacity: 0.55;
+  }
+
+  .slotPos2,
+  .slotPos3 {
+    left: calc(50% + 300px);
+    bottom: 22px;
+    transform: scale(0.7);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slotPos4 {
+    left: calc(50% - 280px);
+    bottom: 22px;
+    transform: scale(0.82);
+    z-index: 4;
+    opacity: 0.55;
   }
 
   .slotPos1 .cardBox,
-  .slotPos2 .cardBox,
-  .slotPos3 .cardBox,
   .slotPos4 .cardBox {
-    width: 175px;
-    height: 220px;
+    width: 145px;
+    height: 180px;
+    filter: drop-shadow(0 4px 10px rgba(80, 0, 16, 0.12));
+  }
+
+  .smallGarmentImg {
+    height: 125px;
+    max-width: 125px;
+  }
+
+  .smallCardLabel {
+    font-size: 0.82rem;
+    max-width: 140px;
   }
 
   .modern3dGoldenStage {
@@ -439,39 +528,47 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+  .productsSection {
+    padding-top: calc(var(--header-height, 76px) + 12px);
+    padding-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.86rem;
+  }
+
+  .cardsStage {
+    height: 350px;
+  }
+
   .slotPos0 .cardBox {
-    width: 240px;
-    height: 240px;
+    width: 225px;
+    height: 225px;
   }
 
   .mainGarmentWrap {
-    top: -120px;
+    top: -105px;
   }
 
   .mainGarmentImg {
-    height: 290px;
-    max-width: 260px;
+    height: 250px;
+    max-width: 225px;
   }
 
   .mainCardTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
-  .slotPos1 .cardBox,
-  .slotPos2 .cardBox,
-  .slotPos3 .cardBox,
-  .slotPos4 .cardBox {
-    width: 155px;
-    height: 195px;
+  .slotPos1 {
+    left: calc(50% + 130px);
   }
 
-  .smallGarmentImg {
-    height: 135px;
-    max-width: 135px;
-  }
-
-  .smallCardLabel {
-    font-size: 0.85rem;
+  .slotPos4 {
+    left: calc(50% - 255px);
   }
 }

@@ -1,34 +1,34 @@
-/* Who We Serve Section - Luxury 3D Curved Cards matching Reference Image 4 */
+/* Who We Serve Section - Enlarged 3D Cards with Shaded Theme & Italicized Typography */
 
 .serveSection {
   background-color: #FFFBF7;
   position: relative;
   overflow: hidden;
-  padding: 60px 0 0 0;
+  padding: 64px 0 0 0;
   width: 100%;
   box-sizing: border-box;
 }
 
 .serveContainer {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   box-sizing: border-box;
   position: relative;
 }
 
-/* 1. Header Area matching Image 4 */
+/* 1. Header Area */
 .headingArea {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   position: relative;
   z-index: 2;
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 3.2vw, 2.75rem);
+  font-size: clamp(2.2rem, 3.3vw, 2.85rem);
   font-weight: 600;
   color: #7A001F;
   margin: 0 0 6px 0;
@@ -41,47 +41,28 @@
   height: 3.5px;
   background: #D9A441;
   border-radius: 2px;
-  margin: 4px auto 12px auto;
+  margin: 4px auto 14px auto;
 }
 
 .sectionSubtitle {
-  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   color: #625553;
-  max-width: 660px;
+  max-width: 680px;
   margin: 0 auto;
   line-height: 1.5;
   font-weight: 400;
 }
 
-/* 2. Group Models Showcase Area */
-.showcaseHeroArea {
-  position: relative;
-  z-index: 1;
-  max-width: 960px;
-  margin: 16px auto 0 auto;
-  text-align: center;
-}
-
-.groupPhoto {
-  width: 100%;
-  max-width: 940px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  filter: drop-shadow(0 14px 28px rgba(122, 0, 31, 0.08));
-  user-select: none;
-}
-
-/* 3. Desktop Cards Grid (6 Columns overlapping bottom of models) */
+/* 2. Desktop Cards Grid (Enlarged 6-Column Layout without Background Image) */
 .desktopCardsGrid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 14px;
-  max-width: 1240px;
-  margin: -72px auto 0 auto;
+  gap: 16px;
+  max-width: 1360px;
+  margin: 36px auto 0 auto;
   position: relative;
   z-index: 3;
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
 .desktopCardItem {
@@ -91,20 +72,25 @@
 }
 
 .desktopCardItem:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px) scale(1.03);
 }
 
 .desktopCardItem:hover .desktopApparelImg {
-  transform: scale(1.08) translateY(-2px);
+  transform: scale(1.07) translateY(-2px);
 }
 
 .desktopCardInner {
   position: relative;
   width: 100%;
   aspect-ratio: 574 / 679;
-  filter: drop-shadow(0 10px 22px rgba(122, 0, 31, 0.12));
+  filter: drop-shadow(0 12px 26px rgba(122, 0, 31, 0.10)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.04));
   display: flex;
   flex-direction: column;
+  transition: filter 0.4s ease;
+}
+
+.desktopCardItem:hover .desktopCardInner {
+  filter: drop-shadow(0 18px 36px rgba(122, 0, 31, 0.15)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.06));
 }
 
 .desktopCardBg {
@@ -117,27 +103,32 @@
   pointer-events: none;
 }
 
+/* Apparel Product Image (Cleanly Aligned INSIDE the Card Boundaries) */
 .desktopApparelWrap {
   position: absolute;
-  top: 7%;
-  left: 8%;
-  right: 8%;
-  height: 52%;
+  top: 9%;
+  left: 9%;
+  right: 9%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
   pointer-events: none;
+  overflow: visible;
 }
 
 .desktopApparelImg {
-  max-width: 88%;
-  max-height: 88%;
+  max-width: 82%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Industry Title (Italicized Typography on Burgundy Lower Wave) */
 .desktopTitleWrap {
   position: absolute;
   bottom: 4%;
@@ -149,32 +140,33 @@
   justify-content: center;
   text-align: center;
   z-index: 2;
-  padding: 0 4px;
+  padding: 0 6px;
   pointer-events: none;
 }
 
 .desktopCardTitle {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: clamp(0.76rem, 0.88vw, 0.94rem);
+  font-size: clamp(0.82rem, 0.94vw, 1.02rem);
   font-weight: 600;
+  font-style: italic; /* Point 5: Italic font style */
   line-height: 1.25;
   margin: 0;
   letter-spacing: -0.01em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* 4. Mobile Cards List (Horizontal Pill Cards matching Image 4 Mobile View) */
+/* 3. Mobile Cards List (Enlarged Horizontal Pill Cards) */
 .mobileCardsList {
   display: none;
 }
 
-/* 5. Bottom Wave Accent matching Image 4 */
+/* 4. Bottom Wave Accent */
 .bottomWaveAccent {
   position: relative;
   width: 100%;
   max-width: 1400px;
-  margin: 40px auto 0 auto;
+  margin: 44px auto 0 auto;
   pointer-events: none;
   overflow: hidden;
 }
@@ -189,31 +181,26 @@
 /* ========================================================
    Responsive Adjustments (Mobile & Tablet)
    ======================================================== */
-@media (max-width: 899px) {
+@media (max-width: 991px) {
   .serveSection {
-    padding: 48px 0 0 0;
+    padding: 52px 0 0 0;
   }
 
   .desktopCardsGrid {
     display: none;
   }
 
-  .showcaseHeroArea {
-    margin: 12px auto 0 auto;
-    max-width: 520px;
-  }
-
   .mobileCardsList {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     width: 100%;
-    max-width: 360px;
-    margin: 24px auto 0 auto;
+    max-width: 380px;
+    margin: 28px auto 0 auto;
     position: relative;
     z-index: 3;
-    padding: 0 12px;
+    padding: 0 16px;
   }
 
   .mobileCardItem {
@@ -226,14 +213,14 @@
     position: relative;
     width: 100%;
     aspect-ratio: 736 / 326;
-    max-width: 330px;
-    filter: drop-shadow(0 6px 14px rgba(122, 0, 31, 0.12));
+    max-width: 350px;
+    filter: drop-shadow(0 8px 18px rgba(122, 0, 31, 0.12));
     transition: transform 0.3s ease;
     cursor: pointer;
   }
 
   .mobileCardInner:hover {
-    transform: scale(1.02);
+    transform: scale(1.025);
   }
 
   .mobileCardBg {
@@ -248,10 +235,10 @@
 
   .mobileApparelWrap {
     position: absolute;
-    left: 6%;
-    top: 8%;
-    bottom: 8%;
-    width: 38%;
+    left: 7%;
+    top: 9%;
+    bottom: 9%;
+    width: 37%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,8 +246,10 @@
   }
 
   .mobileApparelImg {
-    max-width: 85%;
-    max-height: 85%;
+    max-width: 82%;
+    max-height: 84%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
   }
@@ -282,15 +271,16 @@
   .mobileCardTitle {
     color: #FFFFFF;
     font-family: var(--font-heading);
-    font-size: clamp(0.88rem, 3.8vw, 1.02rem);
+    font-size: clamp(0.92rem, 3.8vw, 1.08rem);
     font-weight: 600;
+    font-style: italic; /* Point 5: Italic font style */
     line-height: 1.25;
     margin: 0;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .bottomWaveAccent {
-    margin: 28px auto 0 auto;
+    margin: 32px auto 0 auto;
   }
 }
 
@@ -309,7 +299,7 @@
   }
 
   .mobileCardsList {
-    gap: 12px;
-    max-width: 330px;
+    gap: 14px;
+    max-width: 340px;
   }
 }

@@ -16,12 +16,12 @@ export const industries = [
     description: "Campus club t-shirts, annual fest tees, sports day jerseys, and student uniform kits."
   },
   {
-    id: "healthcare",
-    title: "Hospitals & Healthcare",
-    icon: "Cross",
-    image: "/images/products/who_we_serve_healthcare.webp",
-    imagePng: "/images/products/who_we_serve_healthcare.png",
-    description: "Comfortable antimicrobial scrubs, nursing uniforms, clinic staff polos, and lab coats."
+    id: "blank",
+    title: "Blank Apparel",
+    icon: "Package",
+    image: "/images/products/who_we_serve_blank.webp",
+    imagePng: "/images/products/who_we_serve_blank.png",
+    description: "Premium combed blank t-shirts, oversized tees, plain hoodies, and ready-to-print stock."
   },
   {
     id: "manufacturing",

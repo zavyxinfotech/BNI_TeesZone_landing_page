@@ -1,129 +1,315 @@
+/* Who We Serve Section - Luxury 3D Curved Cards matching Reference Image 4 */
+
 .serveSection {
-  background-color: var(--color-cream);
-  position: relative;
-}
-
-.showcaseHeroCard {
-  width: 100%;
-  max-width: 1040px;
-  margin: 0 auto 40px auto;
-  position: relative;
-}
-
-.imageWrapper {
+  background-color: #FFFBF7;
   position: relative;
   overflow: hidden;
-  border-radius: 28px;
-  box-shadow: 0 18px 45px rgba(87, 0, 20, 0.12);
-  border: 2px solid rgba(216, 166, 59, 0.3);
-  background: #FFFFFF;
+  padding: 60px 0 0 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.serveContainer {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 1. Header Area matching Image 4 */
+.headingArea {
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 3.2vw, 2.75rem);
+  font-weight: 600;
+  color: #7A001F;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.goldAccentLine {
+  width: 52px;
+  height: 3.5px;
+  background: #D9A441;
+  border-radius: 2px;
+  margin: 4px auto 12px auto;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  color: #625553;
+  max-width: 660px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* 2. Group Models Showcase Area */
+.showcaseHeroArea {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 16px auto 0 auto;
+  text-align: center;
 }
 
 .groupPhoto {
   width: 100%;
+  max-width: 940px;
   height: auto;
   display: block;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+  margin: 0 auto;
+  filter: drop-shadow(0 14px 28px rgba(122, 0, 31, 0.08));
+  user-select: none;
 }
 
-.imageWrapper:hover .groupPhoto {
-  transform: scale(1.02);
+/* 3. Desktop Cards Grid (6 Columns overlapping bottom of models) */
+.desktopCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  max-width: 1240px;
+  margin: -72px auto 0 auto;
+  position: relative;
+  z-index: 3;
+  padding: 0 12px;
 }
 
-.photoOverlayGlow {
+.desktopCardItem {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.desktopCardItem:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.desktopCardItem:hover .desktopApparelImg {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.desktopCardInner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 574 / 679;
+  filter: drop-shadow(0 10px 22px rgba(122, 0, 31, 0.12));
+  display: flex;
+  flex-direction: column;
+}
+
+.desktopCardBg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 75%, rgba(87, 0, 20, 0.2) 100%);
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
   pointer-events: none;
 }
 
-/* Industry Grid */
-.industryGrid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.industryCard {
-  background: var(--color-white);
-  border: 1px solid var(--color-cream-border);
-  border-radius: var(--radius-md);
-  padding: 20px 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-shadow: var(--shadow-subtle);
-  transition: all var(--transition-normal);
-}
-
-.industryCard:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-gold);
-  box-shadow: var(--shadow-card);
-}
-
-.iconCircle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--color-cream);
-  border: 1.5px solid rgba(128, 0, 25, 0.2);
+.desktopApparelWrap {
+  position: absolute;
+  top: 7%;
+  left: 8%;
+  right: 8%;
+  height: 52%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  transition: all var(--transition-fast);
+  z-index: 2;
+  pointer-events: none;
 }
 
-.industryCard:hover .iconCircle {
-  background: var(--color-primary-burgundy);
-  border-color: var(--color-primary-burgundy);
+.desktopApparelImg {
+  max-width: 88%;
+  max-height: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.icon {
-  color: var(--color-primary-burgundy);
-  transition: color var(--transition-fast);
+.desktopTitleWrap {
+  position: absolute;
+  bottom: 4%;
+  left: 8%;
+  right: 8%;
+  height: 32%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  padding: 0 4px;
+  pointer-events: none;
 }
 
-.industryCard:hover .icon {
+.desktopCardTitle {
   color: #FFFFFF;
-}
-
-.industryTitle {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-deep-maroon);
+  font-family: var(--font-heading);
+  font-size: clamp(0.76rem, 0.88vw, 0.94rem);
+  font-weight: 600;
   line-height: 1.25;
-  margin-bottom: 6px;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.industryDesc {
-  font-size: 0.78rem;
-  color: var(--color-secondary-text);
-  line-height: 1.4;
+/* 4. Mobile Cards List (Horizontal Pill Cards matching Image 4 Mobile View) */
+.mobileCardsList {
+  display: none;
 }
 
-@media (max-width: 1024px) {
-  .industryGrid {
-    grid-template-columns: repeat(3, 1fr);
+/* 5. Bottom Wave Accent matching Image 4 */
+.bottomWaveAccent {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 40px auto 0 auto;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bottomWaveImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ========================================================
+   Responsive Adjustments (Mobile & Tablet)
+   ======================================================== */
+@media (max-width: 899px) {
+  .serveSection {
+    padding: 48px 0 0 0;
+  }
+
+  .desktopCardsGrid {
+    display: none;
+  }
+
+  .showcaseHeroArea {
+    margin: 12px auto 0 auto;
+    max-width: 520px;
+  }
+
+  .mobileCardsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 14px;
+    width: 100%;
+    max-width: 360px;
+    margin: 24px auto 0 auto;
+    position: relative;
+    z-index: 3;
+    padding: 0 12px;
+  }
+
+  .mobileCardItem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobileCardInner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 736 / 326;
+    max-width: 330px;
+    filter: drop-shadow(0 6px 14px rgba(122, 0, 31, 0.12));
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .mobileCardInner:hover {
+    transform: scale(1.02);
+  }
+
+  .mobileCardBg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .mobileApparelWrap {
+    position: absolute;
+    left: 6%;
+    top: 8%;
+    bottom: 8%;
+    width: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .mobileApparelImg {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  }
+
+  .mobileTitleWrap {
+    position: absolute;
+    right: 5%;
+    top: 8%;
+    bottom: 8%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    padding: 0 8px;
+  }
+
+  .mobileCardTitle {
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: clamp(0.88rem, 3.8vw, 1.02rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .bottomWaveAccent {
+    margin: 28px auto 0 auto;
   }
 }
 
-@media (max-width: 600px) {
-  .industryGrid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+  .serveSection {
+    padding: 40px 0 0 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.85rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.94rem;
+    padding: 0 10px;
+  }
+
+  .mobileCardsList {
     gap: 12px;
-  }
-
-  .industryCard {
-    padding: 16px 10px;
-  }
-
-  .industryTitle {
-    font-size: 0.88rem;
+    max-width: 330px;
   }
 }

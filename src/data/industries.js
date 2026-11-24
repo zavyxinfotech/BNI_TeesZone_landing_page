@@ -3,36 +3,48 @@ export const industries = [
     id: "corporate",
     title: "Corporate Companies",
     icon: "Building2",
+    image: "/images/products/who_we_serve_corporate.webp",
+    imagePng: "/images/products/who_we_serve_corporate.png",
     description: "Executive polos, formal office uniforms, welcome kit t-shirts, and staff workwear."
   },
   {
     id: "education",
     title: "Schools & Colleges",
     icon: "GraduationCap",
+    image: "/images/products/who_we_serve_sports.webp",
+    imagePng: "/images/products/who_we_serve_sports.png",
     description: "Campus club t-shirts, annual fest tees, sports day jerseys, and student uniform kits."
   },
   {
     id: "healthcare",
     title: "Hospitals & Healthcare",
     icon: "Cross",
+    image: "/images/products/who_we_serve_healthcare.webp",
+    imagePng: "/images/products/who_we_serve_healthcare.png",
     description: "Comfortable antimicrobial scrubs, nursing uniforms, clinic staff polos, and lab coats."
   },
   {
     id: "manufacturing",
     title: "Manufacturing Units",
     icon: "Factory",
+    image: "/images/products/who_we_serve_manufacturing.webp",
+    imagePng: "/images/products/who_we_serve_manufacturing.png",
     description: "Durable industrial workwear, factory floor uniforms, reflective tees, and safety apparel."
   },
   {
     id: "events",
     title: "Events & Exhibitions",
     icon: "Calendar",
+    image: "/images/products/who_we_serve_events.webp",
+    imagePng: "/images/products/who_we_serve_events.png",
     description: "Volunteer t-shirts, trade expo crew wear, marathon runner shirts, and sponsor merchandise."
   },
   {
     id: "clubs",
     title: "Clubs & Organizations",
     icon: "Users",
+    image: "/images/products/who_we_serve_sports.webp",
+    imagePng: "/images/products/who_we_serve_sports.png",
     description: "Rotary & Lions club polo shirts, sports team kits, alumni meet apparel, and custom caps."
   }
 ];

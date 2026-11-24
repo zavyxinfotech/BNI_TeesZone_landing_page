@@ -6,8 +6,11 @@ import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import styles from './Products.module.css';
 
-// Exact SVG card shape from Image 2 with rich burgundy fill and NO border
-function CardShapeBackdrop({ className }) {
+// Exact SVG card shape with minimal burgundy glassmorphism tint, 3D specular sheen, and NO border
+function CardShapeBackdrop({ className, id = "glassCard" }) {
+  const gradId = `${id}-burgundy-glass`;
+  const sheenId = `${id}-specular-sheen`;
+
   return (
     <svg
       viewBox="0 0 154 158"
@@ -15,9 +18,35 @@ function CardShapeBackdrop({ className }) {
       className={className}
       aria-hidden="true"
     >
+      <defs>
+        {/* Minimal shade burgundy glassmorphism base: luminous frosted top fading into a soft delicate burgundy blush */}
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
+          <stop offset="35%" stopColor="#FFFDFE" stopOpacity="0.92" />
+          <stop offset="70%" stopColor="#FAF1F3" stopOpacity="0.88" />
+          <stop offset="100%" stopColor="#F4E3E7" stopOpacity="0.84" />
+        </linearGradient>
+
+        {/* 3D Diagonal Specular Glass Reflection Sheen */}
+        <linearGradient id={sheenId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.75" />
+          <stop offset="30%" stopColor="#FFFFFF" stopOpacity="0.10" />
+          <stop offset="70%" stopColor="#7A001F" stopOpacity="0.03" />
+          <stop offset="100%" stopColor="#7A001F" stopOpacity="0.08" />
+        </linearGradient>
+      </defs>
+
+      {/* Main Card Shape Body with Minimal Burgundy Frosted Glass Fill - NO BORDER */}
       <path
         d="M 24 2 C 10 2 2 10 2 24 L 2 134 C 2 148 10 156 24 156 L 130 156 C 144 156 152 148 152 134 L 138 24 C 138 10 128 2 114 2 Z"
-        fill="#800019"
+        fill={`url(#${gradId})`}
+        stroke="none"
+      />
+
+      {/* 3D Glass Surface Sheen Overlay - NO BORDER */}
+      <path
+        d="M 24 2 C 10 2 2 10 2 24 L 2 134 C 2 148 10 156 24 156 L 130 156 C 144 156 152 148 152 134 L 138 24 C 138 10 128 2 114 2 Z"
+        fill={`url(#${sheenId})`}
         stroke="none"
       />
     </svg>
@@ -28,10 +57,12 @@ export default function Products({ onSelectProduct }) {
   const [sectionRef, inView] = useInView({ threshold: 0.15, triggerOnce: false });
   const prefersReduced = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const sectionElRef = useRef(null);
   const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
   const isHoveredRef = useRef(false);
+  const pauseTimerRef = useRef(null);
 
   const total = manufacturedProducts.length;
 
@@ -43,9 +74,21 @@ export default function Products({ onSelectProduct }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Cinematic automatic scrolling when section is in view
+  // Temporarily pause auto-play on user interaction (tap, click, swipe)
+  const pauseAutoPlayTemporarily = useCallback((duration = 4500) => {
+    setIsPaused(true);
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    pauseTimerRef.current = setTimeout(() => {
+      if (!isHoveredRef.current) {
+        setIsPaused(false);
+      }
+    }, duration);
+  }, []);
+
+  // Cinematic Automatic Scrolling when user scrolls into the section
+  // Note: Page scrolling is NEVER hijacked or prevented so user can freely move to next section!
   useEffect(() => {
-    if (!inView || prefersReduced) return;
+    if (!inView || prefersReduced || isPaused) return;
 
     const interval = setInterval(() => {
       if (!isHoveredRef.current) {
@@ -54,37 +97,43 @@ export default function Products({ onSelectProduct }) {
     }, 3200);
 
     return () => clearInterval(interval);
-  }, [inView, prefersReduced, nextProduct]);
+  }, [inView, prefersReduced, isPaused, nextProduct]);
 
-  // Touch swipe support for mobile
+  // Touch swipe support for mobile without interfering with vertical page scrolling
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 35) {
-      if (diff > 0) nextProduct();
-      else prevProduct();
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
+
+    // Only trigger card change if the horizontal swipe is dominant (not vertical scrolling)
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > 0) {
+        nextProduct();
+      } else {
+        prevProduct();
+      }
+      pauseAutoPlayTemporarily(5000);
     }
     touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
     <section
       id="manufacturing"
-      ref={(node) => {
-        sectionRef.current = node;
-        sectionElRef.current = node;
-      }}
+      ref={sectionRef}
       className={styles.productsSection}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       aria-label="What We Manufacture"
     >
       <div className={styles.productsContainer}>
-        {/* Right-Aligned Heading & Enlarged Description (User Point 6) */}
+        {/* Right-Aligned Heading & Enlarged Description (Properly Cleared from Top Header) */}
         <div className={styles.headingArea}>
           <h2 className={styles.sectionTitle}>
             {prefersReduced ? (
@@ -108,14 +157,16 @@ export default function Products({ onSelectProduct }) {
           </FadeUp>
         </div>
 
-        {/* Dynamic Card Stage: Persistent items animate smoothly between slots on scroll */}
+        {/* Dynamic Card Stage: Persistent items animate cinematically between slots */}
         <div
           className={styles.stageWrapper}
           onMouseEnter={() => {
             isHoveredRef.current = true;
+            setIsPaused(true);
           }}
           onMouseLeave={() => {
             isHoveredRef.current = false;
+            setIsPaused(false);
           }}
         >
           <div className={styles.cardsStage}>
@@ -129,10 +180,11 @@ export default function Products({ onSelectProduct }) {
                   key={product.id}
                   className={`${styles.cardSlotItem} ${styles[`slotPos${slot}`]}`}
                   onClick={() => {
+                    pauseAutoPlayTemporarily(5000);
                     if (isMain) {
                       onSelectProduct && onSelectProduct(product);
                     } else {
-                      // Clicking any small card animates it into main position
+                      // Clicking any small card smoothly activates it into main position
                       setActiveIndex(originalIdx);
                     }
                   }}
@@ -141,19 +193,24 @@ export default function Products({ onSelectProduct }) {
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
+                      pauseAutoPlayTemporarily(5000);
                       if (isMain) onSelectProduct && onSelectProduct(product);
                       else setActiveIndex(originalIdx);
                     }
                   }}
                   aria-label={`${product.name}${isMain ? ' (Main View)' : ''}`}
                 >
-                  {/* Card Container with Image 2 Shape Backdrop (NO border) */}
+                  {/* Card Container with Minimal Burgundy Glassmorphism Backdrop (NO border) */}
                   <div className={styles.cardBox}>
-                    <CardShapeBackdrop className={styles.cardSvgBackdrop} />
+                    <CardShapeBackdrop
+                      id={`card-${product.id}`}
+                      className={styles.cardSvgBackdrop}
+                    />
 
                     {/* Garment Image:
-                        - Main Card: Enlarged, half extending out of card to the top (User Point 2 & 5)
-                        - Small Cards: Aligned completely WITHIN the card (User Point 2 & 4)
+                        - Main Card: Enlarged, half extending out of card to the top
+                        - Small Cards: Aligned completely WITHIN the card
+                        - Pristine colors preserved: isolation isolate ensures NO mixing with card burgundy tint
                     */}
                     <div className={isMain ? styles.mainGarmentWrap : styles.smallGarmentWrap}>
                       <picture>
@@ -170,7 +227,7 @@ export default function Products({ onSelectProduct }) {
                       <div className={isMain ? styles.mainContactShadow : styles.smallContactShadow} aria-hidden="true" />
                     </div>
 
-                    {/* Text INSIDE the card ONLY in the Main Card (User Point 3) */}
+                    {/* Text INSIDE the card ONLY in the Main Card */}
                     {isMain && (
                       <div className={styles.mainCardTextInside}>
                         <h3 className={styles.mainCardTitle}>
@@ -180,7 +237,7 @@ export default function Products({ onSelectProduct }) {
                     )}
                   </div>
 
-                  {/* Text below card ONLY for Small Cards (User Point 3 & 4) */}
+                  {/* Text below card ONLY for Small Cards */}
                   {!isMain && (
                     <p className={styles.smallCardLabel}>
                       {product.name}
@@ -191,7 +248,7 @@ export default function Products({ onSelectProduct }) {
             })}
           </div>
 
-          {/* Modern 3D Viewed Golden Stage Bar beneath cards matching Image 1 */}
+          {/* Modern 3D Viewed Golden Stage Bar beneath cards */}
           <div className={styles.modern3dGoldenStage} aria-hidden="true">
             <svg
               viewBox="0 0 1200 48"
@@ -211,24 +268,18 @@ export default function Products({ onSelectProduct }) {
                 </linearGradient>
                 <linearGradient id="goldBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#FFF8E8" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#D9A441" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#8A5A12" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#DFAD4A" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#A87722" stopOpacity="0.95" />
                 </linearGradient>
               </defs>
-
-              {/* 3D Elliptical Surface */}
-              <ellipse cx="600" cy="18" rx="580" ry="14" fill="url(#goldSurfaceGrad)" />
-              {/* Top Bevel Highlight Rim */}
               <path
-                d="M 20,18 C 180,6 420,0 600,0 C 780,0 1020,6 1180,18 C 1020,8 780,4 600,4 C 420,4 180,8 20,18 Z"
+                d="M 40 18 Q 600 2 1160 18 L 1180 26 Q 600 12 20 26 Z"
+                fill="url(#goldSurfaceGrad)"
+              />
+              <path
+                d="M 20 26 Q 600 12 1180 26 L 1170 34 Q 600 22 30 34 Z"
                 fill="url(#goldBevelGrad)"
                 opacity="0.85"
-              />
-              {/* Front 3D Drop Edge */}
-              <path
-                d="M 30,18 C 190,32 420,38 600,38 C 780,38 1010,32 1170,18 C 1010,35 780,42 600,42 C 420,42 190,35 30,18 Z"
-                fill="#946816"
-                opacity="0.75"
               />
             </svg>
             <div className={styles.goldenAmbientGlow} />

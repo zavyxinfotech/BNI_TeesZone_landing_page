@@ -132,17 +132,7 @@ export default function WhoWeServe() {
           })}
         </div>
 
-        {/* Luxury Bottom Burgundy Wave Accent */}
-        <div className={styles.bottomWaveAccent} aria-hidden="true">
-          <picture>
-            <source srcSet="/images/products/who_we_serve_wave.webp" type="image/webp" />
-            <img
-              src="/images/products/who_we_serve_wave.png"
-              alt=""
-              className={styles.bottomWaveImg}
-            />
-          </picture>
-        </div>
+
       </div>
     </section>
   );

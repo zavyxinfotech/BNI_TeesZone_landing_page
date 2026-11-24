@@ -4,7 +4,7 @@
   background-color: #FFFBF7;
   position: relative;
   overflow: hidden;
-  padding: 64px 0 0 0;
+  padding: 64px 0 72px 0;
   width: 100%;
   box-sizing: border-box;
 }
@@ -149,7 +149,8 @@
   font-family: var(--font-heading);
   font-size: clamp(0.82rem, 0.94vw, 1.02rem);
   font-weight: 600;
-  font-style: italic; /* Point 5: Italic font style */
+  font-style: italic;
+  /* Point 5: Italic font style */
   line-height: 1.25;
   margin: 0;
   letter-spacing: -0.01em;
@@ -161,29 +162,14 @@
   display: none;
 }
 
-/* 4. Bottom Wave Accent */
-.bottomWaveAccent {
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  margin: 44px auto 0 auto;
-  pointer-events: none;
-  overflow: hidden;
-}
 
-.bottomWaveImg {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
 
 /* ========================================================
    Responsive Adjustments (Mobile & Tablet)
    ======================================================== */
 @media (max-width: 991px) {
   .serveSection {
-    padding: 52px 0 0 0;
+    padding: 52px 0 60px 0;
   }
 
   .desktopCardsGrid {
@@ -273,20 +259,19 @@
     font-family: var(--font-heading);
     font-size: clamp(0.92rem, 3.8vw, 1.08rem);
     font-weight: 600;
-    font-style: italic; /* Point 5: Italic font style */
+    font-style: italic;
+    /* Point 5: Italic font style */
     line-height: 1.25;
     margin: 0;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
-  .bottomWaveAccent {
-    margin: 32px auto 0 auto;
-  }
+
 }
 
 @media (max-width: 480px) {
   .serveSection {
-    padding: 40px 0 0 0;
+    padding: 40px 0 48px 0;
   }
 
   .sectionTitle {

@@ -33,35 +33,6 @@ export default function About({ onOpenAboutModal }) {
         </defs>
       </svg>
 
-      {/* Bottom-Left Deep Burgundy Wave with Gold Contour Ribbon - Anchored to section corner */}
-      <div className={styles.bottomLeftWaveWrap} aria-hidden="true">
-        <svg viewBox="0 0 380 110" fill="none" preserveAspectRatio="none" className={styles.bottomLeftWaveSvg}>
-          <path
-            d="M 0,110 L 0,48 C 55,48 125,68 195,84 C 265,100 325,104 380,110 Z"
-            fill="#7A001F"
-          />
-          <path
-            d="M 0,48 C 55,48 125,68 195,84 C 265,100 325,104 380,110"
-            fill="none"
-            stroke="#D9A441"
-            strokeWidth="3"
-          />
-        </svg>
-      </div>
-
-      {/* Sweeping Gold Ribbon Accent across Bottom */}
-      <div className={styles.bottomSweepRibbonWrap} aria-hidden="true">
-        <svg viewBox="0 0 700 90" fill="none" preserveAspectRatio="none" className={styles.bottomSweepSvg}>
-          <path
-            d="M 0,90 C 150,62 340,36 520,62 C 600,72 660,84 700,90"
-            fill="none"
-            stroke="#D9A441"
-            strokeWidth="3.2"
-            opacity="0.85"
-          />
-        </svg>
-      </div>
-
       {/* Full-width Section Layout (No enclosed card, full desktop and mobile width) */}
       <div className={styles.fullWidthLayout}>
         {/* Left Column: Content */}

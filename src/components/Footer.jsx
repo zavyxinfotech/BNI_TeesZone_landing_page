@@ -133,7 +133,14 @@ export default function Footer() {
                   </ScaleReveal>
                   <div className={styles.metaTextGroup}>
                     <span className={styles.metaLabel}>Office Hours</span>
-                    <span className={styles.metaValue}>{companyInfo.hours}</span>
+                    <span className={styles.metaValue}>
+                      {companyInfo.hours.split('\n').map((line, idx) => (
+                        <React.Fragment key={idx}>
+                          {line}
+                          {idx === 0 && <br />}
+                        </React.Fragment>
+                      ))}
+                    </span>
                   </div>
                 </div>
               </FadeUp>
@@ -198,11 +205,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright & BNI Chapter Tagline */}
+        {/* Bottom Copyright, Developer Credit & BNI Chapter Tagline */}
         <FadeUp trigger={inView} delay={0.7} blur={false}>
           <div className={styles.bottomBar}>
-            <div className={styles.copyrightText}>
-              &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
+            <div className={styles.copyrightGroup}>
+              <div className={styles.copyrightText}>
+                &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
+              </div>
+              <div className={styles.devCredit}>
+                Developed with <span className={styles.heartSymbol} aria-label="love">&hearts;</span> By{' '}
+                <a
+                  href="https://zavyx.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.zavyxLink}
+                >
+                  ZAVYX InfoTech
+                </a>
+              </div>
             </div>
             <div className={styles.bniBottomTag}>
               <span>Proud Member of <strong>{companyInfo.bniChapter}</strong></span>

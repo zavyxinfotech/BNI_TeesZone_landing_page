@@ -6,53 +6,6 @@ import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import styles from './Products.module.css';
 
-// Exact SVG card shape with minimal burgundy glassmorphism tint, 3D specular sheen, and NO border
-function CardShapeBackdrop({ className, id = "glassCard" }) {
-  const gradId = `${id}-burgundy-glass`;
-  const sheenId = `${id}-specular-sheen`;
-
-  return (
-    <svg
-      viewBox="0 0 154 158"
-      preserveAspectRatio="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <defs>
-        {/* Minimal shade burgundy glassmorphism base: luminous frosted top fading into a soft delicate burgundy blush */}
-        <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
-          <stop offset="35%" stopColor="#FFFDFE" stopOpacity="0.92" />
-          <stop offset="70%" stopColor="#FAF1F3" stopOpacity="0.88" />
-          <stop offset="100%" stopColor="#F4E3E7" stopOpacity="0.84" />
-        </linearGradient>
-
-        {/* 3D Diagonal Specular Glass Reflection Sheen */}
-        <linearGradient id={sheenId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.75" />
-          <stop offset="30%" stopColor="#FFFFFF" stopOpacity="0.10" />
-          <stop offset="70%" stopColor="#7A001F" stopOpacity="0.03" />
-          <stop offset="100%" stopColor="#7A001F" stopOpacity="0.08" />
-        </linearGradient>
-      </defs>
-
-      {/* Main Card Shape Body with Minimal Burgundy Frosted Glass Fill - NO BORDER */}
-      <path
-        d="M 24 2 C 10 2 2 10 2 24 L 2 134 C 2 148 10 156 24 156 L 130 156 C 144 156 152 148 152 134 L 138 24 C 138 10 128 2 114 2 Z"
-        fill={`url(#${gradId})`}
-        stroke="none"
-      />
-
-      {/* 3D Glass Surface Sheen Overlay - NO BORDER */}
-      <path
-        d="M 24 2 C 10 2 2 10 2 24 L 2 134 C 2 148 10 156 24 156 L 130 156 C 144 156 152 148 152 134 L 138 24 C 138 10 128 2 114 2 Z"
-        fill={`url(#${sheenId})`}
-        stroke="none"
-      />
-    </svg>
-  );
-}
-
 export default function Products({ onSelectProduct }) {
   const [sectionRef, inView] = useInView({ threshold: 0.15, triggerOnce: false });
   const prefersReduced = useReducedMotion();
@@ -85,19 +38,19 @@ export default function Products({ onSelectProduct }) {
     }, duration);
   }, []);
 
-  // Cinematic Automatic Scrolling when user scrolls into the section
+  // Cinematic Automatic Scrolling one by one when user scrolls into the section
   // Note: Page scrolling is NEVER hijacked or prevented so user can freely move to next section!
   useEffect(() => {
-    if (!inView || prefersReduced || isPaused) return;
+    if (!inView || isPaused) return;
 
     const interval = setInterval(() => {
       if (!isHoveredRef.current) {
         nextProduct();
       }
-    }, 3200);
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [inView, prefersReduced, isPaused, nextProduct]);
+  }, [inView, isPaused, nextProduct]);
 
   // Touch swipe support for mobile without interfering with vertical page scrolling
   const handleTouchStart = (e) => {
@@ -200,90 +153,45 @@ export default function Products({ onSelectProduct }) {
                   }}
                   aria-label={`${product.name}${isMain ? ' (Main View)' : ''}`}
                 >
-                  {/* Card Container with Minimal Burgundy Glassmorphism Backdrop (NO border) */}
+                  {/* Card Container with Shaded 3D Gold & Burgundy Frame (Who We Serve Card Design) */}
                   <div className={styles.cardBox}>
-                    <CardShapeBackdrop
-                      id={`card-${product.id}`}
-                      className={styles.cardSvgBackdrop}
-                    />
+                    <picture>
+                      <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                      <img
+                        src="/images/products/serve_card_bg_desktop.png"
+                        alt=""
+                        className={styles.cardBg}
+                        aria-hidden="true"
+                      />
+                    </picture>
 
-                    {/* Garment Image:
-                        - Main Card: Enlarged, half extending out of card to the top
-                        - Small Cards: Aligned completely WITHIN the card
-                        - Pristine colors preserved: isolation isolate ensures NO mixing with card burgundy tint
-                    */}
-                    <div className={isMain ? styles.mainGarmentWrap : styles.smallGarmentWrap}>
+                    {/* Apparel Product Image cleanly aligned in upper card area */}
+                    <div className={isMain ? styles.mainApparelWrap : styles.smallApparelWrap}>
                       <picture>
                         <source srcSet={product.image} type="image/webp" />
                         <img
                           src={product.image.replace('.webp', '.png')}
                           alt={`${product.name} customized with YOUR LOGO`}
-                          className={isMain ? styles.mainGarmentImg : styles.smallGarmentImg}
+                          className={isMain ? styles.mainApparelImg : styles.smallApparelImg}
                           loading={isMain ? 'eager' : 'lazy'}
-                          width={isMain ? 400 : 180}
-                          height={isMain ? 430 : 190}
+                          width={isMain ? 320 : 180}
+                          height={isMain ? 320 : 180}
                         />
                       </picture>
-                      <div className={isMain ? styles.mainContactShadow : styles.smallContactShadow} aria-hidden="true" />
                     </div>
 
-                    {/* Text INSIDE the card ONLY in the Main Card */}
-                    {isMain && (
-                      <div className={styles.mainCardTextInside}>
-                        <h3 className={styles.mainCardTitle}>
-                          {product.name}
-                        </h3>
-                      </div>
-                    )}
+                    {/* Product Title in Italic Typography on Burgundy Lower Wave */}
+                    <div className={isMain ? styles.mainTitleWrap : styles.smallTitleWrap}>
+                      <h3 className={isMain ? styles.mainCardTitle : styles.smallCardTitle}>
+                        {product.name}
+                      </h3>
+                    </div>
                   </div>
-
-                  {/* Text below card ONLY for Small Cards */}
-                  {!isMain && (
-                    <p className={styles.smallCardLabel}>
-                      {product.name}
-                    </p>
-                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Modern 3D Viewed Golden Stage Bar beneath cards */}
-          <div className={styles.modern3dGoldenStage} aria-hidden="true">
-            <svg
-              viewBox="0 0 1200 48"
-              fill="none"
-              preserveAspectRatio="none"
-              className={styles.goldenStageSvg}
-            >
-              <defs>
-                <linearGradient id="goldSurfaceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#C49332" stopOpacity="0" />
-                  <stop offset="12%" stopColor="#D9A441" stopOpacity="0.85" />
-                  <stop offset="35%" stopColor="#F9E7C4" stopOpacity="1" />
-                  <stop offset="50%" stopColor="#FFFDF7" stopOpacity="1" />
-                  <stop offset="65%" stopColor="#F9E7C4" stopOpacity="1" />
-                  <stop offset="88%" stopColor="#D9A441" stopOpacity="0.85" />
-                  <stop offset="100%" stopColor="#C49332" stopOpacity="0" />
-                </linearGradient>
-                <linearGradient id="goldBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFF8E8" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#DFAD4A" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#A87722" stopOpacity="0.95" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M 40 18 Q 600 2 1160 18 L 1180 26 Q 600 12 20 26 Z"
-                fill="url(#goldSurfaceGrad)"
-              />
-              <path
-                d="M 20 26 Q 600 12 1180 26 L 1170 34 Q 600 22 30 34 Z"
-                fill="url(#goldBevelGrad)"
-                opacity="0.85"
-              />
-            </svg>
-            <div className={styles.goldenAmbientGlow} />
-          </div>
         </div>
       </div>
     </section>

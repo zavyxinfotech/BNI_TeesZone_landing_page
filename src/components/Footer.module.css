@@ -1,7 +1,6 @@
 .footerSection {
   background-color: var(--color-cream);
   position: relative;
-  border-top: 2px solid rgba(216, 166, 59, 0.3);
   padding: 60px 0 28px 0;
 }
 
@@ -229,8 +228,45 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   font-size: 0.82rem;
   color: var(--color-secondary-text);
+}
+
+.copyrightGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+
+.devCredit {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #0B2559;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.heartSymbol {
+  color: #D90429;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.zavyxLink {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #001F54;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.zavyxLink:hover {
+  color: #0A369D;
+  text-decoration: underline;
 }
 
 .bniBottomTag strong {

@@ -1,122 +1,213 @@
 .gallerySection {
   background-color: var(--color-cream);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  padding: 56px 0 60px 0;
+  width: 100%;
 }
 
-.headerFlex {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 24px;
+/* Header Area */
+.headerArea {
+  text-align: center;
+  max-width: 1120px;
+  margin: 0 auto 14px auto;
 }
 
-.customHeading {
-  margin-bottom: 0;
-}
-
-.carouselNavControls {
-  display: flex;
+.eyebrow {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.navArrowBtn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--color-white);
-  border: 1.5px solid rgba(216, 166, 59, 0.35);
-  color: var(--color-deep-maroon);
+.eyebrowLine {
+  width: 36px;
+  height: 1.5px;
+  background: var(--color-gold);
+}
+
+.eyebrowText {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.mainTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-primary-burgundy);
+  margin: 0 0 10px 0;
+  line-height: 1.22;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.02rem;
+  color: #5C4B49;
+  max-width: 740px;
+  margin: 0 auto 20px auto;
+  line-height: 1.55;
+}
+
+/* Single-Row Category Filter Pills on Desktop */
+.categoryFilterBar {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(87, 0, 20, 0.06);
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+}
+
+.categoryFilterBar::-webkit-scrollbar {
+  display: none;
+}
+
+.filterPill {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid rgba(216, 166, 59, 0.35);
+  color: #625553;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
-.navArrowBtn:hover:not(.disabled) {
+.filterPill:hover {
+  background: #FFFDF8;
+  border-color: var(--color-gold);
+  color: var(--color-primary-burgundy);
+}
+
+.filterPillActive {
   background: var(--color-primary-burgundy);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border-color: var(--color-primary-burgundy);
-  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(122, 0, 31, 0.22);
 }
 
-.navArrowBtn.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.galleryTrack {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 10px 4px 24px 4px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gold) transparent;
-  -webkit-overflow-scrolling: touch;
-}
-
-.galleryTrack::-webkit-scrollbar {
-  height: 6px;
-}
-
-.galleryTrack::-webkit-scrollbar-thumb {
-  background-color: var(--color-gold);
-  border-radius: 10px;
-}
-
-.galleryCard {
-  flex: 0 0 calc(33.333% - 14px);
-  min-width: 260px;
-  max-width: 380px;
-  background: var(--color-white);
-  border-radius: var(--radius-md);
+/* 3D Cylindrical Stage */
+.stageOuter {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(87, 0, 20, 0.06);
-  border: 1px solid var(--color-cream-border);
-  transition: all var(--transition-normal);
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.stageOuter:active {
+  cursor: grabbing;
+}
+
+.perspectiveScene {
+  perspective: 720px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cardsTrack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Tightly spaced 3D Cylinder Cards (radius=680, step=20deg => chord=236px, card=224px => ~12px gap) */
+.cylinderCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 224px;
+  height: 232px;
+  margin-left: -112px;
+  margin-top: -116px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   cursor: pointer;
 }
 
-.galleryCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 35px rgba(87, 0, 20, 0.12);
-  border-color: var(--color-gold);
+.cardFrame {
+  width: 100%;
+  height: 100%;
+  background: #FAF3E8;
+  border: 1.5px solid rgba(216, 166, 59, 0.75);
+  box-shadow: 0 12px 28px rgba(87, 0, 20, 0.14),
+              0 4px 12px rgba(216, 166, 59, 0.18);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.imageBox {
+.cylinderCard:hover .cardFrame {
+  border-color: var(--color-gold);
+  box-shadow: 0 16px 36px rgba(87, 0, 20, 0.22),
+              0 6px 16px rgba(216, 166, 59, 0.32);
+}
+
+.imageArea {
   position: relative;
   width: 100%;
-  height: 200px;
-  background: #FAFAFA;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
-.galleryImg {
+.pictureWrap {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
+  transition: transform 0.45s ease;
 }
 
-.galleryCard:hover .galleryImg {
-  transform: scale(1.06);
+.cylinderCard:hover .cardImage {
+  transform: scale(1.05);
 }
 
-.hoverOverlay {
+.cardHoverOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(87, 0, 20, 0.4);
+  background: rgba(87, 0, 20, 0.42);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity var(--transition-fast);
+  z-index: 2;
 }
 
-.galleryCard:hover .hoverOverlay {
+.cylinderCard:hover .cardHoverOverlay {
   opacity: 1;
 }
 
@@ -124,47 +215,137 @@
   background: #FFFFFF;
   color: var(--color-deep-maroon);
   padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.76rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transform: translateY(4px);
+  transition: transform 0.25s ease;
 }
 
-.cardInfo {
-  padding: 16px;
+.cylinderCard:hover .viewBadge {
+  transform: translateY(0);
 }
 
-.categoryBadge {
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
+/* Company Name Footer Strip */
+.cardCompanyFooter {
+  background: #FAF3E8;
+  border-top: 1px solid rgba(216, 166, 59, 0.35);
+  padding: 7px 10px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.companyName {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--color-primary-burgundy);
-  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.2px;
 }
 
-.cardTitle {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-dark-text);
+/* Tight Navigation Row - NO border, NO background color */
+.navigationRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
   margin-top: 4px;
 }
 
-@media (max-width: 900px) {
-  .galleryCard {
-    flex: 0 0 calc(50% - 10px);
+.navBtn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: var(--color-primary-burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 0;
+}
+
+.navBtn:hover {
+  background: transparent;
+  border: none;
+  color: var(--color-gold);
+  transform: scale(1.18);
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .categoryFilterBar {
+    justify-content: flex-start;
+  }
+
+  .perspectiveScene {
+    perspective: 620px;
+    height: 280px;
+  }
+
+  .cylinderCard {
+    width: 196px;
+    height: 204px;
+    margin-left: -98px;
+    margin-top: -102px;
   }
 }
 
-@media (max-width: 600px) {
-  .galleryCard {
-    flex: 0 0 260px;
+/* Mobile-Optimized 3D Cylindrical Carousel */
+@media (max-width: 767px) {
+  .gallerySection {
+    padding: 40px 0 48px 0;
   }
-  .headerFlex {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+
+  /* Align 8 category pills into 2 clean centered rows on mobile */
+  .categoryFilterBar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, auto));
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding: 4px 6px;
+  }
+
+  .filterPill {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    text-align: center;
+  }
+
+  .perspectiveScene {
+    perspective: 520px;
+    height: 235px;
+  }
+
+  .cylinderCard {
+    width: 165px;
+    height: 180px;
+    margin-left: -82.5px;
+    margin-top: -90px;
+  }
+
+  .cardCompanyFooter {
+    padding: 5px 8px;
+  }
+
+  .companyName {
+    font-size: 0.72rem;
+  }
+
+  .navigationRow {
+    margin-top: 2px;
+    gap: 24px;
   }
 }

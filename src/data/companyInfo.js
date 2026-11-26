@@ -15,7 +15,7 @@ export const companyInfo = {
     url: "https://wa.me/917550067723?text=Hi%20TeesZone%20Team%2C%20I%20am%20a%20BNI%20member%20interested%20in%20custom%20corporate%20apparel%20and%20uniforms."
   },
   email: "info@teeszone.in",
-  hours: "Monday – Saturday, 9:00 AM – 7:00 PM IST",
+  hours: "Monday – Friday, 9:30 AM – 6:00 PM IST\nSaturday, 9:30 AM – 3:30 PM IST",
   address: {
     line1: "#2155, Fortune City, Global Market – Texvalley,",
     line2: "NH 544 Bengaluru–Cochin National Highway,",

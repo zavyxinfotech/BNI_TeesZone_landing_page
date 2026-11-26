@@ -1,205 +1,374 @@
+/* ========================================================
+   Why Businesses Choose TeesZone
+   Exact Reference Replication: Pinned Paper Notes Board
+   ======================================================== */
+
 .whySection {
-  background-color: var(--color-white);
-  border-top: 1px solid var(--color-cream-border);
-  border-bottom: 1px solid var(--color-cream-border);
-}
-
-.mainLayout {
-  display: flex;
-  gap: 36px;
-  align-items: stretch;
-}
-
-/* Left Grid of Benefits */
-.benefitsGrid {
-  flex: 0 0 60%;
-  max-width: 60%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.benefitCard {
-  background: var(--color-cream);
-  border: 1px solid rgba(216, 166, 59, 0.25);
-  border-radius: var(--radius-md);
-  padding: 20px 16px;
+  background-color: var(--color-cream);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: calc(var(--header-height, 76px) + 16px);
+  padding-bottom: 24px;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(87, 0, 20, 0.03);
+  justify-content: center;
+  align-items: center;
 }
 
-.benefitCard:hover {
-  transform: translateY(-4px);
-  background: #FFFFFF;
-  border-color: var(--color-gold);
-  box-shadow: 0 10px 25px rgba(87, 0, 20, 0.08);
+/* Ensure the entire desktop section fits cleanly inside 100vh */
+@media (min-width: 1024px) {
+  .whySection {
+    min-height: 100vh;
+    padding-top: calc(var(--header-height, 76px) + 12px);
+    padding-bottom: 24px;
+  }
 }
 
-.benefitIconWrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #800019 0%, #570014 100%);
+.sectionContainer {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ========================================================
+   Heading Area with Sparkle, Gold Underline & Paper Airplane
+   ======================================================== */
+.headingArea {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.titleWrap {
+  display: inline-block;
+  position: relative;
+}
+
+/* Sparkle rays on top-left of heading from Image 1 */
+.sparkleIcon {
+  position: absolute;
+  top: -10px;
+  left: -24px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+  font-weight: 700;
+  color: #7A001F;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* Small Gold Underline Accent below heading */
+.goldUnderline {
+  width: 54px;
+  height: 3.5px;
+  background: #D9A441;
+  border-radius: 2px;
+  margin: 6px auto 0 auto;
+}
+
+.sectionSubtitle {
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  color: #625553;
+  max-width: 660px;
+  margin: 8px auto 0 auto;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+/* Top-right Flying Paper Airplane with Dotted Loop */
+.airplaneWrapper {
+  position: absolute;
+  top: -12px;
+  right: -20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .airplaneWrapper {
+    right: 0px;
+    top: -24px;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 600px) {
+  .sparkleIcon {
+    left: -14px;
+    top: -8px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .airplaneWrapper {
+    display: none;
+  }
+}
+
+/* ========================================================
+   Floating 3D Pinned Notes Board (3-Column Layout on Desktop)
+   ======================================================== */
+.pinnedBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px 26px;
+  width: 100%;
+  max-width: 1060px;
+  margin: 10px auto 0 auto;
+  perspective: 1200px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================================================
+   Pinned Card Structure & Image 2 2-Layer Slanted Shape
+   ======================================================== */
+.pinnedCard {
+  position: relative;
+  padding: 28px 28px 28px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  transform: rotate(var(--card-rest-rot, 0deg)) translateY(var(--card-rest-y, 0px));
+  transform-origin: center top;
+  filter: drop-shadow(0 16px 24px rgba(85, 12, 25, 0.16));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  user-select: none;
+  cursor: default;
+}
+
+.pinnedCard:hover {
+  transform: translateY(-8px) scale(1.025) rotate(0deg);
+  filter: drop-shadow(0 24px 34px rgba(85, 12, 25, 0.25));
+  z-index: 10;
+}
+
+.cardShapeSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cardInnerContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Red 3D Pushpin Pin at Top Center */
+.pinWrapper {
+  position: absolute;
+  top: -10px;
+  left: 47%;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Professional SVG Icon Wrap */
+.iconWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 12px rgba(128, 0, 25, 0.25);
-}
-
-.benefitIcon {
-  color: #FFFFFF;
-}
-
-.benefitContent {
-  display: flex;
-  flex-direction: column;
-}
-
-.benefitTitle {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-deep-maroon);
-  line-height: 1.25;
-  margin-bottom: 2px;
-}
-
-.benefitTagline {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-
-.benefitDesc {
-  font-size: 0.8rem;
-  color: var(--color-secondary-text);
-  line-height: 1.45;
-}
-
-/* Right Side Machine Demonstration */
-.equipmentDemonstration {
-  flex: 0 0 40%;
-  max-width: 40%;
-  display: flex;
-}
-
-.machineCard {
-  background: var(--color-cream);
-  border: 1.5px solid rgba(216, 166, 59, 0.3);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 14px 35px rgba(87, 0, 20, 0.08);
-  width: 100%;
-}
-
-.machineImageWrapper {
-  position: relative;
-  background: #000;
-  overflow: hidden;
-}
-
-.machineImg {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.machineCard:hover .machineImg {
-  transform: scale(1.03);
-}
-
-.machineBadge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(37, 30, 34, 0.85);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--color-gold);
-  color: #FFFFFF;
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.badgeDot {
-  width: 7px;
-  height: 7px;
-  background: #25D366;
-  border-radius: 50%;
-  box-shadow: 0 0 6px #25D366;
-}
-
-.machineMeta {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.machineHeading {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--color-deep-maroon);
   margin-bottom: 8px;
 }
 
-.machineDesc {
-  font-size: 0.84rem;
-  color: var(--color-secondary-text);
-  line-height: 1.5;
-  margin-bottom: 16px;
+.cardIcon {
+  display: block;
 }
 
-.machineSpecs {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: auto;
-  border-top: 1px solid rgba(216, 166, 59, 0.2);
-  padding-top: 12px;
+/* Card Heading Title */
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 
-.specItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-dark-text);
+/* Gold Divider Line */
+.goldDivider {
+  width: 34px;
+  height: 2px;
+  background: #D9A441;
+  border-radius: 2px;
+  margin: 7px auto 6px auto;
 }
 
-.specCheck {
-  color: var(--color-primary-burgundy);
-  flex-shrink: 0;
+/* Uppercase Letter-spaced Tagline */
+.cardTagline {
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
-@media (max-width: 1024px) {
-  .mainLayout {
-    flex-direction: column;
+/* Exact Description Body Text */
+.cardDesc {
+  font-size: 0.75rem;
+  line-height: 1.42;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ========================================================
+   Burgundy Card Colors & Theming
+   ======================================================== */
+.burgundyCard .cardBackingPath {
+  fill: #D9A441;
+}
+
+.burgundyCard .cardFrontPath {
+  fill: #6E001B;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
+.burgundyCard .cardIcon {
+  color: #FFFFFF;
+}
+
+.burgundyCard .cardTitle {
+  color: #FFFFFF;
+}
+
+.burgundyCard .cardTagline {
+  color: #FFFFFF;
+}
+
+.burgundyCard .cardDesc {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ========================================================
+   Cream Card Colors & Theming
+   ======================================================== */
+.creamCard .cardBackingPath {
+  fill: #7A001F;
+}
+
+.creamCard .cardFrontPath {
+  fill: #FBF4E7;
+  stroke: rgba(217, 164, 65, 0.35);
+  stroke-width: 1;
+}
+
+.creamCard .cardIcon {
+  color: #7A001F;
+}
+
+.creamCard .cardTitle {
+  color: #7A001F;
+}
+
+.creamCard .cardTagline {
+  color: #7A001F;
+}
+
+.creamCard .cardDesc {
+  color: #554440;
+}
+
+/* ========================================================
+   Responsive Tablet View (Image 3 Reference: 2 Columns x 3 Rows)
+   ======================================================== */
+@media (max-width: 1023px) {
+  .whySection {
+    min-height: auto;
+    padding-top: calc(var(--header-height, 64px) + 24px);
+    padding-bottom: 40px;
   }
 
-  .benefitsGrid,
-  .equipmentDemonstration {
-    flex: 0 0 100%;
-    max-width: 100%;
+  .pinnedBoard {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    gap: 26px 22px;
+  }
+
+  .pinnedCard {
+    padding: 24px 18px 16px 18px;
   }
 }
 
-@media (max-width: 650px) {
-  .benefitsGrid {
+/* ========================================================
+   Responsive Mobile View: Single Column Stacked Pinned Notes
+   ======================================================== */
+@media (max-width: 600px) {
+  .whySection {
+    padding-top: calc(var(--header-height, 64px) + 16px);
+    padding-bottom: 36px;
+  }
+
+  .headingArea {
+    margin-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 1.7rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.88rem;
+    padding: 0 8px;
+  }
+
+  .pinnedBoard {
     grid-template-columns: 1fr;
+    max-width: 360px;
+    gap: 22px;
+  }
+
+  /* Gentle alternating tilts on mobile to prevent horizontal clipping */
+  .cardPos0 { --card-rest-rot: -2deg; --card-rest-y: 0px; }
+  .cardPos1 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
+  .cardPos2 { --card-rest-rot: -1.8deg; --card-rest-y: 0px; }
+  .cardPos3 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
+  .cardPos4 { --card-rest-rot: -1.6deg; --card-rest-y: 0px; }
+  .cardPos5 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
+
+  .pinnedCard {
+    padding: 24px 16px 16px 16px;
+  }
+
+  .cardTitle {
+    font-size: 1.08rem;
+  }
+
+  .cardTagline {
+    font-size: 0.7rem;
+  }
+
+  .cardDesc {
+    font-size: 0.74rem;
   }
 }

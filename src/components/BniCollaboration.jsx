@@ -55,7 +55,13 @@ export default function BniCollaboration({ onSelectOpportunity }) {
   const [activeTagIndex, setActiveTagIndex] = useState(0);
   const [isAutoPaused, setIsAutoPaused] = useState(false);
 
-  // Automatic sequential pop-up animation across the 5 key cards until user hovers or clicks
+  // Mobile-only horizontal rope carousel refs
+  const mobileRopeStageRef = useRef(null);
+  const mobileCardRefs = useRef([]);
+  const mobileOffsetRef = useRef(0);
+  const mobilePausedRef = useRef(false);
+
+  // Automatic sequential pop-up animation across the 5 key cards until user hovers or clicks (Desktop)
   useEffect(() => {
     if (isAutoPaused) return;
     const timer = setInterval(() => {
@@ -63,6 +69,49 @@ export default function BniCollaboration({ onSelectOpportunity }) {
     }, 2200);
     return () => clearInterval(timer);
   }, [isAutoPaused]);
+
+  // Mobile-only continuous horizontal auto-scroll along the curved burgundy rope
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const ring = [...bniBenefits, ...bniBenefits];
+    const total = ring.length;
+    const cardSpacing = 212; // 195px enlarged card + 17px breathing room
+    let rafId;
+    let lastTime = performance.now();
+
+    const animateMobile = (now) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
+      if (window.innerWidth <= 767 && !mobilePausedRef.current) {
+        mobileOffsetRef.current = (mobileOffsetRef.current + 46 * dt) % (bniBenefits.length * cardSpacing);
+      }
+
+      const stageW = mobileRopeStageRef.current ? mobileRopeStageRef.current.clientWidth : window.innerWidth;
+      const halfW = stageW / 2;
+      const totalTrackW = total * cardSpacing;
+
+      for (let i = 0; i < total; i++) {
+        const el = mobileCardRefs.current[i];
+        if (!el) continue;
+
+        let x = ((i * cardSpacing - mobileOffsetRef.current) % totalTrackW + totalTrackW) % totalTrackW;
+        if (x > totalTrackW / 2) x -= totalTrackW;
+
+        // Follow quadratic curved rope: y = 34 * (1 - (x / halfW)^2) so center dips gracefully
+        const normX = Math.max(-1.2, Math.min(1.2, x / Math.max(halfW, 160)));
+        const curveY = 30 * (1 - normX * normX);
+        const tiltDeg = normX * -7;
+
+        el.style.transform = `translate3d(${(x - 97.5).toFixed(1)}px, ${curveY.toFixed(1)}px, 0) rotate(${tiltDeg.toFixed(2)}deg)`;
+      }
+
+      rafId = requestAnimationFrame(animateMobile);
+    };
+
+    rafId = requestAnimationFrame(animateMobile);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -233,6 +282,68 @@ export default function BniCollaboration({ onSelectOpportunity }) {
               })}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile-Only View: Full-Width Curved Lighter Burgundy Rope + Enlarged Horizontal Auto-Scrolling Key Cards */}
+      <div
+        ref={mobileRopeStageRef}
+        className={styles.mobileRopeStage}
+        onTouchStart={() => {
+          mobilePausedRef.current = true;
+        }}
+        onTouchEnd={() => {
+          mobilePausedRef.current = false;
+        }}
+      >
+        <svg
+          viewBox="0 0 400 70"
+          preserveAspectRatio="none"
+          className={styles.mobileRopeSvg}
+          aria-hidden="true"
+        >
+          <path
+            d="M 0,18 Q 200,56 400,18"
+            fill="none"
+            stroke="#9B2D47"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            opacity="0.72"
+          />
+        </svg>
+
+        <div className={styles.mobileRopeTrack}>
+          {[...bniBenefits, ...bniBenefits].map((item, idx) => {
+            const IconComp = item.Icon;
+            return (
+              <button
+                key={`mob-${item.id}-${idx}`}
+                ref={(el) => {
+                  mobileCardRefs.current[idx] = el;
+                }}
+                type="button"
+                onClick={() => onSelectOpportunity && onSelectOpportunity(item)}
+                className={styles.mobileRopeCard}
+                aria-label={`${item.title}: ${item.description}`}
+              >
+                <img
+                  src="/images/bni_keychain_tag.png"
+                  alt=""
+                  aria-hidden="true"
+                  className={styles.tagBgImg}
+                  draggable={false}
+                />
+                <div className={styles.mobileTagInner}>
+                  <div className={styles.tagIconWrap}>
+                    <IconComp size={28} strokeWidth={1.9} className={styles.tagIcon} />
+                  </div>
+                  <h3 className={styles.mobileTagTitle}>{item.title}</h3>
+                  <p className={styles.mobileTagDesc}>{item.description}</p>
+                  <span className={styles.tagDash} aria-hidden="true" />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -41,6 +41,17 @@
   max-width: 48%;
 }
 
+.footerLogoWrap {
+  margin-bottom: 16px;
+}
+
+.footerLogo {
+  height: 68px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .subHeading {
   font-size: 0.82rem;
   font-weight: 500;
@@ -106,7 +117,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--color-dark-text);
-  font-family: monospace;
+  font-family: var(--font-body);
   letter-spacing: 0.5px;
 }
 
@@ -162,13 +173,12 @@
 .addressBox {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  background: var(--color-white);
-  padding: 16px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-cream-border);
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(87, 0, 20, 0.03);
+  gap: 10px;
+  background: transparent;
+  padding: 6px 0 8px 0;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 8px;
 }
 
 .addressPinIcon {
@@ -233,32 +243,20 @@
   color: var(--color-secondary-text);
 }
 
-.copyrightGroup {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 18px;
-}
-
-.devCredit {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #0B2559;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+.copyrightText {
+  line-height: 1.5;
 }
 
 .heartSymbol {
   color: #D90429;
-  font-size: 1rem;
+  font-size: 0.92rem;
   line-height: 1;
 }
 
 .zavyxLink {
   font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-size: 0.86rem;
+  font-weight: 500;
   color: #001F54;
   text-decoration: none;
   transition: color 0.2s ease, text-decoration 0.2s ease;
@@ -277,21 +275,63 @@
   .footerGrid {
     flex-direction: column;
     gap: 36px;
+    align-items: center;
   }
 
   .footerLeft,
   .footerRight {
     flex: 0 0 100%;
     max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footerLogo {
+    height: 58px;
+    margin: 0 auto;
+  }
+
+  .companyMetaList {
+    align-items: center;
+  }
+
+  .metaRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .metaTextGroup {
+    align-items: center;
+  }
+
+  .phoneNumbers {
+    justify-content: center;
   }
 
   .mapContainer {
-    height: 190px;
+    height: 200px;
+  }
+
+  .addressBox {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .mapLinkRow {
+    justify-content: center;
   }
 
   .bottomBar {
     flex-direction: column;
     gap: 8px;
     text-align: center;
+    align-items: center;
   }
 }

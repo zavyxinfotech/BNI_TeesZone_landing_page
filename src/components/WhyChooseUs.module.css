@@ -68,7 +68,7 @@
 .sectionTitle {
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 2.6vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 500;
   color: #7A001F;
   margin: 0;
   line-height: 1.15;
@@ -207,9 +207,9 @@
 /* Card Heading Title */
 .cardTitle {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: 1.24rem;
+  font-weight: 500;
+  line-height: 1.22;
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -225,9 +225,9 @@
 
 /* Uppercase Letter-spaced Tagline */
 .cardTagline {
-  font-size: 0.73rem;
-  font-weight: 600;
-  letter-spacing: 0.6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-bottom: 6px;
   line-height: 1.2;
@@ -235,7 +235,7 @@
 
 /* Exact Description Body Text */
 .cardDesc {
-  font-size: 0.75rem;
+  font-size: 0.84rem;
   line-height: 1.42;
   margin: 0;
   font-weight: 400;
@@ -349,12 +349,35 @@
   }
 
   /* Gentle alternating tilts on mobile to prevent horizontal clipping */
-  .cardPos0 { --card-rest-rot: -2deg; --card-rest-y: 0px; }
-  .cardPos1 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
-  .cardPos2 { --card-rest-rot: -1.8deg; --card-rest-y: 0px; }
-  .cardPos3 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
-  .cardPos4 { --card-rest-rot: -1.6deg; --card-rest-y: 0px; }
-  .cardPos5 { --card-rest-rot: 1.8deg; --card-rest-y: 0px; }
+  .cardPos0 {
+    --card-rest-rot: -2deg;
+    --card-rest-y: 0px;
+  }
+
+  .cardPos1 {
+    --card-rest-rot: 1.8deg;
+    --card-rest-y: 0px;
+  }
+
+  .cardPos2 {
+    --card-rest-rot: -1.8deg;
+    --card-rest-y: 0px;
+  }
+
+  .cardPos3 {
+    --card-rest-rot: 1.8deg;
+    --card-rest-y: 0px;
+  }
+
+  .cardPos4 {
+    --card-rest-rot: -1.6deg;
+    --card-rest-y: 0px;
+  }
+
+  .cardPos5 {
+    --card-rest-rot: 1.8deg;
+    --card-rest-y: 0px;
+  }
 
   .pinnedCard {
     padding: 24px 16px 16px 16px;

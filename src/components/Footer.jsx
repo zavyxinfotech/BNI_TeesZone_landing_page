@@ -5,21 +5,16 @@ import {
   Clock,
   MapPin,
   ExternalLink,
-  ShieldCheck,
-  Building,
-  Heart
+  ShieldCheck
 } from 'lucide-react';
 import { companyInfo } from '../data/companyInfo';
 import { useInView } from './animations/useInView';
-import { useReducedMotion } from './animations/useReducedMotion';
-import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import ScaleReveal from './animations/ScaleReveal';
 import styles from './Footer.module.css';
 
 export default function Footer() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
-  const prefersReduced = useReducedMotion();
 
   return (
     <footer id="contact" ref={ref} className={styles.footerSection}>
@@ -35,26 +30,22 @@ export default function Footer() {
 
       <div className={`container ${styles.footerContainer}`}>
         <div className={styles.footerGrid}>
-          {/* Left Column: Contact & Legal Entity */}
+          {/* Left Column: Larger TeesZone Logo & Contact Details */}
           <div className={styles.footerLeft}>
             <FadeUp trigger={inView} delay={0.06} blur={false}>
-              <div className={styles.subHeading}>Corporate Office &amp; Contact</div>
+              <div className={styles.footerLogoWrap}>
+                <picture>
+                  <source srcSet="/images/logos/teeszone_logo.webp" type="image/webp" />
+                  <img
+                    src="/images/logos/teeszone_logo.png"
+                    alt="TeesZone - Elevate your style with custom tees"
+                    className={styles.footerLogo}
+                  />
+                </picture>
+              </div>
             </FadeUp>
 
-            <h3 className={styles.mainHeading}>
-              {prefersReduced ? (
-                "Speak With a Dedicated Apparel Specialist"
-              ) : (
-                <WordReveal
-                  text="Speak With a Dedicated Apparel Specialist"
-                  trigger={inView}
-                  delay={0.14}
-                  stagger={0.08}
-                />
-              )}
-            </h3>
-
-            <FadeUp trigger={inView} delay={0.4} blur={true}>
+            <FadeUp trigger={inView} delay={0.2} blur={true}>
               <p className={styles.supportText}>
                 Custom embroidery specs, bulk uniform orders, or corporate swag boxes?
                 Our team is available to assist you.
@@ -62,19 +53,6 @@ export default function Footer() {
             </FadeUp>
 
             <div className={styles.companyMetaList}>
-              {/* Legal Entity */}
-              <FadeUp trigger={inView} delay={0.48} blur={false}>
-                <div className={styles.metaRow}>
-                  <ScaleReveal trigger={inView} delay={0.52}>
-                    <Building size={18} className={styles.metaIcon} />
-                  </ScaleReveal>
-                  <div className={styles.metaTextGroup}>
-                    <span className={styles.metaLabel}>Legal Entity</span>
-                    <span className={styles.metaValueHighlight}>{companyInfo.name}</span>
-                  </div>
-                </div>
-              </FadeUp>
-
               {/* GSTIN */}
               <FadeUp trigger={inView} delay={0.56} blur={false}>
                 <div className={styles.metaRow}>
@@ -159,21 +137,8 @@ export default function Footer() {
               </p>
             </FadeUp>
 
-            <FadeUp trigger={inView} delay={0.4} blur={false}>
-              <div className={styles.addressBox}>
-                <ScaleReveal trigger={inView} delay={0.44}>
-                  <MapPin size={20} className={styles.addressPinIcon} />
-                </ScaleReveal>
-                <address className={styles.addressContent}>
-                  {companyInfo.address.line1}<br />
-                  {companyInfo.address.line2}<br />
-                  {companyInfo.address.line3}
-                </address>
-              </div>
-            </FadeUp>
-
             {/* Embedded Google Maps Box - Fade-in */}
-            <FadeUp trigger={inView} delay={0.52} blur={true}>
+            <FadeUp trigger={inView} delay={0.35} blur={true}>
               <div className={styles.mapContainer}>
                 <iframe
                   title="TeesZone Texvalley Office Location Map"
@@ -186,6 +151,20 @@ export default function Footer() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className={styles.mapIframe}
                 />
+              </div>
+            </FadeUp>
+
+            {/* Location Address aligned below Map (no background/border) */}
+            <FadeUp trigger={inView} delay={0.48} blur={false}>
+              <div className={styles.addressBox}>
+                <ScaleReveal trigger={inView} delay={0.52}>
+                  <MapPin size={20} className={styles.addressPinIcon} />
+                </ScaleReveal>
+                <address className={styles.addressContent}>
+                  {companyInfo.address.line1}<br />
+                  {companyInfo.address.line2}<br />
+                  {companyInfo.address.line3}
+                </address>
               </div>
             </FadeUp>
 
@@ -208,21 +187,17 @@ export default function Footer() {
         {/* Bottom Copyright, Developer Credit & BNI Chapter Tagline */}
         <FadeUp trigger={inView} delay={0.7} blur={false}>
           <div className={styles.bottomBar}>
-            <div className={styles.copyrightGroup}>
-              <div className={styles.copyrightText}>
-                &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
-              </div>
-              <div className={styles.devCredit}>
-                Developed with <span className={styles.heartSymbol} aria-label="love">&hearts;</span> By{' '}
-                <a
-                  href="https://zavyx.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.zavyxLink}
-                >
-                  ZAVYX InfoTech
-                </a>
-              </div>
+            <div className={styles.copyrightText}>
+              &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.{' '}
+              Developed with <span className={styles.heartSymbol} aria-label="love">&hearts;</span> By{' '}
+              <a
+                href="https://zavyx.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.zavyxLink}
+              >
+                ZAVYX InfoTech
+              </a>
             </div>
             <div className={styles.bniBottomTag}>
               <span>Proud Member of <strong>{companyInfo.bniChapter}</strong></span>

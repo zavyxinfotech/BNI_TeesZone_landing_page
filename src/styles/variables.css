@@ -16,8 +16,8 @@
   --color-whatsapp-green: #25D366;
   --color-whatsapp-dark: #1EBE5D;
 
-  /* Typography */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography - Unified Hero Font Family across entire landing page */
+  --font-body: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Radii */
@@ -41,5 +41,5 @@
 
   /* Containers */
   --container-max: 1240px;
-  --header-height: 76px;
+  --header-height: 92px;
 }

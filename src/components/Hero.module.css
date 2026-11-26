@@ -4,14 +4,14 @@
   background-image: url('/images/hero_bg_desktop.webp');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center right;
+  background-position: center bottom;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
-  padding-top: var(--header-height, 76px);
+  padding-top: var(--header-height, 92px);
 }
 
 .ambientGlow {
@@ -84,8 +84,8 @@
   transform: translateY(18px);
   letter-spacing: 5px;
   transition: opacity 0.25s ease,
-              transform 0.25s ease,
-              letter-spacing 0.25s ease;
+    transform 0.25s ease,
+    letter-spacing 0.25s ease;
 }
 
 .heroLoaded .animateEyebrow {
@@ -93,8 +93,8 @@
   transform: translateY(0);
   letter-spacing: 3px;
   transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)),
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)),
-              letter-spacing 1.1s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1));
+    transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)),
+    letter-spacing 1.1s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 /* 2. Brand Row (TeesZone | Thin Line Divider | BNI Badge) */
@@ -118,14 +118,14 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .animateTzLogo {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.12s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.12s;
+    transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.12s;
 }
 
 .tzLogoImg {
@@ -134,12 +134,39 @@
   object-fit: contain;
 }
 
-/* Thin line between TeesZone logo and BNI logo */
+/* Thin line between TeesZone logo and BNI logo with minimal shining effect */
 .verticalDivider {
-  width: 1px;
+  position: relative;
+  width: 1.5px;
   height: 44px;
-  background-color: rgba(91, 0, 19, 0.35);
-  border-radius: 0.5px;
+  background: linear-gradient(180deg, rgba(91, 0, 19, 0.15) 0%, rgba(91, 0, 19, 0.45) 50%, rgba(91, 0, 19, 0.15) 100%);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.verticalDivider::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(180deg, transparent 0%, rgba(236, 194, 116, 0.9) 50%, transparent 100%);
+  animation: thinLineShine 3.6s ease-in-out infinite;
+}
+
+@keyframes thinLineShine {
+  0% {
+    top: -60%;
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  65%, 100% {
+    top: 120%;
+    opacity: 0;
+  }
 }
 
 .animateDivider {
@@ -147,14 +174,14 @@
   transform: scaleY(0.4);
   transform-origin: center;
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .animateDivider {
   opacity: 0.85;
   transform: scaleY(1);
   transition: opacity 0.85s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.2s,
-              transform 0.85s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.2s;
+    transform 0.85s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.2s;
 }
 
 .bniBadgeWrap {
@@ -168,14 +195,14 @@
   opacity: 0;
   transform: scale(0.88);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .animateBniBadge {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.95s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.24s,
-              transform 0.95s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.24s;
+    transform 0.95s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.24s;
 }
 
 .bniBadgeImg {
@@ -186,7 +213,8 @@
 
 .bniChapterName {
   font-size: 0.74rem;
-  font-weight: 500; /* Non-bold clean typography */
+  font-weight: 500;
+  /* Non-bold clean typography */
   color: var(--color-deep-maroon);
   letter-spacing: 0.5px;
   margin-top: 2px;
@@ -196,14 +224,14 @@
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .animateBniChapter {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s,
-              transform 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s;
+    transform 0.9s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.35s;
 }
 
 /* 3. Main Hero Heading: Non-bold typography (font-weight: 500) */
@@ -214,12 +242,13 @@
 
 .mainHeading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.1vw, 2.85rem);
-  font-weight: 500; /* Elegant non-bold font */
+  font-size: clamp(1.95rem, 2.85vw, 2.65rem);
+  font-weight: 500;
+  /* Elegant non-bold font */
   line-height: 1.24;
   color: var(--color-deep-maroon);
   letter-spacing: -0.015em;
-  max-width: 580px;
+  max-width: 530px;
 }
 
 /* 4. CTA Buttons Area */
@@ -232,14 +261,14 @@
   opacity: 0;
   transform: translateY(20px) scale(0.97);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .animateButtons {
   opacity: 1;
   transform: translateY(0) scale(1);
   transition: opacity 1s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.65s,
-              transform 1s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.65s;
+    transform 1s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.65s;
 }
 
 .ctasRow {
@@ -255,12 +284,49 @@
   font-weight: 500;
 }
 
+/* Right Section Models Image (Desktop: 30% taller, clear of left text, tucked into wave) */
+.heroModelsWrap {
+  position: absolute;
+  right: max(8px, calc((100vw - 1440px) / 2));
+  bottom: 52px;
+  width: clamp(520px, 52vw, 860px);
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.heroModelsImg {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 96px);
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
+  filter: drop-shadow(0 12px 24px rgba(87, 0, 20, 0.12));
+}
+
 /* 5. Bottom Curved Burgundy Wave with Trust Indicators */
 .bottomWaveSection {
   position: relative;
   width: 100%;
   z-index: 5;
   margin-top: -16px;
+}
+
+.waveGoldStroke {
+  animation: goldWavePulse 4s ease-in-out infinite;
+}
+
+@keyframes goldWavePulse {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(236, 194, 116, 0.75));
+  }
 }
 
 .waveSvgWrapper {
@@ -327,56 +393,56 @@
   opacity: 0;
   transform: scale(0.7);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .trustText {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .trustItem1 .trustIcon {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.72s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.72s;
+    transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.72s;
 }
 
 .heroLoaded .trustItem1 .trustText {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.76s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.76s;
+    transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.76s;
 }
 
 .heroLoaded .trustItem2 .trustIcon {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.88s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.88s;
+    transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 0.88s;
 }
 
 .heroLoaded .trustItem2 .trustText {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.92s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.92s;
+    transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 0.92s;
 }
 
 .heroLoaded .trustItem3 .trustIcon {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.04s,
-              transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.04s;
+    transform 0.85s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)) 1.04s;
 }
 
 .heroLoaded .trustItem3 .trustText {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.08s,
-              transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.08s;
+    transform 0.95s var(--ease-out-premium, cubic-bezier(0.16, 1, 0.3, 1)) 1.08s;
 }
 
 .starWrap {
@@ -384,14 +450,14 @@
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 0.25s ease,
-              transform 0.25s ease;
+    transform 0.25s ease;
 }
 
 .heroLoaded .starWrap {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.65s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1)),
-              transform 0.65s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1));
+    transform 0.65s var(--ease-spring-subtle, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
 .googleIconBadge {
@@ -430,10 +496,10 @@
 
 .wavyItemTitle {
   font-family: var(--font-heading);
-  font-size: 1.02rem;
-  font-weight: 500; /* Non-bold clean typography */
+  font-size: 1.18rem;
+  font-weight: 500;
   color: #FFFFFF;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.25px;
   display: block;
 }
 
@@ -445,10 +511,10 @@
 }
 
 .wavyItemSubtitle {
-  font-size: 0.85rem;
+  font-size: 0.94rem;
   color: #D8A63B;
   display: block;
-  font-weight: 400; /* Non-bold clean typography */
+  font-weight: 400;
 }
 
 .wavyDivider {
@@ -469,9 +535,9 @@
     background-image: url('/images/hero_bg_mobile.webp');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center top;
+    background-position: center bottom;
     min-height: auto;
-    padding: calc(var(--header-height, 76px) + 8px) 0 0 0;
+    padding: calc(var(--header-height, 92px) + 8px) 0 0 0;
   }
 
   .ambientGlow {
@@ -481,9 +547,26 @@
   .heroContainer {
     padding-left: 16px;
     padding-right: 16px;
-    min-height: 560px;
-    padding-bottom: 240px; /* Leaves clear space for the 5-garment pedestal at bottom of mobile background */
+    min-height: auto;
+    padding-bottom: 12px;
     align-items: flex-start;
+  }
+
+  /* Align Image 2 at bottom of mobile hero, tucked into the wavy design */
+  .heroModelsWrap {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 440px;
+    margin: 4px auto -28px auto;
+    z-index: 3;
+    justify-content: center;
+  }
+
+  .heroModelsImg {
+    max-height: none;
+    width: 100%;
   }
 
   .heroGrid {
@@ -544,7 +627,8 @@
 
   .mainHeading {
     font-size: 1.55rem;
-    font-weight: 500; /* Non-bold on mobile too */
+    font-weight: 500;
+    /* Non-bold on mobile too */
     line-height: 1.28;
     margin: 0 auto;
     max-width: 100%;
@@ -576,9 +660,15 @@
     height: 42px;
   }
 
-  /* Hide Desktop static container */
-  .desktopTrustContainer {
+  /* Remove the line above the bottom section in mobile view */
+  .waveGoldStroke {
     display: none;
+  }
+
+  /* Hide Desktop static container & divider lines on mobile */
+  .desktopTrustContainer,
+  .wavyDivider {
+    display: none !important;
   }
 
   /* Show Mobile continuous single-row ticker */
@@ -595,7 +685,7 @@
   .mobileTickerTrack {
     display: flex;
     width: max-content;
-    animation: tickerScroll 18s linear infinite;
+    animation: tickerScroll 18s linear infinite !important;
     will-change: transform;
   }
 
@@ -617,12 +707,12 @@
   }
 
   .wavyItemTitle {
-    font-size: 0.92rem;
+    font-size: 1.04rem;
     font-weight: 500;
   }
 
   .wavyItemSubtitle {
-    font-size: 0.78rem;
+    font-size: 0.86rem;
     font-weight: 400;
   }
 
@@ -643,6 +733,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

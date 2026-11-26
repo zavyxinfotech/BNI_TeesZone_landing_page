@@ -1,33 +1,32 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Palette, Layers, PackageCheck, Clock, ArrowRight } from 'lucide-react';
 import { manufacturedProducts } from '../data/products';
 import { useInView } from './animations/useInView';
-import { useReducedMotion } from './animations/useReducedMotion';
 import WordReveal from './animations/WordReveal';
 import FadeUp from './animations/FadeUp';
 import styles from './Products.module.css';
 
+const FEATURE_BLOCKS = [
+  { id: 'branding', label: 'Custom Branding', Icon: Palette },
+  { id: 'fabrics', label: 'Premium Fabrics', Icon: Layers },
+  { id: 'bulk', label: 'Bulk Order Solutions', Icon: PackageCheck },
+  { id: 'delivery', label: 'On-Time Delivery', Icon: Clock }
+];
+
 export default function Products({ onSelectProduct }) {
-  const [sectionRef, inView] = useInView({ threshold: 0.15, triggerOnce: false });
-  const prefersReduced = useReducedMotion();
+  const [sectionRef, inView] = useInView({ threshold: 0.12, triggerOnce: false });
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const touchStartX = useRef(null);
-  const touchStartY = useRef(null);
   const isHoveredRef = useRef(false);
   const pauseTimerRef = useRef(null);
-
   const total = manufacturedProducts.length;
+  const activeProduct = manufacturedProducts[activeIndex] || manufacturedProducts[0];
 
   const nextProduct = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
   }, [total]);
 
-  const prevProduct = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
-
-  // Temporarily pause auto-play on user interaction (tap, click, swipe)
   const pauseAutoPlayTemporarily = useCallback((duration = 4500) => {
     setIsPaused(true);
     if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
@@ -38,81 +37,157 @@ export default function Products({ onSelectProduct }) {
     }, duration);
   }, []);
 
-  // Cinematic Automatic Scrolling one by one when user scrolls into the section
-  // Note: Page scrolling is NEVER hijacked or prevented so user can freely move to next section!
+  // Smooth one-by-one automatic scrolling across the apparel showcase
   useEffect(() => {
     if (!inView || isPaused) return;
-
     const interval = setInterval(() => {
       if (!isHoveredRef.current) {
         nextProduct();
       }
-    }, 3000);
-
+    }, 2800);
     return () => clearInterval(interval);
   }, [inView, isPaused, nextProduct]);
 
-  // Touch swipe support for mobile without interfering with vertical page scrolling
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null || touchStartY.current === null) return;
-    const diffX = touchStartX.current - e.changedTouches[0].clientX;
-    const diffY = touchStartY.current - e.changedTouches[0].clientY;
-
-    // Only trigger card change if the horizontal swipe is dominant (not vertical scrolling)
-    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-      if (diffX > 0) {
-        nextProduct();
-      } else {
-        prevProduct();
-      }
-      pauseAutoPlayTemporarily(5000);
-    }
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
+  useEffect(() => {
+    return () => {
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    };
+  }, []);
 
   return (
     <section
       id="manufacturing"
       ref={sectionRef}
       className={styles.productsSection}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       aria-label="What We Manufacture"
     >
       <div className={styles.productsContainer}>
-        {/* Right-Aligned Heading & Enlarged Description (Properly Cleared from Top Header) */}
-        <div className={styles.headingArea}>
-          <h2 className={styles.sectionTitle}>
-            {prefersReduced ? (
-              "What We Manufacture"
-            ) : (
+        {/* Top Balanced Two-Column Desktop Layout */}
+        <div className={styles.topTwoColGrid}>
+          {/* Left Column: Preserved Large Hero Apparel Card */}
+          <div
+            className={styles.heroCardCol}
+            onMouseEnter={() => {
+              isHoveredRef.current = true;
+              setIsPaused(true);
+            }}
+            onMouseLeave={() => {
+              isHoveredRef.current = false;
+              setIsPaused(false);
+            }}
+          >
+            <div
+              key={activeProduct.id}
+              className={styles.heroCardBox}
+              onClick={() => {
+                pauseAutoPlayTemporarily(5000);
+                onSelectProduct && onSelectProduct(activeProduct);
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectProduct && onSelectProduct(activeProduct);
+                }
+              }}
+              aria-label={`${activeProduct.name} - Click for details`}
+            >
+              <picture>
+                <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                <img
+                  src="/images/products/serve_card_bg_desktop.png"
+                  alt=""
+                  className={styles.cardBg}
+                  aria-hidden="true"
+                />
+              </picture>
+
+              <div className={styles.heroApparelWrap}>
+                <picture>
+                  <source srcSet={activeProduct.image} type="image/webp" />
+                  <img
+                    src={activeProduct.image.replace('.webp', '.png')}
+                    alt={`${activeProduct.name} customized with YOUR LOGO`}
+                    className={styles.heroApparelImg}
+                    loading="eager"
+                    width="340"
+                    height="340"
+                  />
+                </picture>
+              </div>
+
+              <div className={styles.heroTitleWrap}>
+                <h3 className={styles.heroCardTitle}>{activeProduct.name}</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Heading, Subheading, Description, 4 Feature Blocks & CTA */}
+          <div className={styles.contentCol}>
+            <h2 className={styles.sectionTitle}>
               <WordReveal
                 text="What We Manufacture"
                 trigger={inView}
-                delay={0.06}
-                stagger={0.08}
+                delay={0.05}
+                stagger={0.07}
               />
-            )}
-          </h2>
+            </h2>
 
-          <div className={styles.goldAccentLine} aria-hidden="true" />
+            <div className={styles.goldAccentLine} aria-hidden="true" />
 
-          <FadeUp trigger={inView} delay={0.22} blur={true}>
-            <p className={styles.sectionSubtitle}>
-              A wide range of customized apparel for every business need.
-            </p>
-          </FadeUp>
+            <FadeUp trigger={inView} delay={0.14} blur={false}>
+              <p className={styles.sectionSubheading}>
+                Custom Apparel Manufacturing Solutions for Every Industry
+              </p>
+            </FadeUp>
+
+            <FadeUp trigger={inView} delay={0.22} blur={true}>
+              <p className={styles.sectionDescription}>
+                Corporate uniforms, sportswear, school uniforms and premium custom-branded clothing — crafted with precision and quality.
+              </p>
+            </FadeUp>
+
+            {/* 4 Professional Feature Blocks in a clean 1-row grid */}
+            <FadeUp trigger={inView} delay={0.3} blur={false}>
+              <div className={styles.featuresGrid}>
+                {FEATURE_BLOCKS.map(({ id, label, Icon }) => (
+                  <div key={id} className={styles.featureBlock}>
+                    <div className={styles.featureIconWrap}>
+                      <Icon size={24} strokeWidth={1.8} className={styles.featureIcon} />
+                    </div>
+                    <span className={styles.featureLabel}>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeUp>
+
+            {/* Premium CTA Block */}
+            <FadeUp trigger={inView} delay={0.38} blur={false}>
+              <div className={styles.ctaBox}>
+                <div className={styles.ctaTextWrap}>
+                  <h3 className={styles.ctaHeadline}>Your Brand. Our Craftsmanship.</h3>
+                  <p className={styles.ctaDesc}>
+                    From fabric selection to final finishing, bring your custom apparel vision to life.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => onSelectProduct && onSelectProduct(activeProduct)}
+                  className={styles.exploreBtn}
+                >
+                  <span>Explore Our Apparel</span>
+                  <ArrowRight size={17} />
+                </button>
+              </div>
+            </FadeUp>
+          </div>
         </div>
 
-        {/* Dynamic Card Stage: Persistent items animate cinematically between slots */}
+        {/* Bottom Apparel Product Cards Strip */}
         <div
-          className={styles.stageWrapper}
+          className={styles.bottomCardsRow}
           onMouseEnter={() => {
             isHoveredRef.current = true;
             setIsPaused(true);
@@ -122,76 +197,64 @@ export default function Products({ onSelectProduct }) {
             setIsPaused(false);
           }}
         >
-          <div className={styles.cardsStage}>
-            {manufacturedProducts.map((product, originalIdx) => {
-              // Circular slot index: 0 = Main Card, 1..4 = Small Cards
-              const slot = (originalIdx - activeIndex + total) % total;
-              const isMain = slot === 0;
-
-              return (
-                <div
-                  key={product.id}
-                  className={`${styles.cardSlotItem} ${styles[`slotPos${slot}`]}`}
-                  onClick={() => {
+          {manufacturedProducts.map((product, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <div
+                key={product.id}
+                className={`${styles.smallCardItem} ${isActive ? styles.smallCardActive : ''}`}
+                onClick={() => {
+                  pauseAutoPlayTemporarily(5000);
+                  if (isActive) {
+                    onSelectProduct && onSelectProduct(product);
+                  } else {
+                    setActiveIndex(idx);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
                     pauseAutoPlayTemporarily(5000);
-                    if (isMain) {
-                      onSelectProduct && onSelectProduct(product);
-                    } else {
-                      // Clicking any small card smoothly activates it into main position
-                      setActiveIndex(originalIdx);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      pauseAutoPlayTemporarily(5000);
-                      if (isMain) onSelectProduct && onSelectProduct(product);
-                      else setActiveIndex(originalIdx);
-                    }
-                  }}
-                  aria-label={`${product.name}${isMain ? ' (Main View)' : ''}`}
-                >
-                  {/* Card Container with Shaded 3D Gold & Burgundy Frame (Who We Serve Card Design) */}
-                  <div className={styles.cardBox}>
+                    if (isActive) onSelectProduct && onSelectProduct(product);
+                    else setActiveIndex(idx);
+                  }
+                }}
+                aria-label={product.name}
+              >
+                <div className={styles.smallCardBox}>
+                  <picture>
+                    <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                    <img
+                      src="/images/products/serve_card_bg_desktop.png"
+                      alt=""
+                      className={styles.cardBg}
+                      aria-hidden="true"
+                    />
+                  </picture>
+
+                  <div className={styles.smallApparelWrap}>
                     <picture>
-                      <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                      <source srcSet={product.image} type="image/webp" />
                       <img
-                        src="/images/products/serve_card_bg_desktop.png"
-                        alt=""
-                        className={styles.cardBg}
-                        aria-hidden="true"
+                        src={product.image.replace('.webp', '.png')}
+                        alt={`${product.name} customized with YOUR LOGO`}
+                        className={styles.smallApparelImg}
+                        loading="lazy"
+                        width="180"
+                        height="180"
                       />
                     </picture>
+                  </div>
 
-                    {/* Apparel Product Image cleanly aligned in upper card area */}
-                    <div className={isMain ? styles.mainApparelWrap : styles.smallApparelWrap}>
-                      <picture>
-                        <source srcSet={product.image} type="image/webp" />
-                        <img
-                          src={product.image.replace('.webp', '.png')}
-                          alt={`${product.name} customized with YOUR LOGO`}
-                          className={isMain ? styles.mainApparelImg : styles.smallApparelImg}
-                          loading={isMain ? 'eager' : 'lazy'}
-                          width={isMain ? 320 : 180}
-                          height={isMain ? 320 : 180}
-                        />
-                      </picture>
-                    </div>
-
-                    {/* Product Title in Italic Typography on Burgundy Lower Wave */}
-                    <div className={isMain ? styles.mainTitleWrap : styles.smallTitleWrap}>
-                      <h3 className={isMain ? styles.mainCardTitle : styles.smallCardTitle}>
-                        {product.name}
-                      </h3>
-                    </div>
+                  <div className={styles.smallTitleWrap}>
+                    <h4 className={styles.smallCardTitle}>{product.name}</h4>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

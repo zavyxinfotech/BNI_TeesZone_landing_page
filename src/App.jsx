@@ -8,6 +8,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import ProductGallery from './components/ProductGallery';
 import BniCollaboration from './components/BniCollaboration';
 import BniPricingBanner from './components/BniPricingBanner';
+import TrustedCorporatePartners from './components/TrustedCorporatePartners';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import IntroductionModal from './components/IntroductionModal';
@@ -56,6 +57,9 @@ export default function App() {
 
         {/* 10. Exclusive BNI Member Pricing Banner */}
         <BniPricingBanner onClaimOffer={() => handleOpenIntroModal('discount')} />
+
+        {/* 11. Trusted Corporate Partners */}
+        <TrustedCorporatePartners />
       </main>
 
       {/* 11. Corporate Office & Contact Footer */}

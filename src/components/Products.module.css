@@ -1,155 +1,73 @@
-/* What We Manufacture Section - Cinematic 3D Glassmorphism Showcase */
+/* What We Manufacture Section - Balanced 2-Column Editorial Layout */
 
 .productsSection {
-  background: var(--color-cream);
+  background-color: var(--color-cream);
   position: relative;
   overflow: visible;
   width: 100%;
   box-sizing: border-box;
-  /* Always clear fixed header so heading is never cropped */
-  padding-top: calc(var(--header-height, 76px) + 16px);
-  padding-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  scroll-margin-top: 0;
-}
-
-/* Fit entire section gracefully within desktop view height */
-@media (min-width: 1024px) {
-  .productsSection {
-    min-height: auto;
-    height: auto;
-    max-height: none;
-    padding-top: calc(var(--header-height, 76px) + 18px);
-    padding-bottom: 48px;
-  }
+  padding: calc(var(--header-height, 92px) + 18px) 0 48px 0;
 }
 
 .productsContainer {
   position: relative;
   z-index: 2;
-  max-width: 1260px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
   box-sizing: border-box;
 }
 
-/* 1. Tighter Spacing between Heading and Cards */
-.headingArea {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-  width: 100%;
-  max-width: 780px;
-  margin: 0 0 -10px auto;
-  padding-right: 12px;
-  position: relative;
-  z-index: 3;
-}
-
-.sectionTitle {
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 3.1vw, 2.85rem);
-  font-weight: 600;
-  color: #7A001F;
-  letter-spacing: -0.02em;
-  margin: 0 0 6px 0;
-  line-height: 1.15;
-}
-
-.goldAccentLine {
-  width: 52px;
-  height: 3px;
-  background: #D9A441;
-  border-radius: 2px;
-  margin: 4px 0 10px auto;
-}
-
-.sectionSubtitle {
-  font-size: clamp(1.12rem, 1.35vw, 1.28rem);
-  color: #625553;
-  max-width: 600px;
-  line-height: 1.5;
-  margin: 0;
-  font-weight: 400;
-}
-
-/* Stage Wrapper */
-.stageWrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-/* 3D Cards Stage holding persistent card slots */
-.cardsStage {
-  position: relative;
-  width: 100%;
-  height: 440px;
-  margin: 0 auto;
-  overflow: visible;
-}
-
-/* 3. Cinematic 0.95s Cubic-Bezier Sliding Animation */
-.cardSlotItem {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    left 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-    bottom 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.95s ease,
-    z-index 0.95s step-start;
-  will-change: left, bottom, transform;
-}
-
 /* ========================================================
-   SLOT 0: Main Card Position (Left Side)
-   - Enlarged card with Who We Serve 3D Gold & Burgundy Frame
-   - Apparel centered in upper area
-   - Product title in white italic font in burgundy lower wave
+   Top Two-Column Desktop Layout
+   Left: Large Hero T-Shirt Card | Right: Heading, Features & CTA
    ======================================================== */
-.slotPos0 {
-  left: 20px;
-  bottom: 35px;
-  z-index: 10;
-  opacity: 1;
+.topTwoColGrid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 36px;
 }
 
-.slotPos0 .cardBox {
-  width: 295px;
+/* Left Column: Preserved Large Hero Card */
+.heroCardCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 38px;
+}
+
+.heroCardBox {
+  width: 340px;
   aspect-ratio: 574 / 679;
   position: relative;
   display: flex;
   flex-direction: column;
-  filter: drop-shadow(0 14px 28px rgba(122, 0, 31, 0.12)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.04));
+  cursor: pointer;
+  filter: drop-shadow(0 16px 30px rgba(122, 0, 31, 0.14)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+  animation: heroCardSwap 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (min-width: 1200px) {
-  .slotPos0 .cardBox {
-    width: 315px;
+@keyframes heroCardSwap {
+  from {
+    opacity: 0.72;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-.slotPos0:hover .cardBox {
-  transform: translateY(-6px) scale(1.02);
-  filter: drop-shadow(0 18px 36px rgba(122, 0, 31, 0.16)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.06));
+.heroCardBox:hover {
+  transform: translateY(-6px) scale(1.015);
+  filter: drop-shadow(0 20px 38px rgba(122, 0, 31, 0.18)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.06));
 }
 
-/* Card Background Image (3D Gold & Burgundy Frame) */
 .cardBg {
   position: absolute;
   inset: 0;
@@ -160,13 +78,12 @@
   pointer-events: none;
 }
 
-/* Main Apparel Enlarged & Aligned Half-Top above the Card */
-.mainApparelWrap {
+.heroApparelWrap {
   position: absolute;
-  top: -26%;
-  left: -4%;
-  right: -4%;
-  height: 82%;
+  top: -22%;
+  left: -2%;
+  right: -2%;
+  height: 80%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -175,161 +92,266 @@
   overflow: visible;
 }
 
-.mainApparelImg {
-  max-width: 106%;
-  max-height: 106%;
+.heroApparelImg {
+  max-width: 102%;
+  max-height: 102%;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-  mix-blend-mode: normal;
-  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.18));
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.slotPos0:hover .mainApparelImg {
-  transform: scale(1.06) translateY(-4px);
+.heroCardBox:hover .heroApparelImg {
+  transform: scale(1.05) translateY(-3px);
 }
 
-/* Main Card Title Centered inside Burgundy Lower Wave */
-.mainTitleWrap {
+.heroTitleWrap {
   position: absolute;
   bottom: 2%;
   left: 8%;
   right: 8%;
-  height: 35%;
+  height: 34%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   z-index: 2;
-  padding: 0 8px;
+  padding: 0 10px;
   pointer-events: none;
 }
 
-.mainCardTitle {
+.heroCardTitle {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: clamp(0.96rem, 1.15vw, 1.15rem);
-  font-weight: 600;
+  font-size: clamp(1.12rem, 1.35vw, 1.32rem);
+  font-weight: 500;
   font-style: italic;
   line-height: 1.25;
   margin: 0;
-  letter-spacing: -0.01em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
+/* Right Column: Heading, Subheading, Description, 4 Features & CTA */
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 3vw, 2.75rem);
+  font-weight: 500;
+  color: var(--color-deep-maroon);
+  letter-spacing: -0.015em;
+  margin: 0 0 8px 0;
+  line-height: 1.18;
+}
+
+.goldAccentLine {
+  width: 56px;
+  height: 3.5px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.sectionSubheading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.08rem, 1.35vw, 1.25rem);
+  font-weight: 500;
+  color: var(--color-primary-burgundy);
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+.sectionDescription {
+  font-size: 0.98rem;
+  color: var(--color-secondary-text);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 0 24px 0;
+  font-weight: 400;
+}
+
+/* 4 Professional Feature Blocks in a clean 1-row grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+.featureBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 10px;
+  background: transparent;
+  border-bottom: 1.5px solid rgba(216, 166, 59, 0.32);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.featureBlock:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gold);
+}
+
+.featureIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.featureIcon {
+  color: var(--color-primary-burgundy);
+}
+
+.featureLabel {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-deep-maroon);
+  line-height: 1.3;
+}
+
+/* Premium CTA Block */
+.ctaBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(216, 166, 59, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 28px rgba(87, 0, 20, 0.05);
+}
+
+.ctaTextWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ctaHeadline {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-deep-maroon);
+  margin: 0;
+}
+
+.ctaDesc {
+  font-size: 0.88rem;
+  color: var(--color-secondary-text);
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-primary-burgundy);
+  color: #FFFFFF;
+  padding: 13px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 20px rgba(128, 0, 25, 0.2);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exploreBtn:hover {
+  background-color: var(--color-deep-maroon);
+  border-color: var(--color-gold);
+  box-shadow: 0 10px 26px rgba(216, 166, 59, 0.32), 0 4px 12px rgba(87, 0, 20, 0.25);
+  transform: translateY(-2px);
+}
+
 /* ========================================================
-   SLOTS 1 to 4: Small Cards in Horizontal Row to the Right
-   - Balanced Proportional Spacing
-   - Who We Serve 3D Gold & Burgundy Card Design
+   Bottom Apparel Product Cards Row
    ======================================================== */
-.slotPos1 {
-  left: 360px;
-  bottom: 48px;
-  z-index: 6;
+.bottomCardsRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  width: 100%;
+  align-items: end;
+}
+
+.smallCardItem {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.84;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.smallCardItem:hover,
+.smallCardActive {
   opacity: 1;
+  transform: translateY(-6px);
 }
 
-.slotPos2 {
-  left: 568px;
-  bottom: 48px;
-  z-index: 6;
-  opacity: 1;
-}
-
-.slotPos3 {
-  left: 776px;
-  bottom: 48px;
-  z-index: 6;
-  opacity: 1;
-}
-
-.slotPos4 {
-  left: 984px;
-  bottom: 48px;
-  z-index: 6;
-  opacity: 1;
-}
-
-@media (min-width: 1200px) {
-  .slotPos1 {
-    left: 382px;
-  }
-
-  .slotPos2 {
-    left: 597px;
-  }
-
-  .slotPos3 {
-    left: 812px;
-  }
-
-  .slotPos4 {
-    left: 1027px;
-  }
-}
-
-.slotPos1 .cardBox,
-.slotPos2 .cardBox,
-.slotPos3 .cardBox,
-.slotPos4 .cardBox {
-  width: 178px;
+.smallCardBox {
+  width: 100%;
+  max-width: 210px;
   aspect-ratio: 574 / 679;
   position: relative;
   display: flex;
   flex-direction: column;
-  filter: drop-shadow(0 10px 22px rgba(122, 0, 31, 0.09)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.03));
-  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: drop-shadow(0 10px 20px rgba(122, 0, 31, 0.09));
+  transition: filter 0.3s ease;
 }
 
-@media (min-width: 1200px) {
-
-  .slotPos1 .cardBox,
-  .slotPos2 .cardBox,
-  .slotPos3 .cardBox,
-  .slotPos4 .cardBox {
-    width: 185px;
-  }
+.smallCardActive .smallCardBox,
+.smallCardItem:hover .smallCardBox {
+  filter: drop-shadow(0 16px 28px rgba(122, 0, 31, 0.18));
 }
 
-.cardSlotItem:hover .cardBox {
-  transform: translateY(-6px) scale(1.025);
-  filter: drop-shadow(0 16px 32px rgba(122, 0, 31, 0.14)) drop-shadow(0 5px 12px rgba(0, 0, 0, 0.05));
-}
-
-/* Small Cards: Apparel Wrap and Image */
 .smallApparelWrap {
   position: absolute;
-  top: 9%;
+  top: 8%;
   left: 9%;
   right: 9%;
-  height: 50%;
+  height: 52%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
   pointer-events: none;
-  overflow: visible;
 }
 
 .smallApparelImg {
-  max-width: 82%;
-  max-height: 85%;
+  max-width: 84%;
+  max-height: 88%;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-  mix-blend-mode: normal;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s ease;
 }
 
-.cardSlotItem:hover .smallApparelImg {
-  transform: scale(1.07) translateY(-2px);
+.smallCardItem:hover .smallApparelImg {
+  transform: scale(1.06);
 }
 
-/* Small Cards: Title Centered inside Burgundy Lower Wave */
 .smallTitleWrap {
   position: absolute;
   bottom: 2%;
@@ -348,164 +370,109 @@
 .smallCardTitle {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: clamp(0.72rem, 0.8vw, 0.82rem);
-  font-weight: 600;
+  font-size: clamp(0.84rem, 0.98vw, 0.96rem);
+  font-weight: 500;
   font-style: italic;
   line-height: 1.22;
   margin: 0;
-  letter-spacing: -0.01em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* ========================================================
-   Responsive Adjustments (Mobile & Tablet)
-   - Proper alignment within mobile viewport height and width
-   - No cropping of the heading
-   - Smooth cinematic carousel presentation
+   Responsive Tablet & Mobile Layouts
    ======================================================== */
-@media (max-width: 1023px) {
-  .productsSection {
-    padding-top: calc(var(--header-height, 64px) + 20px);
-    padding-bottom: 28px;
-    height: auto;
-    min-height: auto;
-    box-sizing: border-box;
-    overflow: hidden;
+@media (max-width: 1024px) {
+  .topTwoColGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
-  .productsContainer {
-    padding: 0 16px;
-    height: auto;
+  .heroCardCol {
+    padding-top: 28px;
   }
 
-  .headingArea {
+  .heroCardBox {
+    width: 280px;
+  }
+
+  .contentCol {
     align-items: center;
     text-align: center;
-    padding-right: 0;
-    margin: 0 auto 14px auto;
-    max-width: 100%;
-  }
-
-  .sectionTitle {
-    font-size: clamp(1.8rem, 5.2vw, 2.3rem);
-    margin: 0 0 4px 0;
   }
 
   .goldAccentLine {
-    margin: 3px auto 8px auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .sectionSubtitle {
-    font-size: clamp(0.95rem, 3.2vw, 1.08rem);
-    max-width: 500px;
-    line-height: 1.4;
-    padding: 0 8px;
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 
-  .cardsStage {
-    height: 400px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+  .featureBlock {
+    align-items: center;
+    text-align: center;
   }
 
-  /* Mobile Slot Positions: Active slot 0 centered, slot 1 peeks right, slot 4 peeks left */
-  .slotPos0 {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 22px;
-    z-index: 10;
-    opacity: 1;
+  .ctaBox {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
   }
 
-  .slotPos0 .cardBox {
-    width: 230px;
-    aspect-ratio: 574 / 679;
-    height: auto;
-    filter: drop-shadow(0 8px 18px rgba(122, 0, 31, 0.10));
+  .bottomCardsRow {
+    display: flex;
+    overflow-x: auto;
+    gap: 14px;
+    padding: 8px 4px 12px 4px;
+    scrollbar-width: none;
   }
 
-  .mainCardTitle {
-    font-size: 0.92rem;
-    padding: 0 4px;
+  .bottomCardsRow::-webkit-scrollbar {
+    display: none;
   }
 
-  .slotPos1 {
-    left: calc(50% + 140px);
-    bottom: 26px;
-    transform: scale(0.85);
-    z-index: 5;
-    opacity: 0.55;
-  }
-
-  .slotPos2,
-  .slotPos3 {
-    left: calc(50% + 300px);
-    bottom: 26px;
-    transform: scale(0.7);
-    z-index: 1;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .slotPos4 {
-    left: calc(50% - 275px);
-    bottom: 26px;
-    transform: scale(0.85);
-    z-index: 4;
-    opacity: 0.55;
-  }
-
-  .slotPos1 .cardBox,
-  .slotPos4 .cardBox {
-    width: 145px;
-    aspect-ratio: 574 / 679;
-    height: auto;
-    filter: drop-shadow(0 6px 14px rgba(122, 0, 31, 0.08));
-  }
-
-  .smallCardTitle {
-    font-size: 0.65rem;
-    padding: 0 4px;
-  }
-
-  .modern3dGoldenStage {
-    bottom: 4px;
-    max-width: 100%;
+  .smallCardItem {
+    flex: 0 0 155px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .productsSection {
-    padding-top: calc(var(--header-height, 64px) + 16px);
-    padding-bottom: 20px;
+    padding: calc(var(--header-height, 76px) + 16px) 0 36px 0;
+  }
+
+  .heroCardBox {
+    width: 240px;
   }
 
   .sectionTitle {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
   }
 
-  .sectionSubtitle {
+  .sectionSubheading {
+    font-size: 1rem;
+  }
+
+  .sectionDescription {
     font-size: 0.9rem;
   }
 
-  .cardsStage {
-    height: 365px;
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
-  .slotPos0 .cardBox {
-    width: 205px;
+  .featureLabel {
+    font-size: 0.82rem;
   }
 
-  .mainCardTitle {
-    font-size: 0.84rem;
+  .smallCardItem {
+    flex: 0 0 138px;
   }
 
-  .slotPos1 {
-    left: calc(50% + 120px);
-  }
-
-  .slotPos4 {
-    left: calc(50% - 245px);
+  .smallCardTitle {
+    font-size: 0.68rem;
   }
 }

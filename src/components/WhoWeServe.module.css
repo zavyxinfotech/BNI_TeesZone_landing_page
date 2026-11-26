@@ -37,7 +37,7 @@
 .sectionTitle {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 2.7vw, 2.6rem);
-  font-weight: 700;
+  font-weight: 500;
   color: #7A001F;
   margin: 0 0 6px 0;
   letter-spacing: -0.02em;
@@ -88,7 +88,8 @@
   width: 100%;
   height: clamp(340px, 45vh, 410px);
   background: transparent;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.16)) drop-shadow(0 -4px 12px rgba(0, 0, 0, 0.08));
+  filter: none;
+  box-shadow: none;
   box-sizing: border-box;
   position: relative;
   will-change: transform, filter;
@@ -130,16 +131,16 @@
 
 .numberBadge {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
 
 .cardTitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.85rem, 2.5vw, 2.55rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 2.75vw, 2.75rem);
+  font-weight: 500;
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.02em;
@@ -154,7 +155,7 @@
 }
 
 .cardDesc {
-  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
   line-height: 1.5;
   margin: 0;
   font-weight: 400;

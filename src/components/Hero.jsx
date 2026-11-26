@@ -65,7 +65,8 @@ export default function Hero({ onOpenIntroModal }) {
               end={5}
               duration={1400}
               trigger={isTrustActive}
-            /> Star Google Ratings
+            />{' '}
+            Star Google Ratings
           </span>
           <div className={styles.wavyStarsRow} aria-label="5 out of 5 stars">
             {[...Array(5)].map((_, i) => (
@@ -95,7 +96,8 @@ export default function Hero({ onOpenIntroModal }) {
               suffix="+"
               duration={1800}
               trigger={isTrustActive}
-            /> Happy Clients
+            />{' '}
+            Happy Clients
           </span>
           <span className={styles.wavyItemSubtitle}>Satisfied Businesses</span>
         </div>
@@ -115,7 +117,8 @@ export default function Hero({ onOpenIntroModal }) {
               suffix="%"
               duration={1600}
               trigger={isTrustActive}
-            /> PAN India Delivery
+            />{' '}
+            PAN India Delivery
           </span>
           <span className={styles.wavyItemSubtitle}>Doorstep Logistics</span>
         </div>
@@ -208,6 +211,21 @@ export default function Hero({ onOpenIntroModal }) {
         </div>
       </div>
 
+      {/* Right-aligned 4 Models Showcase (Top 60% Transparent, tucked into bottom wave) */}
+      <div className={styles.heroModelsWrap}>
+        <picture>
+          <source srcSet="/images/hero_models.webp" type="image/webp" />
+          <img
+            src="/images/hero_models.png"
+            alt="TeesZone Custom Corporate Polo, Sports Jersey, Hoodie and T-Shirt Models"
+            className={styles.heroModelsImg}
+            width="1024"
+            height="614"
+            loading="eager"
+          />
+        </picture>
+      </div>
+
       {/* Hero Bottom Contents: Trust Indicators Band with Counting Animation & Mobile Auto-scroll Ticker */}
       <div ref={trustRef} className={styles.bottomWaveSection} aria-label="Trust Indicators">
         <div className={styles.waveSvgWrapper} aria-hidden="true">
@@ -221,12 +239,13 @@ export default function Hero({ onOpenIntroModal }) {
               d="M0,52 C320,14 660,72 1020,32 C1220,10 1360,26 1440,18 L1440,80 L0,80 Z"
               fill="#5B0013"
             />
-            {/* Golden Contour Ribbon */}
+            {/* Golden Contour Ribbon (Desktop only; hidden in mobile view) */}
             <path
               d="M0,52 C320,14 660,72 1020,32 C1220,10 1360,26 1440,18"
               fill="none"
               stroke="#D8A63B"
               strokeWidth="2.5"
+              className={styles.waveGoldStroke}
             />
           </svg>
         </div>

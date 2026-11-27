@@ -40,6 +40,8 @@ export default function Footer() {
                     src="/images/logos/teeszone_logo.png"
                     alt="TeesZone - Elevate your style with custom tees"
                     className={styles.footerLogo}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </picture>
               </div>

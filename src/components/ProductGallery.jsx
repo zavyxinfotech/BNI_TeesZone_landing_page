@@ -247,7 +247,7 @@ export default function ProductGallery({ onImageClick }) {
                   onClick={() => handleCategoryChange(cat)}
                   className={`${styles.filterPill} ${isActive ? styles.filterPillActive : ''}`}
                 >
-                  {cat === 'All' ? 'All Reviews (30)' : cat}
+                  {cat === 'All' ? (isMobile ? 'All Reviews' : 'All Reviews (30)') : cat}
                 </button>
               );
             })}

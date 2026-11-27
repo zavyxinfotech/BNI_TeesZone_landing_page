@@ -125,9 +125,9 @@ export default function Products({ onSelectProduct }) {
               aria-label={`Show ${nextProductObj.name}`}
             >
               <div className={styles.mobileSideBox}>
-                <img src="/images/products/serve_card_bg_desktop.png" alt="" className={styles.cardBg} aria-hidden="true" />
+                <img src="/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
                 <div className={styles.smallApparelWrap}>
-                  <img src={nextProductObj.image} alt={nextProductObj.name} className={styles.smallApparelImg} />
+                  <img src={nextProductObj.image} alt={nextProductObj.name} className={styles.smallApparelImg} loading="lazy" decoding="async" />
                 </div>
                 <div className={styles.smallTitleWrap}>
                   <h4 className={styles.smallCardTitle}>{nextProductObj.name}</h4>
@@ -147,9 +147,9 @@ export default function Products({ onSelectProduct }) {
               aria-label={`Show ${prevProduct.name}`}
             >
               <div className={styles.mobileSideBox}>
-                <img src="/images/products/serve_card_bg_desktop.png" alt="" className={styles.cardBg} aria-hidden="true" />
+                <img src="/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
                 <div className={styles.smallApparelWrap}>
-                  <img src={prevProduct.image} alt={prevProduct.name} className={styles.smallApparelImg} />
+                  <img src={prevProduct.image} alt={prevProduct.name} className={styles.smallApparelImg} loading="lazy" decoding="async" />
                 </div>
                 <div className={styles.smallTitleWrap}>
                   <h4 className={styles.smallCardTitle}>{prevProduct.name}</h4>
@@ -234,18 +234,29 @@ export default function Products({ onSelectProduct }) {
             </div>
           </div>
 
-          {/* 5: 4 Feature Blocks */}
+          {/* 5: 4 Feature Blocks (Desktop: 1-row grid | Mobile: 1-row horizontal auto-scroll) */}
           <div className={styles.extrasBlock}>
             <FadeUp trigger={inView} delay={0.3} blur={false}>
-              <div className={styles.featuresGrid}>
-                {FEATURE_BLOCKS.map(({ id, label, Icon }) => (
-                  <div key={id} className={styles.featureBlock}>
-                    <div className={styles.featureIconWrap}>
-                      <Icon size={22} strokeWidth={1.8} className={styles.featureIcon} />
+              <div className={styles.featuresViewport}>
+                <div className={styles.featuresGrid}>
+                  {FEATURE_BLOCKS.map(({ id, label, Icon }) => (
+                    <div key={id} className={styles.featureBlock}>
+                      <div className={styles.featureIconWrap}>
+                        <Icon size={22} strokeWidth={1.8} className={styles.featureIcon} />
+                      </div>
+                      <span className={styles.featureLabel}>{label}</span>
                     </div>
-                    <span className={styles.featureLabel}>{label}</span>
-                  </div>
-                ))}
+                  ))}
+                  {/* Duplicated set for seamless mobile 1-row horizontal auto-scroll (hidden on desktop) */}
+                  {FEATURE_BLOCKS.map(({ id, label, Icon }) => (
+                    <div key={`${id}-dup`} className={`${styles.featureBlock} ${styles.mobileDupFeature}`} aria-hidden="true">
+                      <div className={styles.featureIconWrap}>
+                        <Icon size={22} strokeWidth={1.8} className={styles.featureIcon} />
+                      </div>
+                      <span className={styles.featureLabel}>{label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </FadeUp>
           </div>
@@ -291,6 +302,8 @@ export default function Products({ onSelectProduct }) {
                         src="/images/products/serve_card_bg_desktop.png"
                         alt=""
                         className={styles.cardBg}
+                        loading="lazy"
+                        decoding="async"
                         aria-hidden="true"
                       />
                     </picture>

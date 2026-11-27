@@ -75,7 +75,8 @@ export default function BniCollaboration({ onSelectOpportunity }) {
     if (typeof window === 'undefined') return;
     const ring = [...bniBenefits, ...bniBenefits];
     const total = ring.length;
-    const cardSpacing = 212; // 195px enlarged card + 17px breathing room
+    const cardWidth = 235; // +40px (~1/2 inch) wider on mobile
+    const cardSpacing = 254;
     let rafId;
     let lastTime = performance.now();
 
@@ -84,7 +85,7 @@ export default function BniCollaboration({ onSelectOpportunity }) {
       lastTime = now;
 
       if (window.innerWidth <= 767 && !mobilePausedRef.current) {
-        mobileOffsetRef.current = (mobileOffsetRef.current + 46 * dt) % (bniBenefits.length * cardSpacing);
+        mobileOffsetRef.current = (mobileOffsetRef.current + 48 * dt) % (bniBenefits.length * cardSpacing);
       }
 
       const stageW = mobileRopeStageRef.current ? mobileRopeStageRef.current.clientWidth : window.innerWidth;
@@ -98,12 +99,14 @@ export default function BniCollaboration({ onSelectOpportunity }) {
         let x = ((i * cardSpacing - mobileOffsetRef.current) % totalTrackW + totalTrackW) % totalTrackW;
         if (x > totalTrackW / 2) x -= totalTrackW;
 
-        // Follow quadratic curved rope: y = 34 * (1 - (x / halfW)^2) so center dips gracefully
-        const normX = Math.max(-1.2, Math.min(1.2, x / Math.max(halfW, 160)));
-        const curveY = 30 * (1 - normX * normX);
-        const tiltDeg = normX * -7;
+        // Exact quadratic Bezier curve of rope SVG (M 0,18 Q 200,56 400,18): y = 18 + 19 * (1 - normX^2)
+        // Subtract clasp offset (~22px from card top) so the golden clasp hooks directly onto the rope!
+        const normX = Math.max(-1.15, Math.min(1.15, x / Math.max(halfW, 160)));
+        const ropeY = 18 + 19 * (1 - normX * normX);
+        const cardTopY = ropeY - 22;
+        const tiltDeg = normX * -6;
 
-        el.style.transform = `translate3d(${(x - 97.5).toFixed(1)}px, ${curveY.toFixed(1)}px, 0) rotate(${tiltDeg.toFixed(2)}deg)`;
+        el.style.transform = `translate3d(${(x - cardWidth / 2).toFixed(1)}px, ${cardTopY.toFixed(1)}px, 0) rotate(${tiltDeg.toFixed(2)}deg)`;
       }
 
       rafId = requestAnimationFrame(animateMobile);
@@ -182,6 +185,8 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                   src="/images/logos/teeszone_logo.png"
                   alt="TeesZone - Elevate your style with custom tees"
                   className={styles.teeszoneLogo}
+                  loading="lazy"
+                  decoding="async"
                 />
               </picture>
 
@@ -193,6 +198,8 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                   src="/images/logos/bni_proud_member.png"
                   alt="Proud BNI Member"
                   className={styles.bniBadge}
+                  loading="lazy"
+                  decoding="async"
                 />
               </picture>
             </div>
@@ -233,9 +240,11 @@ export default function BniCollaboration({ onSelectOpportunity }) {
             {/* Hand in Burgundy Suit holding Red Ring (flush with right edge) */}
             <div className={styles.handRingWrap} aria-hidden="true">
               <img
-                src="/images/bni_hand_ring.png"
+                src="/images/bni_hand_ring.webp"
                 alt=""
                 className={styles.handRingImg}
+                loading="lazy"
+                decoding="async"
                 draggable={false}
               />
             </div>
@@ -263,10 +272,12 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                     aria-label={`${item.title}: ${item.description}`}
                   >
                     <img
-                      src="/images/bni_keychain_tag.png"
+                      src="/images/bni_keychain_tag.webp"
                       alt=""
                       aria-hidden="true"
                       className={styles.tagBgImg}
+                      loading="lazy"
+                      decoding="async"
                       draggable={false}
                     />
                     <div className={styles.tagInner}>
@@ -327,10 +338,12 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                 aria-label={`${item.title}: ${item.description}`}
               >
                 <img
-                  src="/images/bni_keychain_tag.png"
+                  src="/images/bni_keychain_tag.webp"
                   alt=""
                   aria-hidden="true"
                   className={styles.tagBgImg}
+                  loading="lazy"
+                  decoding="async"
                   draggable={false}
                 />
                 <div className={styles.mobileTagInner}>

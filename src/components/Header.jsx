@@ -81,11 +81,13 @@ export default function Header() {
         {/* Brand Logo - 1. Fade in + Slight scale from 0.95 to 1 */}
         <a href="#home" className={`${styles.logoLink} ${styles.animateLogo}`} aria-label="TeesZone Home">
           <img
-            src="/images/logos/teeszone_logo.png"
+            src="/images/logos/teeszone_logo.webp"
             alt="TeesZone - Elevate your Style with Custom Tees"
             className={styles.logoImg}
             width="170"
             height="38"
+            loading="eager"
+            decoding="async"
           />
         </a>
 

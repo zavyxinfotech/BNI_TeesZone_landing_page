@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from './components/Header';
+import { useCinematicScroll } from './components/animations/useCinematicScroll';
 import Hero from './components/Hero';
 import About from './components/About';
 import Products from './components/Products';
@@ -15,9 +16,12 @@ import IntroductionModal from './components/IntroductionModal';
 import ProductDetailModal from './components/ProductDetailModal';
 
 export default function App() {
+  const rootRef = useRef(null);
   const [introModalOpen, setIntroModalOpen] = useState(false);
   const [introModalType, setIntroModalType] = useState('introduction');
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  useCinematicScroll(rootRef);
 
   const handleOpenIntroModal = (type = 'introduction') => {
     setIntroModalType(type);
@@ -29,7 +33,7 @@ export default function App() {
   };
 
   return (
-    <div className="landing-page-root">
+    <div ref={rootRef} className="landing-page-root">
       {/* 1. Header & Navigation */}
       <Header />
 

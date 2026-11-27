@@ -202,7 +202,7 @@
   cursor: pointer;
   transform-origin: 50% 10%;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.25s ease;
+    filter 0.25s ease;
   filter: drop-shadow(0 14px 22px rgba(87, 0, 20, 0.16));
 }
 
@@ -278,18 +278,22 @@
   transform: translate(-72px, 34px) rotate(48deg);
   z-index: 2;
 }
+
 .tagSlot2 {
   transform: translate(-37px, 62px) rotate(24deg);
   z-index: 3;
 }
+
 .tagSlot3 {
   transform: translate(0px, 74px) rotate(0deg);
   z-index: 5;
 }
+
 .tagSlot4 {
   transform: translate(37px, 62px) rotate(-24deg);
   z-index: 3;
 }
+
 .tagSlot5 {
   transform: translate(72px, 34px) rotate(-48deg);
   z-index: 2;
@@ -299,18 +303,22 @@
 .tagSlot1.keychainTagPopped {
   transform: translate(-78px, 42px) rotate(48deg) scale(1.1);
 }
+
 .tagSlot2:hover,
 .tagSlot2.keychainTagPopped {
   transform: translate(-41px, 70px) rotate(24deg) scale(1.1);
 }
+
 .tagSlot3:hover,
 .tagSlot3.keychainTagPopped {
   transform: translate(0px, 82px) rotate(0deg) scale(1.1);
 }
+
 .tagSlot4:hover,
 .tagSlot4.keychainTagPopped {
   transform: translate(41px, 70px) rotate(-24deg) scale(1.1);
 }
+
 .tagSlot5:hover,
 .tagSlot5.keychainTagPopped {
   transform: translate(78px, 42px) rotate(-48deg) scale(1.1);
@@ -455,7 +463,7 @@
     display: block;
     position: relative;
     width: 100%;
-    height: 375px;
+    height: 410px;
     margin-top: 6px;
     overflow: hidden;
   }
@@ -478,15 +486,15 @@
 
   .mobileRopeCard {
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 50%;
-    width: 195px;
-    height: 322px;
+    width: 235px;
+    height: 365px;
     padding: 0;
     border: none;
     background: transparent;
     cursor: pointer;
-    transform-origin: 50% 8%;
+    transform-origin: 50% 6%;
     will-change: transform;
     z-index: 4;
     filter: drop-shadow(0 12px 20px rgba(87, 0, 20, 0.15));
@@ -495,20 +503,20 @@
   .mobileTagInner {
     position: absolute;
     top: 29%;
-    left: 13%;
-    right: 13%;
+    left: 12%;
+    right: 12%;
     bottom: 9%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 6px 8px;
+    padding: 8px 10px;
   }
 
   .mobileTagTitle {
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1.14rem;
     font-weight: 500;
     color: #7A001F;
     line-height: 1.2;
@@ -516,7 +524,7 @@
   }
 
   .mobileTagDesc {
-    font-size: 0.84rem;
+    font-size: 0.9rem;
     color: #4A3E3C;
     line-height: 1.35;
     margin: 0 0 10px 0;

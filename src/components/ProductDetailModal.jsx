@@ -52,6 +52,8 @@ export default function ProductDetailModal({ product, onClose }) {
                 src={product.image.replace('.webp', '.png')}
                 alt={product.name || product.title}
                 className={styles.fullSizedImg}
+                loading="lazy"
+                decoding="async"
               />
             </picture>
           </div>

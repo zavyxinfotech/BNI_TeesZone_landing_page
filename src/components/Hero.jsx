@@ -147,11 +147,13 @@ export default function Hero({ onOpenIntroModal }) {
               {/* TeesZone Logo: Smooth fade-in and scale-in */}
               <div className={`${styles.tzLogoWrap} ${styles.animateTzLogo}`}>
                 <img
-                  src="/images/logos/teeszone_logo.png"
+                  src="/images/logos/teeszone_logo.webp"
                   alt="TeesZone"
                   className={styles.tzLogoImg}
                   width="210"
                   height="42"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
 
@@ -162,11 +164,13 @@ export default function Hero({ onOpenIntroModal }) {
               <div className={styles.bniBadgeWrap}>
                 <div className={styles.animateBniBadge}>
                   <img
-                    src="/images/logos/BNI_logo-removebg-preview.png"
+                    src="/images/logos/BNI_logo-removebg-preview.webp"
                     alt="Proud BNI Member"
                     className={styles.bniBadgeImg}
                     width="92"
                     height="58"
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
                 <span className={`${styles.bniChapterName} ${styles.animateBniChapter}`}>

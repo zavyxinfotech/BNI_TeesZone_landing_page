@@ -7,7 +7,7 @@ export const companyInfo = {
   gstin: "33AAMCT4535C1ZI",
   phones: [
     { display: "+91 99446 87485", raw: "919944687485" },
-    { display: "+91 75500 67704", raw: "917550067704" }
+    { display: "+91 75500 67723", raw: "917550067723" }
   ],
   whatsapp: {
     display: "7550067723",

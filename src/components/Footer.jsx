@@ -35,9 +35,9 @@ export default function Footer() {
             <FadeUp trigger={inView} delay={0.06} blur={false}>
               <div className={styles.footerLogoWrap}>
                 <picture>
-                  <source srcSet="/images/logos/teeszone_logo.webp" type="image/webp" />
+                  <source srcSet="/bni/images/logos/teeszone_logo.webp" type="image/webp" />
                   <img
-                    src="/images/logos/teeszone_logo.png"
+                    src="/bni/images/logos/teeszone_logo.png"
                     alt="TeesZone - Elevate your style with custom tees"
                     className={styles.footerLogo}
                     loading="lazy"

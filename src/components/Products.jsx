@@ -14,11 +14,11 @@ const FEATURE_BLOCKS = [
 ];
 
 const MAIN_MODEL_IMAGES = {
-  'corporate-polos': '/images/products/corporate-model.webp',
-  'blank-tshirts': '/images/products/blank-model.webp',
-  'school-uniforms': '/images/products/school-model.webp',
-  'promotional-apparel': '/images/products/promotional-model.webp',
-  'sports-apparel': '/images/products/sports-model.webp'
+  'corporate-polos': '/bni/images/products/corporate-model.webp',
+  'blank-tshirts': '/bni/images/products/blank-model.webp',
+  'school-uniforms': '/bni/images/products/school-model.webp',
+  'promotional-apparel': '/bni/images/products/promotional-model.webp',
+  'sports-apparel': '/bni/images/products/sports-model.webp'
 };
 
 export default function Products({ onSelectProduct }) {
@@ -125,7 +125,7 @@ export default function Products({ onSelectProduct }) {
               aria-label={`Show ${nextProductObj.name}`}
             >
               <div className={styles.mobileSideBox}>
-                <img src="/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
+                <img src="/bni/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
                 <div className={styles.smallApparelWrap}>
                   <img src={nextProductObj.image} alt={nextProductObj.name} className={styles.smallApparelImg} loading="lazy" decoding="async" />
                 </div>
@@ -147,7 +147,7 @@ export default function Products({ onSelectProduct }) {
               aria-label={`Show ${prevProduct.name}`}
             >
               <div className={styles.mobileSideBox}>
-                <img src="/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
+                <img src="/bni/images/products/serve_card_bg_desktop.webp" alt="" className={styles.cardBg} loading="lazy" decoding="async" aria-hidden="true" />
                 <div className={styles.smallApparelWrap}>
                   <img src={prevProduct.image} alt={prevProduct.name} className={styles.smallApparelImg} loading="lazy" decoding="async" />
                 </div>
@@ -177,9 +177,9 @@ export default function Products({ onSelectProduct }) {
             >
               {/* Layer 1: Card Base */}
               <picture>
-                <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                <source srcSet="/bni/images/products/serve_card_bg_desktop.webp" type="image/webp" />
                 <img
-                  src="/images/products/serve_card_bg_desktop.png"
+                  src="/bni/images/products/serve_card_bg_desktop.png"
                   alt=""
                   className={styles.cardBg}
                   aria-hidden="true"
@@ -202,9 +202,9 @@ export default function Products({ onSelectProduct }) {
                   </div>
                   {/* Layer 3: Bottom Burgundy Wave Overlay so model tucks cleanly behind the wave */}
                   <picture>
-                    <source srcSet="/images/products/serve_card_wave_overlay.webp" type="image/webp" />
+                    <source srcSet="/bni/images/products/serve_card_wave_overlay.webp" type="image/webp" />
                     <img
-                      src="/images/products/serve_card_wave_overlay.png"
+                      src="/bni/images/products/serve_card_wave_overlay.png"
                       alt=""
                       className={styles.cardWaveOverlay}
                       aria-hidden="true"
@@ -297,9 +297,9 @@ export default function Products({ onSelectProduct }) {
                 >
                   <div className={styles.smallCardBox}>
                     <picture>
-                      <source srcSet="/images/products/serve_card_bg_desktop.webp" type="image/webp" />
+                      <source srcSet="/bni/images/products/serve_card_bg_desktop.webp" type="image/webp" />
                       <img
-                        src="/images/products/serve_card_bg_desktop.png"
+                        src="/bni/images/products/serve_card_bg_desktop.png"
                         alt=""
                         className={styles.cardBg}
                         loading="lazy"

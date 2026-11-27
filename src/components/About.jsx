@@ -131,9 +131,9 @@ export default function About({ onOpenAboutModal }) {
               {/* Masked Office Photo */}
               <div className={styles.organicMaskedFrame}>
                 <picture className={styles.pictureEl}>
-                  <source srcSet="/images/who_we_are_office.webp" type="image/webp" />
+                  <source srcSet="/bni/images/who_we_are_office.webp" type="image/webp" />
                   <img
-                    src="/images/who_we_are_office.jpg"
+                    src="/bni/images/who_we_are_office.jpg"
                     alt="TeesZone Corporate Office, Design & Innovation Studio and Uniform Gallery"
                     className={styles.officeImg}
                     loading="lazy"

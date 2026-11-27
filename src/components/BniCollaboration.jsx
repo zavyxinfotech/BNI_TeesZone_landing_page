@@ -180,9 +180,9 @@ export default function BniCollaboration({ onSelectOpportunity }) {
           <div className={styles.textColumn}>
             <div className={styles.brandRow}>
               <picture>
-                <source srcSet="/images/logos/teeszone_logo.webp" type="image/webp" />
+                <source srcSet="/bni/images/logos/teeszone_logo.webp" type="image/webp" />
                 <img
-                  src="/images/logos/teeszone_logo.png"
+                  src="/bni/images/logos/teeszone_logo.png"
                   alt="TeesZone - Elevate your style with custom tees"
                   className={styles.teeszoneLogo}
                   loading="lazy"
@@ -193,9 +193,9 @@ export default function BniCollaboration({ onSelectOpportunity }) {
               <span className={styles.brandDivider} aria-hidden="true" />
 
               <picture>
-                <source srcSet="/images/logos/bni_proud_member.webp" type="image/webp" />
+                <source srcSet="/bni/images/logos/bni_proud_member.webp" type="image/webp" />
                 <img
-                  src="/images/logos/bni_proud_member.png"
+                  src="/bni/images/logos/bni_proud_member.png"
                   alt="Proud BNI Member"
                   className={styles.bniBadge}
                   loading="lazy"
@@ -240,7 +240,7 @@ export default function BniCollaboration({ onSelectOpportunity }) {
             {/* Hand in Burgundy Suit holding Red Ring (flush with right edge) */}
             <div className={styles.handRingWrap} aria-hidden="true">
               <img
-                src="/images/bni_hand_ring.webp"
+                src="/bni/images/bni_hand_ring.webp"
                 alt=""
                 className={styles.handRingImg}
                 loading="lazy"
@@ -272,7 +272,7 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                     aria-label={`${item.title}: ${item.description}`}
                   >
                     <img
-                      src="/images/bni_keychain_tag.webp"
+                      src="/bni/images/bni_keychain_tag.webp"
                       alt=""
                       aria-hidden="true"
                       className={styles.tagBgImg}
@@ -338,7 +338,7 @@ export default function BniCollaboration({ onSelectOpportunity }) {
                 aria-label={`${item.title}: ${item.description}`}
               >
                 <img
-                  src="/images/bni_keychain_tag.webp"
+                  src="/bni/images/bni_keychain_tag.webp"
                   alt=""
                   aria-hidden="true"
                   className={styles.tagBgImg}

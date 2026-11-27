@@ -93,7 +93,7 @@ export const clientLogos = CLIENT_FILES.map((file, idx) => ({
     .replace(/\.(png|webp|jpg|jpeg|svg)$/i, '')
     .replace(/-/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase()),
-  src: `/images/clients/${file}`
+  src: `/bni/images/clients/${file}`
 }));
 
 export default function TrustedCorporatePartners({

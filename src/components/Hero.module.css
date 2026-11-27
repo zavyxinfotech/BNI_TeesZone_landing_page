@@ -1,7 +1,7 @@
 .heroSection {
   position: relative;
   background-color: #FDFBF7;
-  background-image: url('/images/hero_bg_desktop.webp');
+  background-image: url('/bni/images/hero_bg_desktop.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
@@ -532,7 +532,7 @@
 /* Responsive Styles for Mobile */
 @media (max-width: 800px) {
   .heroSection {
-    background-image: url('/images/hero_bg_mobile.webp');
+    background-image: url('/bni/images/hero_bg_mobile.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;

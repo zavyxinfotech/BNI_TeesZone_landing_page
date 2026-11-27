@@ -147,7 +147,7 @@ export default function Hero({ onOpenIntroModal }) {
               {/* TeesZone Logo: Smooth fade-in and scale-in */}
               <div className={`${styles.tzLogoWrap} ${styles.animateTzLogo}`}>
                 <img
-                  src="/images/logos/teeszone_logo.webp"
+                  src="/bni/images/logos/teeszone_logo.webp"
                   alt="TeesZone"
                   className={styles.tzLogoImg}
                   width="210"
@@ -164,7 +164,7 @@ export default function Hero({ onOpenIntroModal }) {
               <div className={styles.bniBadgeWrap}>
                 <div className={styles.animateBniBadge}>
                   <img
-                    src="/images/logos/BNI_logo-removebg-preview.webp"
+                    src="/bni/images/logos/BNI_logo-removebg-preview.webp"
                     alt="Proud BNI Member"
                     className={styles.bniBadgeImg}
                     width="92"
@@ -218,9 +218,9 @@ export default function Hero({ onOpenIntroModal }) {
       {/* Right-aligned 4 Models Showcase (Top 60% Transparent, tucked into bottom wave) */}
       <div className={styles.heroModelsWrap}>
         <picture>
-          <source srcSet="/images/hero_models.webp" type="image/webp" />
+          <source srcSet="/bni/images/hero_models.webp" type="image/webp" />
           <img
-            src="/images/hero_models.png"
+            src="/bni/images/hero_models.png"
             alt="TeesZone Custom Corporate Polo, Sports Jersey, Hoodie and T-Shirt Models"
             className={styles.heroModelsImg}
             width="1024"

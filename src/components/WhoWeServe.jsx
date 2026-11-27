@@ -9,33 +9,33 @@ gsap.registerPlugin(ScrollTrigger);
 // High-resolution apparel product visual assets for all 6 industries
 const industryAssets = [
   {
-    image: '/images/products/who_we_serve_corporate.webp',
-    imagePng: '/images/products/who_we_serve_corporate.png',
+    image: '/bni/images/products/who_we_serve_corporate.webp',
+    imagePng: '/bni/images/products/who_we_serve_corporate.png',
     alt: 'Corporate navy and burgundy polo shirts with custom embroidery'
   },
   {
-    image: '/images/products/who_we_serve_sports.webp',
-    imagePng: '/images/products/who_we_serve_sports.png',
+    image: '/bni/images/products/who_we_serve_sports.webp',
+    imagePng: '/bni/images/products/who_we_serve_sports.png',
     alt: 'School and college athletic jerseys with custom collar and sleeve trim'
   },
   {
-    image: '/images/products/who_we_serve_blank.webp',
-    imagePng: '/images/products/who_we_serve_blank.png',
+    image: '/bni/images/products/who_we_serve_blank.webp',
+    imagePng: '/bni/images/products/who_we_serve_blank.png',
     alt: 'Premium combed blank plain t-shirts in multiple corporate colors'
   },
   {
-    image: '/images/products/who_we_serve_manufacturing.webp',
-    imagePng: '/images/products/who_we_serve_manufacturing.png',
+    image: '/bni/images/products/who_we_serve_manufacturing.webp',
+    imagePng: '/bni/images/products/who_we_serve_manufacturing.png',
     alt: 'Industrial workwear with reflective safety bands and durable twill fabric'
   },
   {
-    image: '/images/products/who_we_serve_events.webp',
-    imagePng: '/images/products/who_we_serve_events.png',
+    image: '/bni/images/products/who_we_serve_events.webp',
+    imagePng: '/bni/images/products/who_we_serve_events.png',
     alt: 'Event merchandise kit with branded t-shirt, cap, tote bag, and water bottle'
   },
   {
-    image: '/images/products/sports-apparel.webp',
-    imagePng: '/images/products/sports-apparel.png',
+    image: '/bni/images/products/sports-apparel.webp',
+    imagePng: '/bni/images/products/sports-apparel.png',
     alt: 'Clubs and organizations customized sublimated sports jerseys and kits'
   }
 ];

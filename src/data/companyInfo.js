@@ -21,7 +21,8 @@ export const companyInfo = {
     line2: "NH 544 Bengaluru–Cochin National Highway,",
     line3: "Chithode, Erode – 638 102, Tamil Nadu, India.",
     full: "#2155, Fortune City, Global Market – Texvalley, NH 544 Bengaluru–Cochin National Highway, Chithode, Erode – 638 102, Tamil Nadu, India.",
-    mapsUrl: "https://maps.google.com/?q=Texvalley+Fortune+City+NH+544+Chithode+Erode+Tamil+Nadu"
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=11.3720,77.6469",
+    embedUrl: "https://www.google.com/maps?q=11.3720,77.6469+(TeesZone%20-%20Texvalley%20Erode)&z=15&output=embed"
   },
   trustIndicators: {
     rating: "5-Star Google Ratings",

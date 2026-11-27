@@ -195,39 +195,47 @@
 }
 
 .mapContainer {
+  position: relative;
   width: 100%;
-  height: 240px;
+  height: 250px;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(87, 0, 20, 0.08);
   border: 1.5px solid rgba(216, 166, 59, 0.3);
   margin-bottom: 12px;
+  background: #EFE8DD;
 }
 
 .mapIframe {
   width: 100%;
   height: 100%;
-}
-
-.mapLinkRow {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
 }
 
 .openMapsBtn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--color-primary-burgundy);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(216, 166, 59, 0.45);
+  border-radius: var(--radius-full);
+  padding: 7px 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   transition: all var(--transition-fast);
 }
 
 .openMapsBtn:hover {
-  color: var(--color-deep-maroon);
-  text-decoration: underline;
-  transform: translateX(2px);
+  background: var(--color-primary-burgundy);
+  color: #FFFFFF;
+  border-color: var(--color-primary-burgundy);
+  transform: translateY(-1px);
 }
 
 /* Bottom Bar */

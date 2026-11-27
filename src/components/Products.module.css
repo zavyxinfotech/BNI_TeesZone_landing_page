@@ -1,4 +1,4 @@
-/* What We Manufacture Section - Balanced 2-Column Editorial Layout */
+/* What We Manufacture Section - Fits Desktop 100vh + Exact Mobile Order 1-5 */
 
 .productsSection {
   background-color: var(--color-cream);
@@ -6,7 +6,15 @@
   overflow: visible;
   width: 100%;
   box-sizing: border-box;
-  padding: calc(var(--header-height, 92px) + 18px) 0 48px 0;
+  padding: calc(var(--header-height, 92px) + 6px) 0 22px 0;
+}
+
+@media (min-width: 1025px) {
+  .productsSection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .productsContainer {
@@ -20,33 +28,61 @@
 }
 
 /* ========================================================
-   Top Two-Column Desktop Layout
-   Left: Large Hero T-Shirt Card | Right: Heading, Features & CTA
+   Desktop Grid: Left Main Card (spanning 2 rows) | Right Header + Extras
    ======================================================== */
 .topTwoColGrid {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  align-items: center;
-  gap: 56px;
-  margin-bottom: 36px;
+  grid-template-columns: 365px 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "card header"
+    "card extras"
+    "card smallcards";
+  column-gap: 40px;
+  row-gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
 }
 
-/* Left Column: Preserved Large Hero Card */
+.headerBlock {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  align-self: start;
+}
+
+.extrasBlock {
+  grid-area: extras;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  align-self: center;
+}
+
+/* Left Column: Larger Main Hero Card aligned from heading down to bottom of small cards */
 .heroCardCol {
+  grid-area: card;
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 38px;
+  align-items: flex-end;
+  padding-top: 56px;
+  align-self: stretch;
 }
 
 .heroCardBox {
-  width: 340px;
+  width: 345px;
   aspect-ratio: 574 / 679;
   position: relative;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  filter: drop-shadow(0 16px 30px rgba(122, 0, 31, 0.14)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+  overflow: visible;
+  z-index: 5;
+  filter: drop-shadow(0 14px 26px rgba(122, 0, 31, 0.13)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
   animation: heroCardSwap 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -56,7 +92,6 @@
     opacity: 0.72;
     transform: translateY(8px) scale(0.97);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -64,8 +99,8 @@
 }
 
 .heroCardBox:hover {
-  transform: translateY(-6px) scale(1.015);
-  filter: drop-shadow(0 20px 38px rgba(122, 0, 31, 0.18)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.06));
+  transform: translateY(-5px) scale(1.015);
+  filter: drop-shadow(0 18px 34px rgba(122, 0, 31, 0.18)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.06));
 }
 
 .cardBg {
@@ -78,12 +113,49 @@
   pointer-events: none;
 }
 
+/* Corporate Model Image: uncut at top/left/right, bottom tucked BEHIND burgundy wave */
+.heroModelWrap {
+  position: absolute;
+  top: -12%;
+  left: -6%;
+  right: -6%;
+  bottom: 16%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.heroModelImg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.14));
+}
+
+.cardWaveOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Standard Apparel Images inside Main Card */
 .heroApparelWrap {
   position: absolute;
-  top: -22%;
-  left: -2%;
-  right: -2%;
-  height: 80%;
+  top: -16%;
+  left: 0;
+  right: 0;
+  height: 76%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -93,8 +165,8 @@
 }
 
 .heroApparelImg {
-  max-width: 102%;
-  max-height: 102%;
+  max-width: 98%;
+  max-height: 98%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -107,73 +179,72 @@
   transform: scale(1.05) translateY(-3px);
 }
 
+/* Centered Title Safely Inside Burgundy Wave (Never overflows card border) */
 .heroTitleWrap {
   position: absolute;
-  bottom: 2%;
-  left: 8%;
-  right: 8%;
-  height: 34%;
+  bottom: 5%;
+  left: 14%;
+  right: 16%;
+  height: 28%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: 2;
-  padding: 0 10px;
+  z-index: 4;
+  padding: 0 4px;
   pointer-events: none;
 }
 
 .heroCardTitle {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: clamp(1.12rem, 1.35vw, 1.32rem);
+  font-size: clamp(0.92rem, 1.05vw, 1.08rem);
   font-weight: 500;
   font-style: italic;
-  line-height: 1.25;
+  line-height: 1.24;
   margin: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-/* Right Column: Heading, Subheading, Description, 4 Features & CTA */
-.contentCol {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+/* Mobile-only Top-Right & Bottom-Left Peeking Side Cards (Hidden on Desktop) */
+.mobileSideCard {
+  display: none;
 }
 
+/* Typography & Right Content */
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 3vw, 2.75rem);
+  font-size: clamp(1.95rem, 2.7vw, 2.5rem);
   font-weight: 500;
   color: var(--color-deep-maroon);
   letter-spacing: -0.015em;
-  margin: 0 0 8px 0;
-  line-height: 1.18;
+  margin: 0 0 6px 0;
+  line-height: 1.15;
 }
 
 .goldAccentLine {
-  width: 56px;
-  height: 3.5px;
+  width: 52px;
+  height: 3px;
   background: var(--color-gold);
   border-radius: 2px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .sectionSubheading {
   font-family: var(--font-heading);
-  font-size: clamp(1.08rem, 1.35vw, 1.25rem);
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
   font-weight: 500;
   color: var(--color-primary-burgundy);
-  margin: 0 0 10px 0;
-  line-height: 1.35;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
 }
 
 .sectionDescription {
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   color: var(--color-secondary-text);
-  line-height: 1.6;
-  max-width: 620px;
-  margin: 0 0 24px 0;
+  line-height: 1.5;
+  max-width: 640px;
+  margin: 0;
   font-weight: 400;
 }
 
@@ -181,17 +252,17 @@
 .featuresGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
   width: 100%;
-  margin-bottom: 26px;
+  margin-bottom: 16px;
 }
 
 .featureBlock {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding: 12px 10px;
+  gap: 6px;
+  padding: 8px 8px;
   background: transparent;
   border-bottom: 1.5px solid rgba(216, 166, 59, 0.32);
   transition: transform 0.25s ease, border-color 0.25s ease;
@@ -215,24 +286,25 @@
 
 .featureLabel {
   font-family: var(--font-heading);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-deep-maroon);
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
-/* Premium CTA Block */
+/* Premium CTA Block (Aligned below bottom small cards, enlarged text) */
 .ctaBox {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   width: 100%;
-  padding: 20px 24px;
-  background: rgba(255, 255, 255, 0.65);
+  margin-top: 18px;
+  padding: 18px 28px;
+  background: rgba(255, 255, 255, 0.68);
   border: 1px solid rgba(216, 166, 59, 0.35);
   border-radius: var(--radius-md);
-  box-shadow: 0 10px 28px rgba(87, 0, 20, 0.05);
+  box-shadow: 0 8px 24px rgba(87, 0, 20, 0.05);
 }
 
 .ctaTextWrap {
@@ -243,14 +315,14 @@
 
 .ctaHeadline {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: clamp(1.22rem, 1.55vw, 1.42rem);
   font-weight: 500;
   color: var(--color-deep-maroon);
   margin: 0;
 }
 
 .ctaDesc {
-  font-size: 0.88rem;
+  font-size: clamp(0.94rem, 1.1vw, 1.04rem);
   color: var(--color-secondary-text);
   margin: 0;
   line-height: 1.45;
@@ -263,10 +335,10 @@
   gap: 10px;
   background-color: var(--color-primary-burgundy);
   color: #FFFFFF;
-  padding: 13px 24px;
+  padding: 13px 26px;
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 500;
   white-space: nowrap;
   flex-shrink: 0;
@@ -283,34 +355,35 @@
 }
 
 /* ========================================================
-   Bottom Apparel Product Cards Row
+   Desktop Bottom 4 Small Cards Row (Aligned directly under "What We Manufacture")
    ======================================================== */
 .bottomCardsRow {
+  grid-area: smallcards;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   width: 100%;
   align-items: end;
 }
 
 .smallCardItem {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   cursor: pointer;
   user-select: none;
-  opacity: 0.84;
+  opacity: 0.92;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
 }
 
 .smallCardItem:hover,
 .smallCardActive {
   opacity: 1;
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 }
 
 .smallCardBox {
   width: 100%;
-  max-width: 210px;
+  max-width: 174px;
   aspect-ratio: 574 / 679;
   position: relative;
   display: flex;
@@ -324,12 +397,13 @@
   filter: drop-shadow(0 16px 28px rgba(122, 0, 31, 0.18));
 }
 
+/* Larger Apparel T-Shirt inside Bottom Cards */
 .smallApparelWrap {
   position: absolute;
-  top: 8%;
-  left: 9%;
-  right: 9%;
-  height: 52%;
+  top: 2%;
+  left: 4%;
+  right: 4%;
+  height: 64%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,13 +412,13 @@
 }
 
 .smallApparelImg {
-  max-width: 84%;
-  max-height: 88%;
+  max-width: 96%;
+  max-height: 98%;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
   transition: transform 0.35s ease;
 }
 
@@ -352,25 +426,26 @@
   transform: scale(1.06);
 }
 
+/* Centered Title Safely Inside Burgundy Wave (Never overflows card border) */
 .smallTitleWrap {
   position: absolute;
-  bottom: 2%;
-  left: 8%;
-  right: 8%;
-  height: 34%;
+  bottom: 6%;
+  left: 14%;
+  right: 16%;
+  height: 28%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: 2;
-  padding: 0 6px;
+  z-index: 3;
+  padding: 0 4px;
   pointer-events: none;
 }
 
 .smallCardTitle {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: clamp(0.84rem, 0.98vw, 0.96rem);
+  font-size: clamp(0.68rem, 0.78vw, 0.78rem);
   font-weight: 500;
   font-style: italic;
   line-height: 1.22;
@@ -380,22 +455,25 @@
 
 /* ========================================================
    Responsive Tablet & Mobile Layouts
+   Mobile Order: 1. Heading 2. Description 3. Main Image 4. Top-Right & Bottom-Left Side Cards 5. Features & CTA
    ======================================================== */
 @media (max-width: 1024px) {
+  .productsSection {
+    padding: calc(var(--header-height, 76px) + 12px) 0 34px 0;
+  }
+
   .topTwoColGrid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "header"
+      "card"
+      "extras";
+    gap: 18px;
+    margin-bottom: 0;
   }
 
-  .heroCardCol {
-    padding-top: 28px;
-  }
-
-  .heroCardBox {
-    width: 280px;
-  }
-
-  .contentCol {
+  .headerBlock {
     align-items: center;
     text-align: center;
   }
@@ -405,9 +483,61 @@
     margin-right: auto;
   }
 
+  /* 3 & 4: Main Card + Top-Right & Bottom-Left Side Cards fitting cleanly in mobile height */
+  .heroCardCol {
+    padding: 24px 0 14px 0;
+    min-height: 310px;
+  }
+
+  .heroCardBox {
+    width: 215px;
+  }
+
+  .mobileSideCard {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.78;
+    transition: transform 0.35s ease, opacity 0.3s ease;
+  }
+
+  .mobileSideTopRight {
+    top: 6px;
+    right: calc(50% - 178px);
+    transform: rotate(6deg) scale(0.92);
+  }
+
+  .mobileSideBottomLeft {
+    bottom: 2px;
+    left: calc(50% - 178px);
+    transform: rotate(-6deg) scale(0.92);
+  }
+
+  .mobileSideBox {
+    width: 130px;
+    aspect-ratio: 574 / 679;
+    position: relative;
+    filter: drop-shadow(0 8px 16px rgba(122, 0, 31, 0.14));
+  }
+
+  .mobileSideBox .smallCardTitle {
+    font-size: 0.6rem;
+  }
+
+  /* Hide desktop bottom strip on mobile since side cards are around main image */
+  .bottomCardsRow {
+    display: none;
+  }
+
+  /* 5: Features & CTA below the image showcase */
+  .extrasBlock {
+    align-items: center;
+  }
+
   .featuresGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
   }
 
   .featureBlock {
@@ -418,61 +548,57 @@
   .ctaBox {
     flex-direction: column;
     text-align: center;
-    gap: 16px;
-  }
-
-  .bottomCardsRow {
-    display: flex;
-    overflow-x: auto;
     gap: 14px;
-    padding: 8px 4px 12px 4px;
-    scrollbar-width: none;
-  }
-
-  .bottomCardsRow::-webkit-scrollbar {
-    display: none;
-  }
-
-  .smallCardItem {
-    flex: 0 0 155px;
   }
 }
 
 @media (max-width: 600px) {
-  .productsSection {
-    padding: calc(var(--header-height, 76px) + 16px) 0 36px 0;
-  }
-
-  .heroCardBox {
-    width: 240px;
+  .productsContainer {
+    padding: 0 16px;
   }
 
   .sectionTitle {
-    font-size: 1.75rem;
+    font-size: 1.68rem;
   }
 
   .sectionSubheading {
-    font-size: 1rem;
+    font-size: 0.96rem;
   }
 
   .sectionDescription {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
   }
 
-  .featuresGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+  .heroCardCol {
+    padding: 20px 0 10px 0;
+    min-height: 280px;
+  }
+
+  .heroCardBox {
+    width: 196px;
+  }
+
+  .heroCardTitle {
+    font-size: 0.82rem;
+  }
+
+  .mobileSideTopRight {
+    right: calc(50% - 160px);
+  }
+
+  .mobileSideBottomLeft {
+    left: calc(50% - 160px);
+  }
+
+  .mobileSideBox {
+    width: 116px;
+  }
+
+  .mobileSideBox .smallCardTitle {
+    font-size: 0.56rem;
   }
 
   .featureLabel {
     font-size: 0.82rem;
-  }
-
-  .smallCardItem {
-    flex: 0 0 138px;
-  }
-
-  .smallCardTitle {
-    font-size: 0.68rem;
   }
 }

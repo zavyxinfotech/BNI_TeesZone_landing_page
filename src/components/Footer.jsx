@@ -137,22 +137,29 @@ export default function Footer() {
               </p>
             </FadeUp>
 
-            {/* Embedded Google Maps Box - Fade-in */}
-            <FadeUp trigger={inView} delay={0.35} blur={true}>
-              <div className={styles.mapContainer}>
-                <iframe
-                  title="TeesZone Texvalley Office Location Map"
-                  src="https://maps.google.com/maps?q=Texvalley+Fortune+City+NH+544+Chithode+Erode&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className={styles.mapIframe}
-                />
-              </div>
-            </FadeUp>
+            {/* Embedded Google Maps Box with Overlaid Open in Google Maps Button */}
+            <div className={styles.mapContainer}>
+              <iframe
+                title="TeesZone Texvalley Office Location Map"
+                src={companyInfo.address.embedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                referrerPolicy="no-referrer-when-downgrade"
+                className={styles.mapIframe}
+              />
+
+              <a
+                href={companyInfo.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.openMapsBtn}
+              >
+                <span>Open in Google Maps</span>
+                <ExternalLink size={14} />
+              </a>
+            </div>
 
             {/* Location Address aligned below Map (no background/border) */}
             <FadeUp trigger={inView} delay={0.48} blur={false}>
@@ -167,20 +174,6 @@ export default function Footer() {
                 </address>
               </div>
             </FadeUp>
-
-            <div className={styles.mapLinkRow}>
-              <ScaleReveal trigger={inView} delay={0.64}>
-                <a
-                  href={companyInfo.address.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.openMapsBtn}
-                >
-                  <span>Open in Google Maps</span>
-                  <ExternalLink size={14} />
-                </a>
-              </ScaleReveal>
-            </div>
           </div>
         </div>
 
